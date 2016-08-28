@@ -16,4 +16,12 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('test.html.twig');
     }
+
+    /**
+     * @Route(name="menu")
+     */
+    public function menuAction($inverted = false) {
+        $pages = ['Page 1', 'Page 2', 'Page 3'];
+        return $this->render('partials/_menu.html.twig', ['pages' => $pages, 'inverted' => $inverted]);
+    }
 }

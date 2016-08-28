@@ -1,0 +1,11 @@
+{% for page in pages %}
+<a class="item">{{ page }}</a>
+{% endfor %}
+<div class="right menu">
+    <div class="item">
+        <a class="ui {% if inverted %}inverted{% endif %} button">Log in</a>
+    </div>
+    <div class="item">
+        <a class="ui {% if inverted %}inverted{% endif %} primary button">Sign Up</a>
+    </div>
+</div>
