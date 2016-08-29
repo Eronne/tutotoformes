@@ -1,16 +1,15 @@
 # This file is a "template" of what your parameters.yml file should look like
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+
 parameters:
     database_host:     '%db.host%'
     database_port:     5432
     database_name:     '%db.name%'
-<<<<<<< HEAD
     database_user:     '%db.user%'
-=======
     database_user:     '%db.name%'
->>>>>>> 51612c8eaffe3cd73ed1fd9a224068124b2030f2
     database_password: '%db.pass%'
+
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
