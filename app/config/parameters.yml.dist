@@ -9,6 +9,7 @@ parameters:
     database_user:     '%db.user%'
     database_user:     '%db.name%'
     database_password: '%db.pass%'
+    database_driver:   'pdo_pgsql'
 
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
@@ -17,6 +18,7 @@ parameters:
     mailer_host:       'smtp.sendgrid.net'
     mailer_user:       '%mail.user%'
     mailer_password:   '%mail.pass%'
+
 
 
     # A secret key that's used to generate certain security-related tokens
