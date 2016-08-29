@@ -44,7 +44,7 @@ class Role implements RoleInterface
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Utilisateur", mappedBy="roles")
      */
     private $users;
 

@@ -6,13 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 /**
- * User
+ * Utilisateur
  *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Table(name="utilisateur")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository")
  */
-class User implements UserInterface, \Serializable
+class Utilisateur implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -81,7 +82,7 @@ class User implements UserInterface, \Serializable
      *
      * @param string $username
      *
-     * @return User
+     * @return Utilisateur
      */
     public function setUsername($username)
     {
@@ -105,7 +106,7 @@ class User implements UserInterface, \Serializable
      *
      * @param string $email
      *
-     * @return User
+     * @return Utilisateur
      */
     public function setEmail($email)
     {
@@ -129,7 +130,7 @@ class User implements UserInterface, \Serializable
      *
      * @param \DateTime $createdAt
      *
-     * @return User
+     * @return Utilisateur
      */
     public function setCreatedAt($createdAt)
     {
@@ -153,7 +154,7 @@ class User implements UserInterface, \Serializable
      *
      * @param \DateTime $editedAt
      *
-     * @return User
+     * @return Utilisateur
      */
     public function setEditedAt($editedAt)
     {
@@ -177,7 +178,7 @@ class User implements UserInterface, \Serializable
      *
      * @param string $password
      *
-     * @return User
+     * @return Utilisateur
      */
     public function setPassword($password)
     {
@@ -301,7 +302,7 @@ class User implements UserInterface, \Serializable
      *
      * @param \AppBundle\Entity\Role $role
      *
-     * @return User
+     * @return Utilisateur
      */
     public function addRole(\AppBundle\Entity\Role $role)
     {

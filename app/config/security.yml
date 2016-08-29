@@ -11,11 +11,11 @@ security:
     providers:
         User:
             entity:
-                class: AppBundle:User
+                class: AppBundle:Utilisateur
                 property: username
 
     encoders:
-        AppBundle\Entity\User:
+        AppBundle\Entity\Utilisateur:
             algorithm: bcrypt
 
 

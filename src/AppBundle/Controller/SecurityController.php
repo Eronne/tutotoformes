@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,7 +47,7 @@ class SecurityController extends Controller
             $username = $request->get('_username');
             $password = $request->get('_password')[0];
 
-            $userRepository = $this->getDoctrine()->getRepository('AppBundle:User');
+            $userRepository = $this->getDoctrine()->getRepository('AppBundle:Utilisateur');
 
             $user = $userRepository->findOneBy(['username' => $username]);
 
@@ -66,7 +67,7 @@ class SecurityController extends Controller
                 return $this->redirectToRoute('login');
             }
 
-            $newUser = new User();
+            $newUser = new Utilisateur();
             $newUser->setCreatedAt(new \DateTime('now'))
                 ->setEmail($email)
                 ->setUsername($username)

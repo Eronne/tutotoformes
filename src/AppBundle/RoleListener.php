@@ -3,6 +3,7 @@
 namespace AppBundle;
 
 use AppBundle\Entity\User;
+use AppBundle\Entity\Utilisateur;
 use Closure;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -48,7 +49,7 @@ class RoleListener implements EventSubscriberInterface
             $user = $token->getUser();
             // This check can be just `is_object` like in symfony core
             // we're explicit about the class used
-            if ($user instanceof User) {
+            if ($user instanceof Utilisateur) {
                 // there didn't seem to be an easier way to grab the provider key,
                 // so using bound closure to retrieve it
                 $providerKeyGetter = function(TokenInterface $token) {
