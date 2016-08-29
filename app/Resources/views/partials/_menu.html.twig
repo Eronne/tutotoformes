@@ -1,11 +1,22 @@
 {% for page in pages %}
-<a class="item">{{ page }}</a>
+    <a class="{% if app.request.attributes.get('_route') == page %}active{% endif %} item">{{ page }}</a>
 {% endfor %}
+<a href="{{ path('homepage') }}" class="item">Accueil</a>
+<a href="" class="item">Tutoriels</a>
 <div class="right menu">
-    <div class="item">
-        <a class="ui {% if inverted %}inverted{% endif %} button">Log in</a>
-    </div>
-    <div class="item">
-        <a class="ui {% if inverted %}inverted{% endif %} primary button">Sign Up</a>
-    </div>
+
+    {% if app.user %}
+        <div class="item">
+            <a href="" class="ui primary button">Mon profil</a>
+        </div>
+        <div class="item">
+            <a href="{{ path('logout') }}" class="ui {% if inverted %}inverted{% endif %} button">Se déconnecter</a>
+        </div>
+
+    {% else %}
+        <div class="item">
+            <a href="{{ path('login') }}" class="ui {% if inverted %}inverted{% endif %} button">Connexion / Inscription</a>
+        </div>
+
+    {% endif %}
 </div>

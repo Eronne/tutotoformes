@@ -2,10 +2,27 @@
 # http://symfony.com/doc/current/book/security.html
 security:
 
+    always_authenticate_before_granting: true
+
+    access_control: ~
+
+
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
+        User:
+            entity:
+                class: AppBundle:User
+                property: username
+
+    encoders:
+        AppBundle\Entity\User:
+            algorithm: bcrypt
+
+
+    role_hierarchy:
+        ROLE_WRITER:      ROLE_USER
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -15,6 +32,17 @@ security:
 
         main:
             anonymous: ~
+            remember_me:
+                secret:   '%secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+            provider: User
+            form_login:
+                login_path: /login
+                check_path: /login
+            logout:
+                path: /logout
+                target: /
             # activate different ways to authenticate
 
             # http_basic: ~
@@ -22,3 +50,5 @@ security:
 
             # form_login: ~
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+
+

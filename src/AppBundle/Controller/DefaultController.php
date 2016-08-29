@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class DefaultController extends Controller
 {
@@ -21,7 +22,8 @@ class DefaultController extends Controller
      * @Route(name="menu")
      */
     public function menuAction($inverted = false) {
-        $pages = ['Page 1', 'Page 2', 'Page 3'];
+        $pages = [];
         return $this->render('partials/_menu.html.twig', ['pages' => $pages, 'inverted' => $inverted]);
     }
+
 }

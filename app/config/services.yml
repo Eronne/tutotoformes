@@ -7,3 +7,15 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    app.security.role_change_listener:
+        class: AppBundle\RoleListener
+        tags:
+            - { name: kernel.event_subscriber }
+        arguments:
+            - '@doctrine.orm.default_entity_manager'
+            - '@security.token_storage'
+
+    app.utils:
+        class: AppBundle\Utils
+        arguments: ['@swiftmailer.mailer']
