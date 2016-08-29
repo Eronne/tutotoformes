@@ -141,11 +141,11 @@ class Role implements RoleInterface
     /**
      * Add user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \AppBundle\Entity\Utilisateur $user
      *
      * @return Role
      */
-    public function addUser(\AppBundle\Entity\User $user)
+    public function addUser(\AppBundle\Entity\Utilisateur $user)
     {
         $this->users[] = $user;
 
@@ -155,9 +155,9 @@ class Role implements RoleInterface
     /**
      * Remove user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \AppBundle\Entity\Utilisateur $user
      */
-    public function removeUser(\AppBundle\Entity\User $user)
+    public function removeUser(\AppBundle\Entity\Utilisateur $user)
     {
         $this->users->removeElement($user);
     }
