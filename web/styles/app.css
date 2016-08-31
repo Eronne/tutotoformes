@@ -4,35 +4,128 @@
 
 .jumbotron {
   width: 100%;
-  height: 700px;
+  height: 500px;
   background-color: #79ADDC;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  margin-bottom: 40px;
+  background: url("../assets/img/new-material-design.jpg");
+  background-size: cover;
+  background-attachment: fixed; }
   .jumbotron h1, .jumbotron h2, .jumbotron p {
-    color: #FCF5C7; }
+    color: whitesmoke; }
 
 input.search-course {
-  background: transparent;
   width: 500px;
   height: 60px;
-  outline: none;
-  border-style: none;
-  border-bottom: 2px solid #FCF5C7;
-  color: whitesmoke;
   padding: 20px; }
+
+hr.separator {
+  margin: 40px 0; }
+
+h1, input::-webkit-input-placeholder, button {
+  transition: all 0.3s ease-in-out; }
+
+input.md-input {
+  margin: 40px 25px;
+  display: block;
+  border: none;
+  padding: 10px 0;
+  border-bottom: solid 1px #EF5350;
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #EF5350 4%);
+  background-position: -500px 0;
+  background-size: 500px 100%;
+  background-repeat: no-repeat;
+  color: white; }
+  input.md-input:focus, input.md-input:valid {
+    box-shadow: none;
+    outline: none;
+    background-position: 0 0; }
+    input.md-input:focus::-webkit-input-placeholder, input.md-input:valid::-webkit-input-placeholder {
+      color: #EF5350;
+      font-size: 12px;
+      transform: translateY(-30px);
+      visibility: visible !important; }
 
 .page-body {
   padding-top: 120px; }
   .page-body.flash {
     padding-top: 40px; }
 
-.feature {
-  text-align: center;
+.features .feature {
+  text-align: justify;
   margin-right: 20px; }
-  .feature:last-of-type {
+  .features .feature div.icon {
+    text-align: center;
+    line-height: 40px;
+    height: 68px; }
+    .features .feature div.icon i.icon {
+      font-size: 48px;
+      transition: all 0.3s;
+      opacity: 0.5; }
+      .features .feature div.icon i.icon.md-blue {
+        color: #1976D2 !important; }
+      .features .feature div.icon i.icon.md-yellow {
+        color: #ffc107 !important; }
+      .features .feature div.icon i.icon.md-red {
+        color: #EF5350 !important; }
+      .features .feature div.icon i.icon:hover {
+        font-size: 64px;
+        opacity: 1; }
+  .features .feature h2 {
+    margin-top: 0;
+    text-align: center; }
+  .features .feature:last-of-type {
     margin-right: 0; }
+
+.slick-track {
+  height: 350px; }
+
+.tutoriels .tutoriel {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin: 20px 20px 0 0; }
+  .tutoriels .tutoriel .thumbnail {
+    position: relative;
+    height: 150px;
+    overflow: hidden; }
+    .tutoriels .tutoriel .thumbnail img {
+      width: 100%; }
+    .tutoriels .tutoriel .thumbnail span.category {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      background: rgba(0, 0, 0, 0.22);
+      padding: 10px;
+      color: white; }
+  .tutoriels .tutoriel p {
+    padding: 20px; }
+  .tutoriels .tutoriel .metas {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; }
+    .tutoriels .tutoriel .metas span.author {
+      margin-right: 20px; }
+      .tutoriels .tutoriel .metas span.author:before {
+        font-family: Icons;
+        content: '\f007';
+        margin-right: 10px; }
+    .tutoriels .tutoriel .metas span.date:before {
+      font-family: Icons;
+      content: '\f133';
+      margin-right: 10px; }
+
+footer {
+  margin-top: 80px !important;
+  text-align: center; }
 
 .ui.floating {
   box-shadow: 0px 0px 0px 1px rgba(34, 36, 38, 0.22) inset, 0px 2px 4px 0px rgba(34, 36, 38, 0.12), 0px 2px 10px 0px rgba(34, 36, 38, 0.08), 0 17px 40px rgba(0, 0, 0, 0.07) !important; }

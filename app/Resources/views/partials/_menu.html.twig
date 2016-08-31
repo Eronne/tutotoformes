@@ -1,8 +1,8 @@
 {% for page in pages %}
     <a class="{% if app.request.attributes.get('_route') == page %}active{% endif %} item">{{ page }}</a>
 {% endfor %}
-<a href="{{ path('homepage') }}" class="item">Accueil</a>
-<a href="" class="item">Tutoriels</a>
+<a href="{{ path('homepage') }}" class="item {% if app.request.attributes.get('_route') == "homepage" %}active{% endif %}">Accueil</a>
+<a href="" class="item {% if app.request.attributes.get('_route') == "tutoriels" %}active{% endif %}">Tutoriels</a>
 <div class="right menu">
 
     {% if app.user %}
