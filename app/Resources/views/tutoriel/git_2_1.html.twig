@@ -1,0 +1,267 @@
+{% embed 'base.html.twig' with {title: 'Tutoriel Git'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+
+            <div class="ui container">
+                <div class="ui grid">
+                    <div class="ui message">
+                        <p>
+                            Maintenant que tu sais ce qu’est le versionning nous allons pouvoir entrer dans le vif de sujet
+                            et installer Git sans plus attendre !
+                        </p>
+                        <p>Que tu sois sous Mac OS X, Windows ou même sous Linux tu vas pouvoir installer Git et nous allons
+                            voir comment procéder pas à pas.
+                        </p>
+                        <p>
+                            Mais avant toute chose, à partir de maintenant et pendant le reste du tutoriel nous allons être
+                            amenés à utiliser une console (attention rien à voir avec la Playstation ou la Xbox qui sont
+                            dans ton salon), cette console est aussi appelée “Terminal”.
+                            Si tu ne vois pas trop (ou pas du tout) de quoi nous voulons parler nous te conseillons de jeter
+                            un coup d’oeil au rappel sur la console ci dessous, sinon tu peux passer directement à la
+                            rubrique suivante “Installation”.
+                        </p>
+                    </div>
+
+                    <h2>Rappels sur la console</h2>
+                    <p>Tu n’as peut-être jamais entendu parler de “console” ou de “terminal” mais nous sommes sûr que tu
+                        en as déjà vu un au moins une fois dans ta vie.
+                        Tu sais au cinéma parfois dans certains films tu vois des informaticiens à lunette tapper
+                        frénétiquement sur leur clavier sans même le regarder et sur l’écran
+                        devant eux défilent des lignes de texte incompréhensibles tellement elles vont vite.
+                        Ces lignes défilent souvent dans une fenêtre assez sommaire sur fond noir et dépourvue de toute
+                        interface graphique, et bah ça, c’est un terminal !
+                    </p>
+                    <img src="https://lh5.googleusercontent.com/yNZIwiN0e25OOcUCuEzUn_rGsqVx2jWEBdXNXm7g6_DHNIavHXSqkqVu6bnoGsBBnH2Z3GAnaQiAdl-6JqLYxI6z66LjrWjjizK-V79eFdZ2pGaPGC432Z0fe066ALa2pYWcI08R"
+                         class="ui big centered image" alt="Illustration d'un terminal">
+                    <div class="caption">Illustration d'un terminal</div>
+                    <p>N’aie pas peur, derrière cet aspect un peu austère se cache un outil très puissant offrant une
+                        multitude de fonctionnalités.
+                        Un terminal te permet de naviguer à travers l'arborescence de fichier de ton ordinateur (comme
+                        tu le ferais avec ton explorateur de fichier)
+                        et d’y effectuer tout un tas d’opération comme créer ou renommer un dossier, déplacer ou copier
+                        un fichier, etc... (comme tu le ferais avec ton explorateur de fichier encore une fois).
+                        Mais alors quelle utilité si cela remplit le rôle d’un simple explorateur de fichier ? Et bien
+                        cela fait plus que remplir le rôle d’un explorateur de fichier,
+                        en t’affranchant d’une interface graphique cela te permet d’effectuer des opérations plus
+                        rapidement et offre un panel de fonctionnalités beaucoup plus étendu.
+                    </p>
+                    <p>
+                        Tu n’auras pas besoin d’être un expert pour aborder et suivre ce tutoriel, il faut juste que tu
+                        connaisses quelques bases concernant l’utilisation d’un terminal.
+                    </p>
+                    <h2>Ouvrir son terminal sous</h2>
+                    <div class="ui top attached tabular menu">
+                        <div class="active item" data-tab="first">Windows</div>
+                        <div class="item" data-tab="second">Mac</div>
+                    </div>
+                    <div class="ui bottom attached active tab segment" data-tab="first">
+                        <div class="gdoc">
+
+                            <p class="c0"><span>Pour ouvrir un terminal sous Windows il faut aller dans le menu</span><span
+                                        class="c4">&nbsp;D&eacute;marrer </span><span>et taper &ldquo;cmd&rdquo;, comme ceci :</span>
+                            </p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 284.50px; height: 439.93px;"><img
+                                            alt="Ouverture-terminalW.PNG"
+                                            src="https://lh4.googleusercontent.com/tGUVD_dGID5KMsymAE0zzDu-Yn_Fx5LjxQEHNMrKtfSfjDn9K6ksY8u4UKDC85zwfMLnEuyE_3nI_H2r08j-YCdpZzRnH1p6nYhr4V84wfaeQaFV3tyyBdHX-epLHxIeiRYM340Y"
+                                            style="width: 284.50px; height: 439.93px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span class="c4">Menu demarrer sous Windows 10</span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0">
+                                <span>Puis appuyer sur Entr&eacute;e. Ton terminal va alors s&rsquo;ouvrir ! :</span></p>
+                            <p class="c0"><span>&nbsp; </span><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 688.70px; height: 176.00px;"><img
+                                            alt=""
+                                            src="https://lh5.googleusercontent.com/CJAWeHNDGlNZ-zxc-7lRqucfhx-iGhGf_zEnJnaUKNOIJHyA51Y69jUzkcfpK5RDgWuQpgzCvNp7XPVh3CNoGhpErEO-L74v8n8QGR5nzLe2liLUtSe6VT0mk8ty-uuCEucr2yNV"
+                                            style="width: 688.70px; height: 176.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span>Tu remarqueras que Windows adopte comme nomenclature &ldquo;Invite de commandes&rdquo;
+                                    qui n&rsquo;est autre qu&rsquo;un synonyme de &ldquo;terminal&rdquo;.</span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span>De base le terminal s&rsquo;ouvrira dans le dossier de l&#39;utilisateur dont la session est ouverte (C:\Users\NomUtillisateur). Mais il t&rsquo;est tout &agrave;
+                                    fait possible d&rsquo;ouvrir le terminal dans le dossier de ton choix. Pour cela va dans ton explorateur de fichier et fais un clic droit sur le dossier de ton choix tout en maintenant la touche MAJ enfonc&eacute;e, puis clique sur </span><span
+                                        class="c4">Ouvrir une fen&ecirc;tre de commande ici :</span></p>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0"><span>&nbsp;</span><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 577.44px; height: 277.13px;"><img
+                                            alt="Ouverture Terminal choisie W.PNG"
+                                            src="https://lh4.googleusercontent.com/9OHBTsmEe0qlTDexMVTS1WszszItW31YkNEQI8nj1mkGo6n1kH-iXZGQPKm3yFafVKp3R-_wTEMFgHtCJegCihQl5LsHoS3oNwx5FhxpA3gBBJN2LIxaOvSVexR4JjGalUZDYAYc"
+                                            style="width: 577.44px; height: 277.13px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span>Dans l&#39;exemple ci-dessus nous cliquons sur le dossier &ldquo;Etudes&rdquo;
+                                    situ&eacute; dans C:\User\admin\Documents\Alex et nous ouvrons un terminal dans ce dossier :</span>
+                            </p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 688.70px; height: 177.33px;"><img
+                                            alt="Ouverture Terminal choisie W2.PNG"
+                                            src="https://lh4.googleusercontent.com/EpDZ8o3EaJeDQFlnyonAdkJpcAXb60eELGpA0aV_FUncp87rVwZDhB0we9pw-yenwb0UzTCTIWNmmBXU12sPYCkPApJeCE3F4_fLaOs7IH2zrTcOwSdiUQsbkm2FCDGBP1J_rtPA"
+                                            style="width: 688.70px; height: 177.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                        </div>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-tab="second">
+                        <div class="gdoc">
+
+                            <p class="c0"><span>Pour ouvrir un terminal sous Mac il faut aller dans Spotlight</span><span
+                                        class="c4">&nbsp;</span><span>(ou Cmd + espace)</span><span
+                                        class="c4">&nbsp;:</span><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 461.00px; height: 45.00px;"><img
+                                            alt="Capture d&rsquo;e&#769;cran 2016-09-01 a&#768; 22.48.23.png"
+                                            src="https://lh6.googleusercontent.com/bTidk2H5NKQ_LUp9r0mwH4_4P3P3akIJK-1ffVShtlMcbMZMn4JF9jejKKaYX51lCP8xJhoK6Rhn-LLOmex43MyW6rr8_LfTILnW-FqyxMg2he_eU_ekrRWcjbIjZaKl_Eo91z_C"
+                                            style="width: 461.00px; height: 45.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span>Une fois dans Spotlight tape &ldquo;Terminal&rdquo; et appuie sur Entr&eacute;e :</span>
+                            </p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 688.70px; height: 96.00px;"><img
+                                            alt="Capture d&rsquo;e&#769;cran 2016-09-01 a&#768; 22.48.59.png"
+                                            src="https://lh4.googleusercontent.com/UfgP9Pp0zrNo0tmVwR92ED8J093YTN-Z5r-4jl077qpR4WU14qHI-F3G-wUmpR1fgSHMItbZxUjHs4SK2A3luLnejE5eIPyqZujWGgPDBsAtTPNCf7-VK9MB0eDAMMLwVYLqvpI2"
+                                            style="width: 688.70px; height: 96.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span>Le terminal s&rsquo;ouvre alors :</span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 688.70px; height: 120.00px;"><img
+                                            alt="Capture d&rsquo;e&#769;cran 2016-09-01 a&#768; 23.13.39.png"
+                                            src="https://lh6.googleusercontent.com/GyipoA8eOYxz4ecMjt8tA3qZSUO6HuSN-YImkgUYhlJmMEe2hQu6EbQbBlRmFoLwgDNZrDdChT7QRpggmeKn-s3uegzeFeqqHCK5i_L2b6w4oQG3vsm1Szp82Fply1QZ0LG63ecc"
+                                            style="width: 688.70px; height: 120.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span>De base le terminal s&rsquo;ouvrira dans le dossier de l&#39;utilisateur dont la session est ouverte (NomDuMac:~NomUtillisateur$). Mais il t&rsquo;est tout &agrave;
+                                    fait possible d&rsquo;ouvrir le terminal dans le dossier de ton choix. Pour cela il existe une petite astuce, nous allons activer le raccourci clavier permettant d&rsquo;ouvrir un nouveau terminal dans un dossier sp&eacute;cifique : </span>
+                            </p>
+                            <p class="c0 c1"><span></span></p>
+                            <ol class="c2 lst-kix_wtbgytgd6wl-0 start" start="1">
+                                <li class="c0 c6"><span>Clique sur la </span><span
+                                            class="c4">Pomme </span><span>(en haut &agrave; gauche)</span><span class="c4">&nbsp;</span><span>puis </span><span
+                                            class="c4">pr&eacute;f&eacute;rence syst&egrave;me </span><span>:</span></li>
+                            </ol>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 308.50px; height: 263.85px;"><img
+                                            alt="1.png"
+                                            src="https://lh3.googleusercontent.com/kbZodU2TS6-7kgAYwmwVZjnMtLIVhXZ3Mj359ZsG8HDe-xm2gPP4eZPWr0l7Y8lWd_zaf2qiwIMriEl0LERBziKCcQV0TLjC7wfqXfWmQ8x2IfpevW7AApFXE4tdHE64Bo9PKVnr"
+                                            style="width: 308.50px; height: 263.85px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <ol class="c2 lst-kix_lch0xdvc4mje-0 start" start="2">
+                                <li class="c0 c6">
+                                    <span>Une fois dans les pr&eacute;f&eacute;rence syst&egrave;me va dans </span><span
+                                            class="c4">Clavier </span><span>:</span></li>
+                            </ol>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 305.50px; height: 234.81px;"><img
+                                            alt="2.png"
+                                            src="https://lh5.googleusercontent.com/psCWkCxUWSUvq2fMymvA7tteoKX841hA05YW97IMucfh0luJEj8mPKq6e17BjHlnuU_gkH3diw_mE7ygo7YgvRC20QW4JdNoPU5W4zRDMKqG6I_kfrfzcp9_8-nmQh9H6jgKuVwk"
+                                            style="width: 305.50px; height: 234.81px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <ol class="c2 lst-kix_lch0xdvc4mje-0" start="3">
+                                <li class="c0 c6"><span>Puis clique sur </span><span
+                                            class="c4">Service, </span><span>va sur </span><span class="c4">Fichiers et dossier </span><span>et coche la case </span><span
+                                            class="c4">Nouveau terminal au dossier :</span></li>
+                            </ol>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 494.50px; height: 363.88px;"><img
+                                            alt="3.png"
+                                            src="https://lh3.googleusercontent.com/v8LoavhBWfCrR2vI8sAWTPAnT4mmnyVtBPcMN-MHn0LVLkEK7Z_1-1B7rn8sMk3tiUayp2fZWS6TSP4IqmdNrgcLHrKHrqtckXOByzrYsXjLpIAwmyEbcrdOOXm-19m58JmVSVHk"
+                                            style="width: 494.50px; height: 363.88px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <ol class="c2 lst-kix_lch0xdvc4mje-0" start="4">
+                                <li class="c0 c6"><span>Ton Raccourci est cr&eacute;&eacute;, il ne te reste plus qu&#39;&agrave;
+                                        te placer sur ton dossier, faire un clic droit puis </span><span class="c4">Nouveau terminal au dossier.</span>
+                                </li>
+                            </ol>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 291.14px; height: 278.81px;"><img
+                                            alt="4.png"
+                                            src="https://lh4.googleusercontent.com/YLxwSwbXkZoLfZ9Wbk8LaojXIv3qCSNJYVX_YnKCi9J_V7UkEtsd78JP1LZ5z9joPV7DbxBOz2RatHZrhtGTRU47Yh27mvoWOtE3rOkMawGnmFukvC2yEZWqH2h7ejlSskvdW5-x"
+                                            style="width: 291.14px; height: 278.81px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <ol class="c2 lst-kix_lch0xdvc4mje-0" start="5">
+                                <li class="c0 c6"><span class="c4">Voil&agrave;, ton terminal s&rsquo;ouvre bien &agrave; l&rsquo;endroit voulu</span>
+                                </li>
+                            </ol>
+                            <p class="c0 c1"><span class="c4"></span></p>
+                            <p class="c0"><span
+                                        style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 688.70px; height: 130.67px;"><img
+                                            alt="5.png"
+                                            src="https://lh4.googleusercontent.com/lzMzeV4mD6hnxIPLlsLh4ZaHX6Jz5One3CWyjd8b0PuIcYfTjbhPAzWlwI2hASmqxuvr0MnTzMaGeRNhqeLIVyFpKxdeCj8wwydbYbFLjeinDlZui-MmuodWsdbekj4ARSnzToXZ"
+                                            style="width: 688.70px; height: 130.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                            title=""></span></p>
+                            <p class="c0 c1"><span></span></p>
+                            <p class="c0 c1"><span></span></p>
+                        </div>
+                    </div>
+                    <div class="separator"></div>
+                    <p>Maintenant que tu as des bases sur l’utilisation de ton terminal nous allons pouvoir passer à l'installation de Git.</p>
+                    <div class="two column row">
+                        <div class="left floated column">
+                            <a href="{{ path('git_tuto', {'subpage': 1, 'page': 1}) }}"><i class="arrow left icon"></i>
+                                Introduction</a>
+                        </div>
+                        <div class="right floated column" style="text-align: right;">
+                            <a href="{{ path('git_tuto', {'subpage': 2, 'page': 2}) }}">Installation et configuration de
+                                git <i class="arrow right icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            $('.menu .item')
+                    .tab();
+        </script>
+    {% endblock %}
+
+{% endembed %}
