@@ -86,11 +86,14 @@ input.md-input {
 
 .tutoriels .tutoriel {
   position: relative;
+  transition: all 0.2s;
   width: 400px;
   height: 300px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   margin: 20px 20px 0 0; }
+  .tutoriels .tutoriel a {
+    color: inherit; }
   .tutoriels .tutoriel .thumbnail {
     position: relative;
     height: 150px;
@@ -111,7 +114,8 @@ input.md-input {
     padding: 20px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end; }
+    justify-content: flex-end;
+    font-size: 12px; }
     .tutoriels .tutoriel .metas span.author {
       margin-right: 20px; }
       .tutoriels .tutoriel .metas span.author:before {
@@ -122,6 +126,9 @@ input.md-input {
       font-family: Icons;
       content: '\f133';
       margin-right: 10px; }
+  .tutoriels .tutoriel:hover {
+    cursor: pointer;
+    transform: scale(1.01); }
 
 footer {
   margin-top: 80px !important;
