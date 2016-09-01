@@ -1,0 +1,79 @@
+{% embed 'base.html.twig' with {title: 'Tutoriel Git'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+
+            <div class="ui container">
+                <h1>III - Collaborer avec Git</h1>
+                <h2>Lier le projet local au dépôt distant</h2>
+                <div class="content">
+                    <p> Après que tu aies créé ton projet, tu te retrouvera face à cette page :</p>
+                    <br>
+                    <img src="https://lh4.googleusercontent.com/eXqF4amTfYwvU0L9C8rkdaluBf-76ntdPq5CCzdR8OIHQlnMumoC49C3pon8qRHFt0fiJgxt8Tc3gskPADqtDOJ1wk-oyXIxpQYD958UnxxHP4cP5RGmq6Y9s8aQkr0AQGKWXAY7"
+                         alt="Initialisation du nouveau dépôt">
+                    <br>
+                    <p>Plusieurs choix s’offrent à toi : soit tu as déjà créé ton projet git auparavant, avec la commande <pre>$ git init</pre> comme vu plus tôt,
+                        ou bien tu peux le créer à partir de maintenant, en suivant les indications du premier bloc.
+                    </p>
+                    <br>
+                    <img class="ui fluid image" src="https://lh3.googleusercontent.com/ZPksrZcwnIRrq5Xzoa6XCJ56N9PwsTUk_mO5xaJS_q_Pn7veFENj-zM3A1AwHSdqQ6fiDZz31kdf3dNIX88OyqtKjDFhyDi_Me-m3SFHsyKuF81LcCJJ18ctxFX7D-gnacpgxY7U"
+                         alt="Aperçu du terminal">
+                    <div class="caption">Aperçu du terminal</div>
+                    <p>Récapitulons ce que nous venons de faire : </p>
+                    <ul>
+                        <li><strong>echo “# Projet” >> README.md</strong> : Créer un fichier README.me avec "# Projet" comme contenu</li>
+                        <li>git init : Initialise le répertoire pour accueillir git</li>
+                        <li>git add README.md : Permet d’ajouter le fichier README.md au système de versionning</li>
+                        <li>git commit -m “First commit” : Effectue le premier commit</li>
+                        <li>git remote add origin https://github.com/&lt;utilisateur&gt;/&lt;nom_projet&gt;.git : Permet de définir le dépôt GitHub comme étant
+                            le dépôt distant (remote repository) et en lui donnant le nom “origin” (par convention, le dépôt sur GitHub a toujours le nom origin).
+                                    Tu as juste a copier coller ce qui est indiqué sur GitHub, cela t’évitera de ré-écrire l’URL.</li>
+                        <li>git push -u origin master : Permet de pusher (mettre en ligne) les modifications apportés par votre commit. Le paramètre -u pour upstream
+                            permet d’indiquer à Git que la branche master du dépôt origin (donc le dépôt GitHub) sera celle par défaut lorsque nous utiliserons la commande git push.
+                            Cela signifie donc que lors de tes prochains commits, tu pourras simplement utiliser la commande git push. </li>
+
+                    </ul>
+
+                    <p>
+                        Tu as maintenant créé un projet, disponible sur GitHub, à l’adresse suivante https://github.com/&lt;utilisateur&gt;/&lt;nom_projet&gt;. Accède y depuis
+                                ton navigateur web pour voir désormais en ligne les fichiers que tu as commit.
+                                Maintenant que tu sais mettre en ligne tes fichiers, le plus utile serait évidemment de les récupérer afin de pouvoir travailler de manière collaborative.
+                                Supposons qu’un ami à toi veuille te rejoindre dans ton projet et t’aider, deux choix s’offre à toi : soit tu lui accorde des droits
+                                à ton projet et tu le défini en tant que collaborateur.
+                                Il aura donc la possibilité de push ses commits sans ton autorisation, et aura la plupart des droits (excepté la suppression du dépôt),
+                        ou bien ton ami a la possibilité de cloner ton projet (le “forker”)
+                        <img class="ui spaced image"
+                             src="https://lh6.googleusercontent.com/-vFU8CPHMRyLW-Rdha6OwIhGuVqj20wqYUBrWGIllte45-ZiiSGIVBvCvdyC4n46ZsWKbPYvw8B1kRULr1QRpXVEXPfHC5B3-UY4qk4bVKjh-hEZWzxTLxlZY0huy5fyWqHfErKR">
+                        , de travailler à part de son côté, puis de te proposer les modifications en réalisant une “pull request”.
+                    </p>
+                    <h3>Fork</h3>
+                    <p>Un fork désigne une copie d'un dépôt. En effet, par défaut il n'est pas possible de faire de commit sur un dépôt qui ne nous appartient pas</p>
+                    <h3>Pull request</h3>
+                    <p>La notion de pull request va de paire avec le système de Fork. Une fois que l'on a travaillé sur notre fork on souhaite souvent proposer à l'auteur original nos modifications.
+                        On fera alors une pull request qui consiste tout simplement à demander à l'auteur original de fusionner nos modifications avec son projet.</p>
+                    <p>Que tu sois un collaborateur ou une personne qui a fork un projet, lorsque tu voudras récupérer des fichiers depuis GitHub, la commande
+                    <pre>$ git pull &lt;source&gt; &lt;branche&gt;</pre>
+                    sera ta meilleure amie. Si tu veux par exemple récupérer les fichiers du projet “Projet” (pas très pratique comme nom je trouve), qui sont, je te rappelle, stockés sur les serveurs de GitHub,
+                    il faudra donc récupérer les fichiers présents sur le dépôt distant  (remote repository). Rappelez-vous, la convention veut que vous nommiez le dépôt distant présent sur GitHub origin.</p>
+
+                    <p>Il faut donc faire git pull origin master (par défaut la branche master sera automatiquement choisie, mais je te conseille de la préciser quand même).</p>
+                        <br><br><br><br>
+                    <div class="ui grid">
+                        <div class="two column row">
+                            <div class="left floated column">
+                                <a href="{{ path('git_tuto', {'subpage': 1, 'page': 4}) }}"><i class="arrow left icon"></i> Création du projet sous GitHub</a>
+                            </div>
+                            <div class="right floated column" style="text-align: right;">
+                                <a href="{{ path('git_tuto', {'subpage': 3, 'page': 4}) }}">Outils graphiques et résolution de conflits <i class="arrow right icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

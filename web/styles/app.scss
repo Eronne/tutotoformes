@@ -121,6 +121,49 @@ input.md-input {
   height: 350px;
 }
 
+.pages-navigation {
+
+  position: absolute;
+  left: 0;
+  top: 38%;
+  width: 100%;
+
+  & .previous, .next {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 18px;
+  }
+
+  & .next {
+    float: right;
+  }
+
+}
+
+pre {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+// TODO: A supprimer lorsque l'on remettra au propre le tutoriel
+/* Google Doc gras, temporaire */
+.c0 {
+
+  font-weight: 700;
+}
+
+
+img + .caption {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.86);
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  width: 50%;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+
 .tutoriels {
 
   & .tutoriel {

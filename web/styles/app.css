@@ -84,6 +84,36 @@ input.md-input {
 .slick-track {
   height: 350px; }
 
+.pages-navigation {
+  position: absolute;
+  left: 0;
+  top: 38%;
+  width: 100%; }
+  .pages-navigation .previous, .pages-navigation .next {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 18px; }
+  .pages-navigation .next {
+    float: right; }
+
+pre {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px; }
+
+/* Google Doc gras, temporaire */
+.c0 {
+  font-weight: 700; }
+
+img + .caption {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.86);
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  width: 50%;
+  margin: 10px auto;
+  border-radius: 4px; }
+
 .tutoriels .tutoriel {
   position: relative;
   transition: all 0.2s;
