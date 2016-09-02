@@ -68,6 +68,7 @@ span.pre {
   background: rgba(0, 0, 0, 0.05);
   border-radius: 2px;
   margin: 10px 2px 5px 2px;
+  font-family: 'Consolas', 'Lucida Console', monospace;
 }
 
 .page-body {
@@ -152,12 +153,26 @@ pre {
   background: rgba(0, 0, 0, 0.05);
   border-radius: 4px;
   width: 100%;
+  font-family: 'Consolas', 'Lucida Console', monospace;
+
+}
+
+.ui.container .content {
+  text-align: justify;
 }
 
 // TODO: A supprimer lorsque l'on remettra au propre le tutoriel
-/* Google Doc gras, temporaire */
+/* Google Doc, temporaire */
 .c0 {
-  font-weight: 700;
+  font-weight: 300;
+}
+
+.c3 {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  margin: 10px 2px 5px 2px;
+  font-family: 'Consolas', 'Lucida Console', monospace;
 }
 
 .ui.top.attached.tabular.menu {
@@ -173,8 +188,8 @@ img + .caption {
   color: rgba(0, 0, 0, 0.86);
   padding: 5px;
   background: rgba(0, 0, 0, 0.05);
-  width: 100%;
-  margin: 10px 270px;
+  width: 50%;
+  margin: 10px auto;
   border-radius: 4px;
 }
 

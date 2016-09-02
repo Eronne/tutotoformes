@@ -1,0 +1,62 @@
+{% embed 'base.html.twig' with {title: 'Tutoriel Git'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+            <div class="ui container">
+                <h2>II - Utilisation de Git en local</h2>
+                <h3>Création d'un projet git</h3>
+                <div class="content">
+                    <p>Ca y est. Maintenant que tout est installé sur ta machine, tu vas pouvoir commencer à utiliser l’outil Git.
+                        Tu vas tout d’abord commencer par créer un dossier depuis l’explorateur de fichier (un petit clic droit “<strong>Nouveau dossier</strong>” ça fait pas de mal !).
+                        Nomme le par exemple “<strong>Projet</strong>”, cela sera plus simple pour toi pour suivre ce tuto car c’est le nom que nous avons utilisé.
+                        C’est donc ici que tout va se passer maintenant. Il faut donc se placer dans ce dossier au niveau du terminal. (Si tu as besoin d’aide pour te familiariser avec ton terminal,
+                        n’hésite pas, <a href="{{ path('git_tuto', {'subpage': 1, 'page': 2}) }}">ce rappel sur le terminal</a> est fait pour toi !)
+                        Jusque là, rien d’exceptionnel, tu as juste créer un nouveau dossier que tu as appelé “Projet”. Tu vas maintenant dire à Git que tu veux versionner
+                        le contenu de ce dossier grâce à la commande <span class="pre">git init</span>.
+                    </p>
+                    <p>Ce dossier ne te servira à rien s’il reste vide, c’est pourquoi je te propose de créer une page web, à l’intérieur de ton dossier,
+                        que tu nommeras <strong>index.html</strong> et d’y placer le code suivant :</p>
+                    <pre>
+{{ "<!DOCTYPE html>
+    <html lang='fr'>
+        <head>
+            <meta charset='UTF-8'>
+            <title>Apprendre Git</title>
+        </head>
+        <body>
+            <h1>Salut toi !</h1>
+        </body>
+    </html>"|e }}
+                    </pre>
+                    <p>Simple, efficace ;)
+                        On sauvegarde et on revient au terminal !</p>
+                    <p>Il sera possible par la suite de voir à tout moment le statut du projet avec la commande <span
+                                class="pre">git status</span>.</p>
+                    <img src="https://lh3.googleusercontent.com/FP9w8SjoT_jmM7Qu-p_ISxaltqQ8q3NFD0xoPJ6TxWRH-w5g0p8EuaAmp7Y8d-78W1KhDILCb1i43ceTrP0dZSr2O3Ztvkm8qFcj15XU_CLeZl1UZRtPoRJzGSlWgHV_nUldKfmi"
+                         alt="Aperçu de la commande git status"
+                        class="ui image centered">
+                    <div class="separator"></div>
+                    <p>Comme tu peux t’en apercevoir, dans notre cas, le terminal nous dit que le fichier index.html n’est pas encore pris en charge par git.
+                        C’est dans la prochaine partie consacrée aux commits que nous allons voir comment dire à Git de prendre en charge ce fichier.</p>
+                </div>
+                <br><br><br>
+                <div class="ui grid">
+                    <div class="two column row">
+                        <div class="left floated column">
+                            <a href="{{ path('git_tuto', {'subpage': 2, 'page': 2}) }}"><i
+                                        class="arrow left icon"></i>
+                                Installation de Git</a>
+                        </div>
+                        <div class="right floated column" style="text-align: right;">
+                            <a href="{{ path('git_tuto', {'subpage': 2, 'page': 3}) }}">Les commits <i class="arrow right icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

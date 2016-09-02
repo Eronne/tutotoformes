@@ -1,0 +1,81 @@
+{% embed 'base.html.twig' with {title: 'Tutoriel Git'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+            <div class="ui container">
+                <h2>II - Utilisation de Git en local</h2>
+                <h3>Les branches</h3>
+                <div class="content">
+                    <div class="gdoc">
+                        <p class="c2"><span class="c0">Dans Git, on dit que l&rsquo;on travaille sur un arbre avec des branches. La m&eacute;taphore est simple tu vas comprendre tr&egrave;s vite.<br>Ton projet se mat&eacute;rialise par le tronc d&rsquo;un arbre. Puis, lorsque tu souhaites am&eacute;liorer ton code ou que tu apportes une fonctionnalit&eacute;
+                                suppl&eacute;mentaire &agrave; ton projet, le mieux est de travailler sur des branches. On dit alors que l&rsquo;on &ldquo;tire une branche&rdquo;. Pour en cr&eacute;er une, cela se passe toujours dans le terminal avec la commande </span><span
+                                    class="c3">git branch &lt;nomDeTaBranche&gt;</span><span class="c0">.</span></p>
+                        <p class="c2"><span class="c0">Remarques : Les branches ne sont pas sensibles &agrave; la casse. Ex : </span><span
+                                    class="c3">git branch test</span><span class="c0">&nbsp;et </span><span class="c3">git branch TEST</span><span
+                                    class="c0">&nbsp;fera r&eacute;f&eacute;rence &agrave; la m&ecirc;me branche.</span>
+                        </p>
+                        <p class="c2"><span
+                                    style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 416.63px; height: 128.19px;"><img
+                                        alt="Capture d&rsquo;e&#769;cran 2016-08-31 a&#768; 22.48.59.png"
+                                        src="https://lh5.googleusercontent.com/KAcuYceVXB4MlEKMav2lVvmhU0-EtXBqYcWE9gSadijF9xRZdSGZNRZs_GXB-fbN3IZb3i_1IKPOZQsojsw2OAuUdqK7EnUn64XBKLYJ38O4WqXmXv1FcQbKZmB7znBQnObYsF5I"
+                                        style="width: 416.63px; height: 128.19px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                        title=""></span></p>
+                        <p class="c2"><span class="c0">Une foie la branche cr&eacute;&eacute;e, il faut se placer dessus : </span><span
+                                    class="c3">git chekout nomDeTaBranche</span><span class="c0">.</span></p>
+                        <p class="c2"><span class="c0">P</span><span class="c0">etite astuce : </span><span class="c3">git checkout -b nomDeTaBranche</span><span
+                                    class="c0">&nbsp;permet de la cr&eacute;er et de se placer dessus </span></p>
+                        <p class="c2"><span class="c0">On peut maintenant commencer &agrave; travailler sur cette branche.</span>
+                        </p>
+                        <p class="c2"><span class="c0">Attention : Il faut le plus possible travailler sur des branches pour que le master reste fonctionnel.<br></span>
+                        </p>
+                        <p class="c2"><span class="c0">Nous &eacute;crivons donc du code et faisons des commits.<br>Dans cette exemple, nous avons fait 2 commits (mod&eacute;lis&eacute;s par les points rouge de la branche &ldquo;my-feature&rdquo;) :</span>
+                        </p>
+                        <p class="c2"><span
+                                    style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 411.70px; height: 111.99px;"><img
+                                        alt="Capture d&rsquo;e&#769;cran 2016-08-31 a&#768; 23.00.42.png"
+                                        src="https://lh5.googleusercontent.com/eP-_WOP1ot41pO2SvqOvAtqdbjqdkysBlL5L2ZB3Qv-skY6xA-KcUd61pji4StNnt1UrHl1eWPvhHmKPNs7ml7Fd345TktrToWQH6Mz5Dc4i0ROLj7ESqul23VeWehjBtIX-8_mG"
+                                        style="width: 411.70px; height: 111.99px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);"
+                                        title=""></span></p>
+                        <p class="c1"><span class="c0"></span></p>
+                        <p class="c2 c8"><span class="c0">Une fois que tu as termin&eacute; ce que tu as entrepris sur ta branche, ton but est de raccorder ton travail &agrave;
+                                la branche master.<br>Pour ce faire, il faut tout d&rsquo;abord se placer sur la branche master.<br>Ensuite tu vois ce qu&rsquo;il y a comme diff&eacute;rence avec la branche que tu as pr&eacute;c&eacute;demment cr&eacute;&eacute;e et la branche master : </span><span
+                                    class="c3">git diff master..nomDeTaBranche</span><span class="c0">.<br>La derni&egrave;re &eacute;tape est donc de relier ta branche que tu as cr&eacute;&eacute;e &agrave;
+                                la branche master. Cela se fait gr&acirc;ce &agrave; la commande &ldquo;merge&rdquo; : </span><span
+                                    class="c3">git merge nomDeTaBranche</span><span class="c0">.<br><br>Apr&egrave;s avoir reli&eacute;
+                                ta branche au master, le mieux est de la supprimer. Mais ce qui est cool avec Git c&rsquo;est que m&ecirc;me en supprimant la branche, les commits r&eacute;alis&eacute;s dessus resteront sauvegard&eacute;s.</span>
+                        </p>
+                        <p class="c1"><span class="c0"></span></p>
+                        <p class="c2"><span class="c0">Pour supprimer une branch on utilise la commande </span><span
+                                    class="c3">git branch -d nomDeMaBranche</span><span class="c0">. Ce cas l&agrave; ne marchera que si vous &ecirc;tes &agrave;
+                                jour au niveau des commits.<br>Si vous souhaitez, pour une raison justifi&eacute;e, et que vous &ecirc;tes s&ucirc;r de vous, supprimer la branche sans avoir fait de commit, il faudra se servir de la m&ecirc;me commande mais remplacer &ldquo;</span><span
+                                    class="c3">-d</span><span class="c0">&rdquo; par &ldquo;</span><span
+                                    class="c3">-D</span><span class="c0">&rdquo;.</span></p>
+                        <p class="c1"><span class="c0"></span></p>
+                        <p class="c1"><span class="c0"></span></p>
+                        <p class="c2"><span class="c0">Une fois toutes ces commandes et ces proc&eacute;d&eacute;s en t&ecirc;te, tu vas pouvoir d&eacute;couvrir toute la force de Git gr&acirc;ce &agrave;
+                                GitHub afin de collaborer avec d&rsquo;autres d&eacute;veloppeur, c&rsquo;est parti !</span>
+                        </p>
+                    </div>
+                </div>
+                <br><br><br>
+                <div class="ui grid">
+                    <div class="two column row">
+                        <div class="left floated column">
+                            <a href="{{ path('git_tuto', {'subpage': 2, 'page': 3}) }}"><i
+                                        class="arrow left icon"></i>
+                                Les commits</a>
+                        </div>
+                        <div class="right floated column" style="text-align: right;">
+                            <a href="{{ path('git_tuto', {'subpage': 1, 'page': 4}) }}">Collaborer avec Git <i
+                                        class="arrow right icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

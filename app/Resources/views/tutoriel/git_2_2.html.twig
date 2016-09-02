@@ -6,8 +6,9 @@
         <div class="page-body">
 
             <div class="ui container">
+                <h2>I - Installation de Git</h2>
+                <div class="content">
 
-                    <h2>Installation de Git sous</h2>
                     <div class="ui top attached tabular menu">
                         <div class="active item" data-tab="first">Windows</div>
                         <div class="item" data-tab="second">Mac</div>
@@ -75,33 +76,36 @@
                         </div>
                     </div>
                     <div class="ui bottom attached tab segment" data-tab="third">
-                        <p>Pour installer Git sous Linux rend toi sur la page suivante afin d’obtenir les étapes pour de télécharger la dernière version de Git selon ta distribution Linux : <a href="https://git-scm.com/download/linux">https://git-scm.com/download/linux</a></p>
+                        <p>Pour installer Git sous Linux rend toi sur la page suivante afin d’obtenir les étapes pour de
+                            télécharger la dernière version de Git selon ta distribution Linux : <a
+                                    href="https://git-scm.com/download/linux">https://git-scm.com/download/linux</a></p>
 
-                        <p>Une fois le fichier l’installation effectuée, pour vérifier que tout c’est bien passer lance ton terminal et tape simplement la commande
+                        <p>Une fois le fichier l’installation effectuée, pour vérifier que tout c’est bien passer lance
+                            ton terminal et tape simplement la commande
                             <span class="pre">git</span>.
                             Si le manuel de Git en anglais apparaît c’est que l’installation a bien fonctionné.
                         </p>
                     </div>
                     <div class="separator"></div>
                     <h2>Configuration</h2>
-                    <p>Pour configurer Git tu vas tous simplement devoir renseigner ton nom et ton email. Pour ce faire lance ton terminal et tape les commande suivantes :
+                    <p>Pour configurer Git tu vas tous simplement devoir renseigner ton nom et ton email. Pour ce faire
+                        lance ton terminal et tape les commande suivantes :
                     </p>
                     <pre>git config --global user.name "Ton_nom"</pre>
                     <pre>git config --global user.email "Ton@email.com"</pre>
-                <br><br>
+                    <br><br>
+
+                </div>
                 <div class="ui grid">
                     <div class="two column row">
                         <div class="left floated column">
-                            <a href="{{ path('git_tuto', {'subpage': 1, 'page': 1}) }}"><i class="arrow left icon"></i>
-                                Introduction</a>
+                            <a href="{{ path('git_tuto', {'subpage': 1, 'page': 2}) }}"><i class="arrow left icon"></i> Rappels sur la console</a>
                         </div>
                         <div class="right floated column" style="text-align: right;">
-                            <a href="{{ path('git_tuto', {'subpage': 2, 'page': 2}) }}">Installation et configuration de
-                                git <i class="arrow right icon"></i></a>
+                            <a href="{{ path('git_tuto', {'subpage': 1, 'page': 3}) }}">Création d'un projet git <i class="arrow right icon"></i></a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
