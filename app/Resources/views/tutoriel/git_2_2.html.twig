@@ -1,6 +1,23 @@
 {% embed 'base.html.twig' with {title: 'Tutoriel Git'} %}
 
 
+    {% block stylesheets %}
+        <style>
+            /* Reset des styles Google Docs */
+            /* //TODO: A Supprimer quand on remettra au propre le tutoriel  */
+            .c3 {
+                font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+                font-size: 14px;
+                line-height: 1.4285em;
+                margin: 0em 0em 1em;
+                padding: 0;
+                background: none;
+                border-radius: 0;
+            }
+        </style>
+    {% endblock %}
+
+
     {% block body %}
 
         <div class="page-body">

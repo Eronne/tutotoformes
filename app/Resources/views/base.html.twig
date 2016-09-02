@@ -8,11 +8,11 @@
 
     <!-- Site Properties -->
     <title>{% block title %}{{ app_name }} - {{ title|default('Accueil') }}{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="{{ asset('styles/semantic/semantic.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/slick/slick.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('styles/slick/slick-theme.css') }}"/>
+    {% block stylesheets %}{% endblock %}
 
 
     <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
