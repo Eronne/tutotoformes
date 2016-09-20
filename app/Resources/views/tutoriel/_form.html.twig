@@ -1,0 +1,44 @@
+<form class="ui form" action="" method="post">
+    <input type="hidden" name="_tutoriel[difficulty]" value="2">
+    <div class="three fields">
+        <div class="field">
+            <label>Titre</label>
+            <input type="text" name="_tutoriel[title]" {% if edit %}value="{{ tutoriel.title }}"{% endif %}>
+        </div>
+        <div class="field">
+            <label>Sous titre</label>
+            <input type="text" name="_tutoriel[subtitle]" {% if edit %}value="{{ tutoriel.subtitle }}"{% endif %}>
+        </div>
+        <div class="field">
+            <label>Auteur</label>
+            <select name="_tutoriel[author]" class="ui dropdown">
+                {% for user in users %}
+                    <option {% if edit and tutoriel.author.id == user.id %}selected{% endif %} value="{{ user.id }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+    </div>
+    <div class="three fields">
+        <div class="field">
+            <label>Durée approximative (en minutes)</label>
+            <input type="number" {% if edit %}value="{{ tutoriel.duration }}{% endif %}" name="_tutoriel[duration]">
+        </div>
+        <div class="field">
+            <label>Difficulté</label>
+            <div class="ui star rating" data-rating="{{ edit ? tutoriel.difficulty : '2' }}" data-max-rating="4"></div>
+        </div>
+        <div class="field">
+            <label>Brouillon ?</label>
+            <input type="checkbox" name="_tutoriel[draft]" {% if edit and tutoriel.isDraft %}checked{% endif %}>
+        </div>
+    </div>
+
+    <div class="field">
+        <button type="submit" class="ui button primary">{{ edit ? 'Éditer' : 'Créer' }}</button>
+    </div>
+
+
+
+
+</form>

@@ -6,20 +6,34 @@
         <div class="page-body">
             <div class="ui container">
                 <h1>Liste des tutoriels</h1>
-                <table>
+                <table class="ui striped celled table">
                     <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Nb. pages</th>
-                            <th>Date de création</th>
-                            <th>Auteur</th>
-                            <th>Actions</th>
-                        </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nb. pages</th>
+                        <th>Date de création</th>
+                        <th>Auteur</th>
+                        <th>Actions</th>
+                    </tr>
                     </thead>
                     <tbody>
-
+                    {% for tutoriel in tutoriels %}
+                        <tr>
+                            <td>{{ tutoriel.title }}</td>
+                            <td>{{ tutoriel.tutorialPages.count }}</td>
+                            <td>{{ tutoriel.createdAt|date('Y/m/d, à h:m:i') }}</td>
+                            <td>{{ tutoriel.author.username }}</td>
+                            <td style="width: 205px;">
+                                <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}"
+                                   class="ui small button">Éditer</a>
+                                <a href="{{ path('admin_tutoriel_remove', {'id': tutoriel.id}) }}" class="ui small red button">Supprimer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
+                <hr>
+                <a class="ui button primary" href="{{ path('admin_tutoriel_add') }}">Ajouter un tutoriel</a>
             </div>
         </div>
 

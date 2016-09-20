@@ -1,0 +1,15 @@
+{% embed "base.html.twig" with {title: 'Ajouter une page'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+            <div class="ui container">
+                <h1>Ajouter une page pour le tutoriel {{ tutoriel.title }}</h1>
+                {% embed 'tutoriel/page/_form.html.twig' with {edit: 0} %}{% endembed %}
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

@@ -247,7 +247,7 @@ class Tutoriel
      *
      * @return Tutoriel
      */
-    public function addTutorialPage(TutorielPage $tutorialPage)
+    public function addTutorialPage(\AppBundle\Entity\TutorielPage $tutorialPage)
     {
         $this->tutorialPages[] = $tutorialPage;
 
@@ -259,7 +259,7 @@ class Tutoriel
      *
      * @param \AppBundle\Entity\TutorielPage $tutorialPage
      */
-    public function removeTutorialPage(TutorielPage $tutorialPage)
+    public function removeTutorialPage(\AppBundle\Entity\TutorielPage $tutorialPage)
     {
         $this->tutorialPages->removeElement($tutorialPage);
     }

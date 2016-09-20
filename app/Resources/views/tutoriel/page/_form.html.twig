@@ -1,0 +1,18 @@
+<form class="ui form" action="" method="post">
+
+    <input type="hidden" value="{{ edit ? page.pageNumber : tutoriel.tutorialPages.count + 1 }}" name="_tutorielpage[page_number]">
+    <div class="field">
+        <label>Titre</label>
+        <input type="text" name="_tutorielpage[title]" {% if edit %}value="{{ page.title }}"{% endif %}>
+    </div>
+    <div class="ui grid">
+        <div class="eight wide column">
+            <label>Contenu</label>
+            <textarea name="_tutorielpage[content]" id="" cols="30" rows="10">{% if edit %}{{ page.content }}{% endif %}</textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="ui button primary">{{ edit ? 'Éditer' : 'Ajouter' }}</button>
+
+
+</form>

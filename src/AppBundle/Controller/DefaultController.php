@@ -15,6 +15,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
+
         return $this->render('index.html.twig');
     }
 
@@ -23,7 +24,9 @@ class DefaultController extends Controller
      */
     public function menuAction($inverted = false) {
         $pages = [];
-        return $this->render('partials/_menu.html.twig', ['pages' => $pages, 'inverted' => $inverted]);
+        $requestStack = $this->get('request_stack');
+        $masterRequest = $requestStack->getMasterRequest();
+        return $this->render('partials/_menu.html.twig', ['pages' => $pages, 'inverted' => $inverted, 'route_name' => $masterRequest->attributes->get('_route')]);
     }
 
 }

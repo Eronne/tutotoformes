@@ -1,0 +1,15 @@
+{% embed "base.html.twig" with {title: 'Ajouter un tutoriel'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+            <div class="ui container">
+                <h1>Ajouter un tutoriel</h1>
+                {% embed 'tutoriel/_form.html.twig' with {edit: 0} %}{% endembed %}
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

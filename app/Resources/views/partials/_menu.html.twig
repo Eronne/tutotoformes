@@ -1,8 +1,11 @@
 {% for page in pages %}
     <a class="{% if app.request.attributes.get('_route') == page %}active{% endif %} item">{{ page }}</a>
 {% endfor %}
-<a href="{{ path('homepage') }}" class="item {% if app.request.attributes.get('_route') == "homepage" %}active{% endif %}">Accueil</a>
-<a href="" class="item {% if app.request.attributes.get('_route') == "tutoriels" %}active{% endif %}">Tutoriels</a>
+<a href="{{ path('homepage') }}" class="item {{ route_name == "homepage" ? 'active' }}">Accueil {{ app.request.get('_internal') }}</a>
+<a href="" class="item {{ route_name == "tutoriel" ? 'active' }}">Tutoriels</a>
+{% if app.user and is_granted('ROLE_ADMIN') %}
+    <a class="item {% if route_name starts with "admin" %}active{% endif %}" href="{{ path('admin_index') }}">Administration</a>
+{% endif %}
 <div class="right menu">
 
     {% if app.user %}

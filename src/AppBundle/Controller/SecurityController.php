@@ -90,12 +90,4 @@ class SecurityController extends Controller
 
     }
 
-    /**
-     * @Route("/admin", name="admin")
-     * @Security("has_role('ROLE_ADMIN')")
-     */
-    public function adminAction(){
-        var_dump($this->get('security.token_storage')->getToken()->getUser()->getRoles());
-        return "test";
-    }
 }

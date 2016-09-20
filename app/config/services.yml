@@ -18,4 +18,4 @@ services:
 
     app.utils:
         class: AppBundle\Utils
-        arguments: ['@swiftmailer.mailer']
+        arguments: ['@swiftmailer.mailer', '@doctrine.orm.entity_manager']

@@ -250,28 +250,4 @@ class TutorielPage
 
         return $text;
     }
-
-    /**
-     * Set pageNumber
-     *
-     * @param integer $pageNumber
-     *
-     * @return TutorielPage
-     */
-    public function setPageNumber($pageNumber)
-    {
-        $this->pageNumber = $pageNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get pageNumber
-     *
-     * @return integer
-     */
-    public function getPageNumber()
-    {
-        return $this->pageNumber;
-    }
 }

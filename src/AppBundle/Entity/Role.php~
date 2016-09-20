@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
  * Role
@@ -10,14 +11,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="role")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\RoleRepository")
  */
-class Role
+class Role implements RoleInterface
 {
     /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -43,7 +44,7 @@ class Role
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Utilisateur", mappedBy="roles")
      */
     private $users;
 
@@ -140,11 +141,11 @@ class Role
     /**
      * Add user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \AppBundle\Entity\Utilisateur $user
      *
      * @return Role
      */
-    public function addUser(\AppBundle\Entity\User $user)
+    public function addUser(\AppBundle\Entity\Utilisateur $user)
     {
         $this->users[] = $user;
 
@@ -154,9 +155,9 @@ class Role
     /**
      * Remove user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \AppBundle\Entity\Utilisateur $user
      */
-    public function removeUser(\AppBundle\Entity\User $user)
+    public function removeUser(\AppBundle\Entity\Utilisateur $user)
     {
         $this->users->removeElement($user);
     }

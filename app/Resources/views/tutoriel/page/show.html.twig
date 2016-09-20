@@ -1,0 +1,27 @@
+{% embed 'base.html.twig' with {title: tutoriel.title ~ ' - ' ~ page.title} %}
+
+    {% block body %}
+        <div class="page-body">
+            <div class="ui container">
+                <h1>{{ page.title }}</h1>
+                {{ page.content }}
+                <div class="ui grid">
+                    <div class="two column row">
+                        {% if prev_page %}
+                            <div class="left floated column">
+                                <a href="{{ path('tutoriel_show', {'slug_page': prev_page.slug, 'slug': tutoriel.slug}) }}"><i
+                                            class="arrow left icon"></i>{{ prev_page.title }}</a>
+                            </div>
+                        {% endif %}
+                        {% if next_page %}
+                            <div class="right floated column" style="text-align: right;">
+                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }}<i
+                                            class="arrow right icon"></i></a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

@@ -1,0 +1,15 @@
+{% embed "base.html.twig" with {title: 'Éditer une page'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+            <div class="ui container">
+                <h1>Éditer la page</h1>
+                {% embed 'tutoriel/page/_form.html.twig' with {edit: 1} %}{% endembed %}
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}

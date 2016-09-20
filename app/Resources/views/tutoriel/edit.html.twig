@@ -1,0 +1,45 @@
+{% embed "base.html.twig" with {title: 'Éditer un tutoriel'} %}
+
+
+    {% block body %}
+
+        <div class="page-body">
+            <div class="ui container">
+                <h1>Éditer le tutoriel</h1>
+                {% embed 'tutoriel/_form.html.twig' with {edit: 1} %}{% endembed %}
+                <h2>Pages du tutoriel</h2>
+                {% if tutoriel.tutorialPages.count == 0 %}<h3>Il n y a encore rien par ici !</h3>
+                {% else %}
+                    <table class="ui celled striped table">
+                        <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Date de création</th>
+                            <th>Date d'édition</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for page in tutoriel.tutorialPages %}
+                                <tr>
+                                    <td>{{ page.title }}</td>
+                                    <td>{{ page.createdAt|date('Y/m/d') }}</td>
+                                    <td>{{ page.editedAt|date('Y/m/d') }}</td>
+                                    <td style="width: 205px;">
+                                        <a href="{{ path('admin_tutoriel_page_edit', {'id': tutoriel.id, 'slug_page': page.slug}) }}"
+                                           class="ui small button">Éditer</a>
+                                        <a href="{{ path('admin_tutoriel_page_remove', {'id': tutoriel.id, 'slug_page': page.slug}) }}" class="ui small red button">Supprimer</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                <hr>
+                <a class="ui button primary" href="{{ path('admin_tutoriel_page_add', {'id': tutoriel.id}) }}">Ajouter une page</a>
+            </div>
+        </div>
+
+    {% endblock %}
+
+{% endembed %}
