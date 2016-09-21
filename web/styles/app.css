@@ -1,4 +1,224 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin");
+* {
+  box-sizing: border-box; }
+
 body {
-  background-color: #ecf0f1; }
+  background-color: #ecf0f1;
+  font-family: Lato, Roboto, sans-serif; }
+
+h2 {
+  color: #2980b9;
+  padding-left: 10px;
+  border-left: #e74c3c 3px solid; }
+
+.cta {
+  transition: all .3s;
+  background-color: transparent;
+  border: 3px #e74c3c solid;
+  padding: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: 200px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: #e74c3c;
+  z-index: 1; }
+  .cta:hover {
+    color: #ecf0f1;
+    background-color: #e74c3c;
+    border: #ed7669 3px solid; }
+
+header.fixed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100; }
+  header.fixed nav.main-nav {
+    height: 60px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch; }
+    header.fixed nav.main-nav a {
+      text-decoration: none;
+      color: #ecf0f1; }
+    header.fixed nav.main-nav .brand {
+      padding: 15px;
+      font-weight: 600;
+      font-size: 24px; }
+    header.fixed nav.main-nav .menu {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row; }
+      header.fixed nav.main-nav .menu .item {
+        padding: 20px;
+        transition: all .3s; }
+        header.fixed nav.main-nav .menu .item:hover {
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.18); }
+        header.fixed nav.main-nav .menu .item.login {
+          background-color: #e74c3c; }
+          header.fixed nav.main-nav .menu .item.login:hover {
+            background-color: #e43725; }
+          header.fixed nav.main-nav .menu .item.login a::before {
+            font-family: FontAwesome;
+            content: '\f007';
+            margin-right: 10px; }
+
+.container {
+  width: 1300px;
+  margin: 0 auto;
+  display: inherit;
+  justify-content: inherit;
+  flex-direction: inherit;
+  align-content: inherit;
+  align-items: inherit;
+  align-self: inherit; }
+
+.jumbotron {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 400px;
+  background: url("../assets/img/city-flat-23.jpg");
+  background-size: cover;
+  background-position-y: 574px;
+  position: relative;
+  padding: 50px 50px 98px 50px;
+  animation: infiniteScroll 80s linear infinite; }
+  .jumbotron::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1f608b;
+    opacity: 0.95;
+    z-index: 0; }
+  .jumbotron .heading {
+    color: #ecf0f1;
+    position: relative;
+    z-index: 1;
+    width: 400px; }
+
+section#tutoriels {
+  position: relative; }
+  section#tutoriels::before {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23ecf0f1' /%3E%3C/svg%3E") no-repeat;
+    background-size: 100% 100%;
+    content: '';
+    display: block;
+    top: -100px;
+    height: 100px;
+    position: absolute;
+    width: 100%; }
+  section#tutoriels::after {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23ecf0f1' /%3E%3C/svg%3E") no-repeat;
+    background-size: 100% 100%;
+    content: '';
+    display: block;
+    top: -100px;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    transform: scaleX(-1); }
+
+.tutoriels {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around; }
+  .tutoriels .tutoriel {
+    width: 570px;
+    height: 310px;
+    background-color: #2c3e50;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px; }
+    .tutoriels .tutoriel .overlay {
+      transition: all 0.3s;
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0; }
+    .tutoriels .tutoriel img.thumbnail {
+      transition: all 0.3s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      min-width: 50%;
+      min-height: 50%;
+      overflow-x: hidden;
+      transform: scale(0.4); }
+    .tutoriels .tutoriel .informations {
+      transition: all 0.3s ease-in-out;
+      position: absolute;
+      padding: 25px;
+      width: 100%;
+      height: 165px;
+      bottom: -165px;
+      overflow: hidden;
+      background-color: #e1e5e6;
+      z-index: 10; }
+      .tutoriels .tutoriel .informations h3.title {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 700;
+        font-style: italic;
+        margin: 10px auto; }
+    .tutoriels .tutoriel .metas {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: #d6d9da;
+      width: 100%;
+      padding: 8px;
+      text-align: right;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.65); }
+      .tutoriels .tutoriel .metas .author {
+        margin-right: 20px; }
+        .tutoriels .tutoriel .metas .author::before {
+          font-family: FontAwesome;
+          content: '\f007';
+          margin-right: 10px; }
+      .tutoriels .tutoriel .metas .date::before {
+        font-family: FontAwesome;
+        content: '\f073';
+        margin-right: 10px; }
+    .tutoriels .tutoriel:hover {
+      cursor: pointer; }
+    .tutoriels .tutoriel .overlay.hover {
+      transition: all 0.3s;
+      opacity: .25; }
+    .tutoriels .tutoriel:hover > img.thumbnail {
+      filter: blur(10px);
+      transform: scale(0.6);
+      bottom: 125px; }
+    .tutoriels .tutoriel:hover > .overlay {
+      opacity: 0.25; }
+    .tutoriels .tutoriel:hover > .informations {
+      bottom: 0; }
+
+@media only screen and (max-width: 1300px) {
+  .container {
+    width: 100%;
+    padding: 0 8%; } }
+@keyframes infiniteScroll {
+  0% {
+    background-position-x: 0; }
+  100% {
+    background-position-x: 1920px; } }
 
 /*# sourceMappingURL=app.css.map */

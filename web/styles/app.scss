@@ -1,3 +1,297 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin');
+@import "variables";
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: #ecf0f1;
+  background-color: $white;
+  font-family: Lato, Roboto, sans-serif;
+}
+
+h2 {
+  color: $blue;
+  padding-left: 10px;
+  border-left: $red 3px solid;
+}
+
+.cta {
+  transition: all .3s;
+  background-color: transparent;
+  border: 3px $red solid;
+  padding: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: 200px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 400;
+  color: $red;
+  z-index: 1;
+
+  &:hover {
+    color: $white;
+    background-color: $red;
+    border: lighten($red, 10%) 3px solid;
+  }
+}
+
+header.fixed {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  & nav.main-nav {
+    height: 60px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    & a {
+      text-decoration: none;
+      color: $white;
+    }
+    & .brand {
+      padding: 15px;
+      font-weight: 600;
+      font-size: 24px;
+    }
+
+    & .menu {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+
+      & .item {
+        padding: 20px;
+        transition: all .3s;
+        &:hover {
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.18);
+        }
+        &.login {
+          background-color: $red;
+          &:hover {
+            background-color: darken($red, 5%);
+          }
+          & a::before {
+            font-family: FontAwesome;
+            content: '\f007';
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.container {
+  width: 1300px;
+  margin: 0 auto;
+  display: inherit;
+  justify-content: inherit;
+  flex-direction: inherit;
+  align-content: inherit;
+  align-items: inherit;
+  align-self: inherit;
+}
+
+.jumbotron {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 400px;
+  background: url('../assets/img/city-flat-23.jpg');
+  background-size: cover;
+  background-position-y: 574px;
+  position: relative;
+  padding: 50px 50px 98px 50px;
+
+  animation: infiniteScroll 80s linear infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $jumbotron_bg;
+    opacity: 0.95;
+    z-index: 0;
+  }
+  & .heading {
+    color: $white;
+    position: relative;
+    z-index: 1;
+    width: 400px;
+  }
+}
+
+section#tutoriels {
+
+  position: relative;
+
+  &::before {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23ecf0f1' /%3E%3C/svg%3E") no-repeat;
+    background-size: 100% 100%;
+    content: '';
+    display: block;
+    top: -100px;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+  }
+
+  &::after {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23ecf0f1' /%3E%3C/svg%3E") no-repeat;
+    background-size: 100% 100%;
+    content: '';
+    display: block;
+    top: -100px;
+    height: 100px;
+    position: absolute;
+    width: 100%;
+    transform: scaleX(-1);
+  }
+
+}
+
+.tutoriels {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+
+  & .tutoriel {
+    width: 570px;
+    height: 310px;
+    background-color: $darkblue;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    & .overlay {
+      transition: all 0.3s;
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0;
+    }
+
+    & img.thumbnail {
+      transition: all 0.3s;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      min-width: 50%;
+      min-height: 50%;
+      overflow-x: hidden;
+      transform: scale(0.4);
+    }
+
+    & .informations {
+      transition: all 0.3s ease-in-out;
+      position: absolute;
+      padding: 25px;
+      width: 100%;
+      height: 165px;
+      bottom: -165px;
+      overflow: hidden;
+      background-color: #e1e5e6;
+      z-index: 10;
+
+      & h3.title {
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 700;
+        font-style: italic;
+        margin: 10px auto;
+      }
+    }
+
+    & .metas {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: #d6d9da;
+      width: 100%;
+      padding: 8px;
+      text-align: right;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.65);
+
+      & .author {
+        margin-right: 20px;
+        &::before {
+          font-family: FontAwesome;
+          content: '\f007';
+          margin-right: 10px;
+
+        }
+      }
+      & .date::before {
+        font-family: FontAwesome;
+        content: '\f073';
+        margin-right: 10px;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+
+    & .overlay.hover {
+      transition: all 0.3s;
+      opacity: .25;
+    }
+
+    &:hover > img.thumbnail {
+      filter: blur(10px);
+      transform: scale(0.6);
+      bottom: 125px;
+    }
+
+    &:hover > .overlay {
+      opacity: 0.25;
+    }
+
+    &:hover > .informations {
+      bottom: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .container {
+    width: 100%;
+    padding: 0 8%
+  }
+
+}
+
+@keyframes infiniteScroll {
+
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1920px;
+
+  }
+
 }

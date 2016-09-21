@@ -7,128 +7,83 @@
 
 
         <div class="jumbotron">
-            <h1>{{ app_name }}</h1>
-            <form action="{{ path('search') }}" method="get">
-                <input name="q" class="search-course md-input" type="text"
-                       placeholder="Que voulez-vous apprendre aujourd'hui ?" required>
-                <button hidden type="submit">Rechercher</button>
-            </form>
+            <div class="heading">
+                <h1>Venez dans notre site</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque nihil officiis provident quidem
+                    repellendus. Aliquid asperiores fuga illo ipsum iure magnam natus nulla quod reprehenderit, sunt.
+                    Accusamus explicabo non unde!</p>
+            </div>
+            <a href="{{ path('login') }}" class="cta">S'inscrire</a>
         </div>
 
+        <section id="tutoriels">
 
-
-
-
-        <div class="ui container">
-
-            <div class="ui equal width grid features">
-                <div class="column feature">
-                    <div class="icon"><i class="search icon md-yellow"></i></div>
-                    <h2>Recherchez</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae dolorem eligendi
-                        excepturi
-                        fugit harum sint vitae voluptatibus? Delectus dolorem doloremque eveniet sapiente sunt
-                        voluptates voluptatum! Explicabo fugiat neque tempora!
-                    </p>
-                </div>
-                <div class="column feature">
-                    <div class="icon"><i class="find icon md-red"></i></div>
-                    <h2>Trouvez</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae dolorem eligendi
-                        excepturi
-                        fugit harum sint vitae voluptatibus? Delectus dolorem doloremque eveniet sapiente sunt
-                        voluptates voluptatum! Explicabo fugiat neque tempora!
-                    </p>
-                </div>
-                <div class="column feature">
-                    <div class="icon"><i class="share icon md-blue"></i></div>
-                    <h2>Partagez</h2>
-
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur beatae dolorem eligendi
-                        excepturi
-                        fugit harum sint vitae voluptatibus? Delectus dolorem doloremque eveniet sapiente sunt
-                        voluptates voluptatum! Explicabo fugiat neque tempora!
-                    </p>
-                </div>
-            </div>
-            <hr class="separator">
-            <div class="ui grid">
-                <div class="sixteen wide column">
-                    <h2>Les derniers tutoriels</h2>
-                    <div class="tutoriels">
-                        <div class="tutoriel">
-                            <a href="">
-                                <div class="thumbnail">
-                                    <img src="{{ asset('assets/tutoriels/github.jpg') }}" alt="">
-                                    <span class="category">Informatique, Versionning</span>
-                                </div>
-                                <p>Tu as décidé de te lancer dans le grand bain et enfin te mettre à Git, ce truc dont tout le monde parle si t’es un développeur ? </p>
-                                <div class="metas">
-                                    <span class="author">Omar JBARA, Alexandre MASSÉ, Erwann LETUE</span>
-                                    <span class="date">01 Septembre 2016</span>
-                                </div>
-                            </a>
-
-                        </div>
-                        <div class="tutoriel">
-                            <div class="thumbnail">
-                                <img src="http://placehold.it/400x150" alt="">
-                                <span class="category">Informatique</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at cumque cupiditate
-                                delectus dolorem ducimus eligendi</p>
+            <div class="container">
+                <h2>Les derniers tutoriels</h2>
+                <div class="tutoriels">
+                    <div class="tutoriel">
+                        <div class="overlay"></div>
+                        <img src="https://git-for-windows.github.io/img/git_logo.png" alt="" class="thumbnail">
+                        <div class="informations">
+                            <h3 class="title">Git</h3>
+                            <div class="description">Voici le tuto git</div>
                             <div class="metas">
                                 <span class="author">Omar Jbara</span>
-                                <span class="date">12 Juil. 2016</span>
+                                <span class="date">12 Septembre 2016</span>
                             </div>
                         </div>
-                        <div class="tutoriel">
-                            <div class="thumbnail">
-                                <img src="http://placehold.it/400x150" alt="">
-                                <span class="category">Informatique</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at cumque cupiditate
-                                delectus dolorem ducimus eligendi</p>
+                    </div>
+                    <div class="tutoriel">
+                        <div class="overlay"></div>
+                        <img src="http://sass-lang.com/assets/img/styleguide/color-1c4aab2b.png" alt="" class="thumbnail">
+                        <div class="informations">
+                            <h3 class="title">Sass</h3>
+                            <div class="description">Voici le tuto SASS</div>
                             <div class="metas">
                                 <span class="author">Omar Jbara</span>
-                                <span class="date">12 Juil. 2016</span>
+                                <span class="date">12 Septembre 2016</span>
                             </div>
                         </div>
-                        <div class="tutoriel">
-                            <div class="thumbnail">
-                                <img src="http://placehold.it/400x150" alt="">
-                                <span class="category">Informatique</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab at cumque cupiditate
-                                delectus dolorem ducimus eligendi</p>
+                    </div>
+                    <div class="tutoriel">
+                        <div class="overlay"></div>
+                        <img src="https://git-for-windows.github.io/img/git_logo.png" alt="" class="thumbnail">
+                        <div class="informations">
+                            <h3 class="title">Git</h3>
+                            <div class="description">Voici le tuto git</div>
                             <div class="metas">
                                 <span class="author">Omar Jbara</span>
-                                <span class="date">12 Juil. 2016</span>
+                                <span class="date">12 Septembre 2016</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tutoriel">
+                        <div class="overlay"></div>
+                        <img src="https://git-for-windows.github.io/img/git_logo.png" alt="" class="thumbnail">
+                        <div class="informations">
+                            <h3 class="title">Git</h3>
+                            <div class="description">Voici le tuto git</div>
+                            <div class="metas">
+                                <span class="author">Omar Jbara</span>
+                                <span class="date">12 Septembre 2016</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+
+
+
+
+        {#<div class="container">#}
+        {#<hr class="separator">#}
+        {#<h2>Les derniers tutoriels</h2>#}
+        {#<div class="tutoriels"></div>#}
+        {#</div>#}
 
     {% endblock %}
 
-
-    {% block javascripts %}
-        <script type="text/javascript" src="{{ asset('styles/slick/slick.min.js') }}"></script>
-        <script>
-            $(document).ready(function () {
-                $('.tutoriels').slick({
-                    infinite: true,
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    dots: true
-                });
-            });
-        </script>
-    {% endblock %}
 
 {% endembed %}

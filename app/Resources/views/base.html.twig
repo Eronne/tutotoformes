@@ -8,9 +8,8 @@
 
     <!-- Site Properties -->
     <title>{% block title %}{{ app_name }} - {{ title|default('Accueil') }}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('styles/semantic/semantic.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/slick/slick.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('styles/slick/slick-theme.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('styles/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     {% block stylesheets %}{% endblock %}
 
@@ -18,21 +17,23 @@
 </head>
 <body>
 
-<header>
-    <div class="ui large top fixed hidden menu">
-        <div class="ui container">
+<header class="fixed">
+    <nav class="main-nav">
+        <div class="container">
             {{ render(controller('AppBundle:Default:menu')) }}
         </div>
-    </div>
+    </nav>
 </header>
 
 
+
+
 {% if app.session.flashbag.peekAll|length > 0 %}
-    <div class="ui container">
+    <div class="">
         <div class="flashbags">
             {% for type, messages in app.session.flashbag.all %}
                 {% for message in messages %}
-                    <div class="ui {{ type ? type : '' }} floating message">
+                    <div class="{{ type ? type : '' }} floating message">
                         <i class="close icon"></i>
                         {{ message }}
                     </div>
@@ -51,10 +52,9 @@
 <script src="{{ asset('js/app.js') }}"></script>
 {% block javascripts %}{% endblock %}
 
-<footer class="ui inverted vertical footer segment">
-    <div class="ui container">
+<footer class="">
+    <div class="">
         &copy; {{ 'now'|date('Y') }}
-
     </div>
 </footer>
 
