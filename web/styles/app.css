@@ -57,7 +57,7 @@ header.fixed {
       justify-content: space-between;
       flex-direction: row; }
       header.fixed nav.main-nav .menu .item {
-        padding: 20px;
+        padding: 23px;
         transition: all .3s; }
         header.fixed nav.main-nav .menu .item:hover {
           cursor: pointer;
