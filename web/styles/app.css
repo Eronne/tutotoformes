@@ -217,7 +217,7 @@ section#tutoriels {
 @media only screen and (max-width: 1300px) {
   .container {
     width: 100%;
-    padding: 0 8%; } }
+    padding: 0 3%; } }
 @keyframes infiniteScroll {
   0% {
     background-position-x: 0; }

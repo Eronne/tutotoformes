@@ -21,6 +21,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
 /**
  * @var Composer\Autoload\ClassLoader $loader
  */
+date_default_timezone_set("Europe/Paris");
 $loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
 
