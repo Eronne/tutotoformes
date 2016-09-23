@@ -1,10 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin");
+@font-face {
+  font-family: "Geomanist";
+  src: url("fonts/geomanist-regular-webfont.eot"), url("fonts/geomanist-regular-webfont.woff"), url("fonts/geomanist-regular-webfont.woff2"), url("fonts/geomanist-regular-webfont.ttf"), url("fonts/geomanist-regular-webfont.svg"); }
 * {
   box-sizing: border-box; }
 
 body {
   background-color: #ecf0f1;
-  font-family: Lato, Roboto, sans-serif; }
+  font-family: Geomanist, Lato, Roboto, sans-serif; }
 
 h2 {
   color: #2980b9;

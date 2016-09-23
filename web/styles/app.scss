@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin');
 @import "variables";
+@import "fonts";
 
 * {
   box-sizing: border-box;
@@ -7,7 +8,7 @@
 
 body {
   background-color: $white;
-  font-family: Lato, Roboto, sans-serif;
+  font-family: Geomanist, Lato, Roboto, sans-serif;
 }
 
 h2 {
