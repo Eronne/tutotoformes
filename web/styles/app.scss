@@ -47,7 +47,7 @@ header.fixed {
   z-index: 100;
 
   & nav.main-nav {
-    height: 60px;
+    height: $header_height;
     background-color: transparent;
     display: flex;
     flex-direction: row;
@@ -69,7 +69,8 @@ header.fixed {
       flex-direction: row;
 
       & .item {
-        padding: 23px;
+        padding: 0 20px;
+        line-height: $header_height;
         transition: all .3s;
         &:hover {
           cursor: pointer;
