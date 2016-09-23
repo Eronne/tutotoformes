@@ -11,11 +11,11 @@
         <a class="item {% if route_name starts with "admin" %}active{% endif %}" href="{{ path('admin_index') }}">Administration</a>
     {% endif %}
     {% if app.user %}
-        <div class="item">
-            <a href="" class="ui primary button">Mon profil</a>
+        <div class="item profile">
+            <a href="" class="">Mon profil</a>
         </div>
         <div class="item">
-            <a href="{{ path('logout') }}" class="ui {% if inverted %}inverted{% endif %} button">Se déconnecter</a>
+            <a href="{{ path('logout') }}" class="">Se déconnecter</a>
         </div>
 
     {% else %}
