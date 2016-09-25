@@ -15,7 +15,9 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-
+        $this->addFlash('info', "Je suis un message d'info");
+        $this->addFlash('error', "Je suis un message d'erreur");
+        $this->addFlash('success', "Je suis un message positif");
         return $this->render('index.html.twig');
     }
 

@@ -10,11 +10,15 @@ $(document).ready(function () {
             }
         })
     ;
-    $('.message .close')
+    $('.alert .fa-close')
         .on('click', function () {
             $(this)
-                .closest('.message')
-                .transition('fade')
+                .closest('.alert')
+                .addClass('animated fadeOutRight')
+                .delay(2000)
+	            .queue(function(){
+	            	$(this).remove();
+	            })
             ;
         })
     ;

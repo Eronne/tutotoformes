@@ -8,12 +8,12 @@
 
         <div class="jumbotron">
             <div class="heading">
-                <h1>Venez dans notre site</h1>
+                <h1>{{ app.user ? "Bienvenue " ~ app.user.username : "Venez sur notre site" }}</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque nihil officiis provident quidem
                     repellendus. Aliquid asperiores fuga illo ipsum iure magnam natus nulla quod reprehenderit, sunt.
                     Accusamus explicabo non unde!</p>
             </div>
-            <a href="{{ path('login') }}" class="cta">S'inscrire</a>
+            <a href="{{ path('login') }}" class="button large primary">S'inscrire</a>
         </div>
 
         <section id="tutoriels">

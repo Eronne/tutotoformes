@@ -3,13 +3,11 @@
     {% block body %}
 
         {% if error %}
-            <div class="flashbags">
-                <div class="ui floating negative message">
-                    <i class="close icon"></i>
-                    <div class="header">
-                        Erreur de connexion
-                    </div>
+            <div class="flashbags animated fadeInRight">
+                <div class="alert info">
+                    <i class="fa fa-close"></i>
                     <p>{{ error }}</p>
+                    <i class="background-icon"></i>
                 </div>
             </div>
 
