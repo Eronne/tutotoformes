@@ -76,6 +76,14 @@ p {
 
 }
 
+.spacer {
+  height: 0;
+  width: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: block;
+}
+
 header.fixed {
 
   position: fixed;
@@ -152,6 +160,9 @@ header.fixed {
 
 main {
   flex: 1;
+  &.pusher {
+    margin-top: $header_height;
+  }
 }
 
 footer {
@@ -191,6 +202,17 @@ footer {
     position: absolute;
     width: 50%;
     transform: scaleY(-1);
+  }
+}
+
+section {
+  &#connection {
+    width: 49%;
+    display: inline-block;
+  }
+  &#register {
+    width: 49%;
+    display: inline-block;
   }
 }
 
@@ -387,9 +409,10 @@ section#tutoriels {
   z-index: 1000;
 }
 
-.alert {
+.alert, .notification {
   background-color: gray;
   margin-bottom: 25px;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   color: $white;
@@ -405,18 +428,16 @@ section#tutoriels {
   & p {
     margin: 1em 0;
   }
-
   & i.fa-close {
     cursor: pointer;
     position: absolute;
     top: 10px;
     right: 10px
   }
-  padding: 20px;
   & i.background-icon {
     position: absolute;
     left: 22px;
-    top: 22%;
+    top: 25.5%;
     width: 64px;
     height: 64px;
     opacity: 0.2;
@@ -450,11 +471,11 @@ section#tutoriels {
       background-size: contain;
     }
 
-    &:not(.persistent) i.fa-close {
-        display: none;
-    }
   }
+}
 
+.notification i.fa-close {
+  display: none;
 }
 
 @media only screen and (max-width: 1300px) {

@@ -51,21 +51,22 @@ class SecurityController extends Controller
 
             $userRepository = $this->getDoctrine()->getRepository('AppBundle:Utilisateur');
 
+
             $user = $userRepository->findOneBy(['username' => $username]);
 
             if($user){
-               $this->addFlash('error', "L'utilisateur '" . $user->getUsername() . "' existe déjà !");
+               $this->addFlash('notification notification error', "L'utilisateur '" . $user->getUsername() . "' existe déjà !");
                 return $this->redirectToRoute('login');
             }
 
             if($password != $request->get('_password')[1]) {
-                $this->addFlash('error', "Les mots de passe ne correspondent pas !");
+                $this->addFlash('notification error', "Les mots de passe ne correspondent pas !");
                 return $this->redirectToRoute('login');
             }
 
             $usermail = $userRepository->findOneBy(['email' => $email]);
             if($usermail){
-                $this->addFlash('error', "Un utilisateur avec l'email '" . $usermail->getEmail() . "' existe déjà !");
+                $this->addFlash('notification error', "Un utilisateur avec l'email '" . $usermail->getEmail() . "' existe déjà !");
                 return $this->redirectToRoute('login');
             }
 

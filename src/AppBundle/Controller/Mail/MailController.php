@@ -25,7 +25,7 @@ class MailController extends Controller
         $globals = $this->get('twig')->getGlobals();
         $this->get('app.utils')->sendMail("Vérifier votre adresse email", 'no-reply@' . strtolower($globals['app_name']) . '.fr', $globals['app_name'], $user->getEmail(),
             $this->renderView('mails/validation.html.twig', ['user' => $user]), "text/html");
-            $this->addFlash('info', "Un email de vérification vous a été envoyé. Confirmez votre inscription via cet email");
+            $this->addFlash('notification info', "Un email de vérification vous a été envoyé. Confirmez votre inscription via cet email");
         return $this->redirectToRoute("login");
     }
 
@@ -41,11 +41,11 @@ class MailController extends Controller
         if($user->getToken() === $token) {
             $user->setToken(null)
                 ->setConfirmedAt(new \DateTime('now'));
-            $this->addFlash("success", "Votre profil a bien été confirmé ! Vous pouvez désormais vous connecter");
+            $this->addFlash("notification success", "Votre profil a bien été confirmé ! Vous pouvez désormais vous connecter");
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute("login");
         } else {
-            $this->addFlash("error", "Les jetons d'accès ne correspondent pas ! Impossible de confirmer votre compte.");
+            $this->addFlash("notification error", "Les jetons d'accès ne correspondent pas ! Impossible de confirmer votre compte.");
             return $this->redirectToRoute("login");
         }
     }

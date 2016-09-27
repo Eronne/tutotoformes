@@ -2,6 +2,11 @@ var flashDuration = 6000;
 
 $(document).ready(function () {
 
+    var doc = $(document);
+    var header = $('nav.main-nav');
+    var relativeUrl = getUrlParts(document.documentURI).pathname;
+
+
     $('.ui.dropdown')
         .dropdown()
     ;
@@ -12,7 +17,7 @@ $(document).ready(function () {
             }
         })
     ;
-    $('.alert .fa-close')
+    $('.alert .fa-close, .notification .fa-close')
         .on('click', function () {
             $(this)
                 .closest('.alert')
@@ -25,18 +30,16 @@ $(document).ready(function () {
         })
     ;
 
-    if($('.alert:not(.persistent)').length > 0) {
+    if($('.notification').length > 0) {
         window.setTimeout(function () {
-            $('.alert').addClass('animated fadeOutRight');
+            $('.notification').addClass('animated fadeOutRight');
         }, flashDuration);
         window.setTimeout(function () {
             $('.flashbags').remove();
         }, flashDuration + 1000);
     }
 
-    var doc = $(document);
-    var header = $('nav.main-nav');
-    var relativeUrl = getUrlParts(document.documentURI).pathname;
+
     if(relativeUrl === "/"){
         $(document)
             .on('scroll', function(e){
@@ -51,6 +54,12 @@ $(document).ready(function () {
                 }
             })
         ;
+    }
+
+    if(doc.scrollTop() === 0 && relativeUrl === "/"){
+        header.addClass('transparent');
+    } else if(doc.scrollTop() > 0 && doc.scrollTop() < 100 && relativeUrl === "/"){
+        header.removeClass('transparent');
     }
 
 });

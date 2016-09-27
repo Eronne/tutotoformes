@@ -12,7 +12,7 @@
                     <h1>Bienvenue, {{ app.user.username }}</h1>
                     <p>C'est cool de te revoir mon bon ami !</p>
                 </div>
-                <a href="{{ path('login') }}" class="button large primary"><i class="fa fa-graduation-cap">&nbsp;&nbsp;</i>Suivi de
+                <a href="{{ path('login') }}" class="button inversed large primary"><i class="fa fa-graduation-cap">&nbsp;&nbsp;</i>Suivi de
                     mes cours</a>
             {% else %}
                 <div class="heading">
@@ -21,7 +21,7 @@
                         repellendus. Aliquid asperiores fuga illo ipsum iure magnam natus nulla quod reprehenderit,
                         sunt. Accusamus explicabo non unde!</p>
                 </div>
-                <a href="{{ path('login') }}" class="button large primary">S'inscrire</a>
+                <a style="width: 300px;" href="{{ path('login') }}" class="button inversed large primary">S'inscrire</a>
             {% endif %}
 
         </div>
@@ -81,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+                <a href="" class="button primary medium">Voir les derniers tutoriels</a>
             </div>
         </section>
 

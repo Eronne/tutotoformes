@@ -44,7 +44,7 @@ class TutorielController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($tutoriel);
             $em->flush();
-            $this->addFlash('positive', "Le tutoriel a bien été ajouté !");
+            $this->addFlash('notification positive', "Le tutoriel a bien été ajouté !");
             return $this->redirectToRoute('admin_tutoriels_index');
         }
     }
@@ -67,7 +67,7 @@ class TutorielController extends Controller
             $em = $this->getDoctrine()->getManager();
             $this->get('app.utils')->updateEntityFromParameters($tutoriel, $request);
             $em->flush();
-            $this->addFlash('positive', "Le tutoriel a bien été modifié");
+            $this->addFlash('notification positive', "Le tutoriel a bien été modifié");
 
             return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
         }
@@ -88,7 +88,7 @@ class TutorielController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($tutoriel);
         $em->flush();
-        $this->addFlash('positive', "Le tutoriel a bien été supprimé");
+        $this->addFlash('notification positive', "Le tutoriel a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriels_index');
     }
 

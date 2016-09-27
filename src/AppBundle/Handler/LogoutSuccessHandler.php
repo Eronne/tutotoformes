@@ -30,7 +30,7 @@ class LogoutSuccessHandler extends DefaultLogoutSuccessHandler
      */
     public function onLogoutSuccess(Request $request)
     {
-        $this->container->get('session')->getFlashBag()->add("success", "Vous avez bien été déconnecté !");
+        $this->container->get('session')->getFlashBag()->add("notification success", "Vous avez bien été déconnecté !");
         return new RedirectResponse($this->targetUrl);
     }
 

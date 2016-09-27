@@ -19,7 +19,7 @@
 <body>
 
 <header class="fixed">
-    <nav class="main-nav {% if app.request.attributes.get('_route') == "homepage" %}transparent{% endif %}">
+    <nav class="main-nav">
         <div class="container">
             {{ render(controller('AppBundle:Default:menu')) }}
         </div>
@@ -31,7 +31,7 @@
     <div class="flashbags animated fadeInRight">
         {% for type, messages in app.session.flashbag.all %}
             {% for message in messages %}
-                <div class="alert {{ type ? type : '' }}">
+                <div class="{{ type ? type : '' }}">
                     <i class="fa fa-close"></i>
                     <p>{{ message|raw }}</p>
                     <i class="background-icon"></i>
@@ -41,7 +41,7 @@
     </div>
 {% endif %}
 
-<main>
+<main {% if app.request.attributes.get('_route') != "homepage" %}class="pusher"{% endif %}>
     {% block body %}{% endblock %}
 </main>
 

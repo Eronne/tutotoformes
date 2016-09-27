@@ -27,13 +27,13 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
 
         if (!$user->isConfirmed()) {
 
-            $this->container->get('session')->getFlashBag()->add('info', "Votre compte n'est pas encore validé. Veuillez vérifier vos mails. 
+            $this->container->get('session')->getFlashBag()->add('alert info', "Votre compte n'est pas encore validé. Veuillez vérifier vos mails. 
             Si vous n'avez rien reçu, cliquez sur <a href='" . $this->container->get('router')->generate("email_send_verification", ['id' => $user->getId()]) . "'>ce lien</a> pour renvoyer un mail.");
             $this->container->get('security.token_storage')->setToken(null);
             return $this->httpUtils->createRedirectResponse($request, "/login");
         }
 
-        $this->container->get('session')->getFlashBag()->add('success', "Vous êtes désormais connecté !");
+        $this->container->get('session')->getFlashBag()->add('notification success', "Vous êtes désormais connecté !");
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
     }
 }
