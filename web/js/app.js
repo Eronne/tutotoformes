@@ -6,17 +6,7 @@ $(document).ready(function () {
     var header = $('nav.main-nav');
     var relativeUrl = getUrlParts(document.documentURI).pathname;
 
-
-    $('.ui.dropdown')
-        .dropdown()
-    ;
-    $('.ui.rating')
-        .rating({
-            onRate: function (value) {
-                $('input[name="_tutoriel[difficulty]"]').val(value);
-            }
-        })
-    ;
+    
     $('.alert .fa-close, .notification .fa-close')
         .on('click', function () {
             $(this)

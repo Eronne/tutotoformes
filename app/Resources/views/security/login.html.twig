@@ -15,12 +15,51 @@
 
         <div class="container">
             <div class="spacer"></div>
-            <section id="register">
-                <h2>Inscription</h2>
-            </section>
-            <section id="connection">
-                <h2>Connexion</h2>
-            </section>
+            <div class="grid has-gutter ">
+                <section id="login">
+                    <h2>Connexion</h2>
+                    <form action="/" method="post">
+                        <div class="field icon">
+                            <input type="text" name="_username" required placeholder="Nom d'utilisateur" value="{{ last_username|default('') }}">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="field icon">
+                            <input type="password" name="_password" required placeholder="Mot de passe">
+                            <i class="fa fa-key"></i>
+                        </div>
+                        <div class="clearfix">
+                            <button type="submit" class="button icon primary small floated-right"><span class="icon"><i class="fa fa-sign-in"></i></span>Se connecter</button>
+                        </div>
+                    </form>
+                </section>
+                <section id="register">
+                    <h2>Inscription</h2>
+                    <form action="{{ path('register') }}" method="post">
+
+                        <div class="field icon">
+                            <input type="text" name="_username" required placeholder="Nom d'utilisateur">
+                            <i class="fa fa-user"></i>
+                        </div>
+
+                        <div class="field icon">
+                            <input type="email" name="_email" required placeholder="Email">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="field icon">
+                            <input type="password" name="_password[0]" required placeholder="Mot de passe">
+                            <i class="fa fa-key"></i>
+                            <input id="password_repeat" type="password" required name="_password[1]">
+                        </div>
+
+                        <div class="clearfix">
+                            <button type="submit" class="button icon primary small floated-right"><span class="icon"><i class="fa fa-user-plus"></i></span>S'inscrire</button>
+
+                        </div>
+
+                    </form>
+                </section>
+            </div>
+
 
         </div>
 
@@ -28,19 +67,5 @@
 
     {% endblock %}
 
-    {% block  javascripts %}
-        <script>
-            $('.message .close')
-                    .on('click', function () {
-                        $(this)
-                                .closest('.message')
-                                .transition('fade')
-                        ;
-                    })
-            ;
-            $('.ui.checkbox')
-                    .checkbox()
-            ;
-        </script>
-    {% endblock %}
+
 {% endembed %}

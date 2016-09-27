@@ -23,9 +23,15 @@ h2 {
 p {
   font-family: Lato, Geomanist, Roboto, sans-serif; }
 
+.center {
+  text-align: center;
+  margin: 0 auto;
+  width: 70%; }
+
 .button {
+  display: inline-block;
   transition: all .3s;
-  padding: 20px;
+  padding: 20px 1em 20px 1em;
   text-transform: uppercase;
   text-decoration: none;
   width: 200px;
@@ -34,24 +40,44 @@ p {
   font-weight: 400;
   z-index: 1; }
   .button.small {
-    width: 100px;
-    padding: 7px;
-    font-size: 14px;
+    width: auto;
+    padding: 10px 1em 10px 1em;
+    font-size: 17px;
+    line-height: 17px;
     font-weight: 300; }
   .button.medium {
-    padding: 10px;
-    font-size: 17px;
-    font-weight: 300; }
+    width: auto;
+    padding: 7px 1em 7px 1em;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 300;
+    height: 60px; }
+    .button.medium span.icon {
+      line-height: 60px !important; }
+      .button.medium span.icon:before {
+        border-width: 28px !important;
+        margin-top: -28px !important; }
+      .button.medium span.icon i {
+        font-size: 25px; }
   .button.large {
-    padding: 20px;
+    padding: 20px 1em 20px 1em;
     font-size: 20px;
+    line-height: 20px;
     font-weight: 400;
     width: auto; }
+    .button.large span.icon {
+      line-height: 68px !important; }
+      .button.large span.icon:before {
+        border-width: 30px !important;
+        margin-top: -30px !important; }
+      .button.large span.icon i {
+        font-size: 30px; }
   .button.primary {
     background-color: #e74c3c;
     color: white;
     border: #ed7669 3px solid; }
     .button.primary:hover {
+      cursor: pointer;
       border: #b1c2c6 3px solid;
       color: black;
       background-color: #ecf0f1; }
@@ -63,6 +89,34 @@ p {
       color: #ecf0f1;
       background-color: #e74c3c;
       border: #ed7669 3px solid; }
+  .button.icon {
+    padding-left: 4.5em;
+    position: relative; }
+    .button.icon i {
+      position: relative;
+      left: 7px; }
+    .button.icon span.icon {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2.5em;
+      height: 100%;
+      line-height: 35px;
+      background: rgba(0, 0, 0, 0.25); }
+      .button.icon span.icon:before, .button.icon span.icon :after {
+        left: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none; }
+      .button.icon span.icon:before {
+        border-color: rgba(194, 225, 245, 0);
+        border-left-color: rgba(0, 0, 0, 0.25);
+        border-width: 19px;
+        margin-top: -19px; }
 
 .spacer {
   height: 0;
@@ -149,7 +203,7 @@ footer {
     display: block;
     height: 100px;
     top: 0;
-    left: 50%;
+    left: 49.999%;
     position: absolute;
     width: 50%;
     transform: scale(-1, -1); }
@@ -165,12 +219,39 @@ footer {
     width: 50%;
     transform: scaleY(-1); }
 
-section#connection {
-  width: 49%;
-  display: inline-block; }
-section#register {
-  width: 49%;
-  display: inline-block; }
+.field {
+  position: relative;
+  margin: 20px 0; }
+  .field input {
+    transition: all .3s;
+    position: relative;
+    outline: none;
+    border: none;
+    padding: 20px 20px 20px 60px;
+    width: 100%;
+    background-color: #e3e7e8; }
+    .field input:focus {
+      box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.1); }
+  .field label {
+    display: block; }
+  .field.icon i {
+    color: black;
+    position: absolute;
+    line-height: 60px;
+    text-align: center;
+    top: 0;
+    left: 20px;
+    margin: 0;
+    font-size: 22px;
+    opacity: 0.6; }
+
+.floated-left {
+  float: left; }
+.floated-right {
+  float: right; }
+
+.clearfix {
+  overflow: auto; }
 
 .container {
   width: 1300px;
@@ -188,9 +269,8 @@ section#register {
   justify-content: space-around;
   align-items: center;
   height: 400px;
-  background: url("../assets/img/city-flat-23.jpg");
   background-size: cover;
-  background-position-y: 574px;
+  background: url("../assets/img/city-flat-23.jpg") 0 574px;
   position: relative;
   padding: 50px 50px 98px 50px;
   animation: infiniteScroll 80s linear infinite; }
@@ -383,8 +463,8 @@ section#tutoriels {
     padding: 0 3%; } }
 @keyframes infiniteScroll {
   0% {
-    background-position-x: 0; }
+    background-position: 0 574px; }
   100% {
-    background-position-x: 1920px; } }
+    background-position: 1920px 574px; } }
 
 /*# sourceMappingURL=app.css.map */
