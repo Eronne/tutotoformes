@@ -19,7 +19,7 @@
 <body>
 
 <header class="fixed">
-    <nav class="main-nav">
+    <nav class="main-nav {% if app.request.attributes.get('_route') == "homepage" %}transparent{% endif %}">
         <div class="container">
             {{ render(controller('AppBundle:Default:menu')) }}
         </div>
@@ -33,7 +33,7 @@
             {% for message in messages %}
                 <div class="alert {{ type ? type : '' }}">
                     <i class="fa fa-close"></i>
-                    <p>{{ message }}</p>
+                    <p>{{ message|raw }}</p>
                     <i class="background-icon"></i>
                 </div>
             {% endfor %}

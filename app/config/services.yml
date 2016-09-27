@@ -19,3 +19,13 @@ services:
     app.utils:
         class: AppBundle\Utils
         arguments: ['@swiftmailer.mailer', '@doctrine.orm.entity_manager']
+
+    security.authentication.success_handler:
+        class: AppBundle\Handler\AuthenticationSuccessHandler
+        arguments: ['@security.http_utils', '@service_container', {}]
+        tags:
+            - { name: 'monolog.logger', channel: 'security'}
+
+    logout_success_handler:
+        class: AppBundle\Handler\LogoutSuccessHandler
+        arguments: ['@security.http_utils', '@service_container']

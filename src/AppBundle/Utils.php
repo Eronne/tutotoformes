@@ -34,7 +34,7 @@ class Utils
      * @param $body string Le corps du mail
      * @param $body_type string Le type MIME du corps
      */
-    public function sendMail($subject, $addresses, $name = null, $to, $body, $body_type)
+    public function sendMail($subject, $addresses = ['no-reply@tutotoformes.fr'], $name = null, $to, $body, $body_type)
     {
         $message = \Swift_Message::newInstance();
         $message->setSubject($subject)->setFrom($addresses, $name)->setTo($to)->setBody($body, $body_type);
@@ -107,6 +107,16 @@ class Utils
         } else {
             throw new LogicException("Le type de l'entité n'est pas pris en charge");
         }
+    }
+
+    public function str_random($length = 60) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 }

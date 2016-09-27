@@ -60,6 +60,24 @@ class Utilisateur implements UserInterface, \Serializable
     private $password;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
+     */
+    private $last_login;
+
+    /**
+     * @var string
+     * @ORM\Column(name="token", type="string", length=60, nullable=true)
+     */
+    private $token;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="confirmed_at", type="datetime", nullable=true)
+     */
+    private $confirmed_at;
+
+    /**
      * @var Role[]
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Role", inversedBy="users")
@@ -361,5 +379,81 @@ class Utilisateur implements UserInterface, \Serializable
     public function getTutoriels()
     {
         return $this->tutoriels;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Utilisateur
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set confirmedAt
+     *
+     * @param \DateTime $confirmedAt
+     *
+     * @return Utilisateur
+     */
+    public function setConfirmedAt($confirmedAt)
+    {
+        $this->confirmed_at = $confirmedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get confirmedAt
+     *
+     * @return \DateTime
+     */
+    public function getConfirmedAt()
+    {
+        return $this->confirmed_at;
+    }
+
+    public function isConfirmed() {
+        return ($this->getConfirmedAt() != null);
+    }
+
+    /**
+     * Set lastLogin
+     *
+     * @param \DateTime $lastLogin
+     *
+     * @return Utilisateur
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->last_login = $lastLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get lastLogin
+     *
+     * @return \DateTime
+     */
+    public function getLastLogin()
+    {
+        return $this->last_login;
     }
 }

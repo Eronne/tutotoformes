@@ -1,0 +1,4 @@
+<h1>Titre</h1>
+<p>Coucou je suis un parametres et tu t'appelle {{ user.username }}</p>
+<h2>Le lien</h2>
+<p><a href="{{ absolute_url(path('email_verify', {'id': user.id, 'token': user.token})) }}">Cliquer ici pour valider votre email</a></p>

@@ -2,11 +2,11 @@
 
     {% block body %}
 
-        {% if error %}
+        {% if error|default(null) %}
             <div class="flashbags animated fadeInRight">
-                <div class="alert info">
+                <div class="alert error">
                     <i class="fa fa-close"></i>
-                    <p>{{ error }}</p>
+                    <p>{{ error|raw }}</p>
                     <i class="background-icon"></i>
                 </div>
             </div>

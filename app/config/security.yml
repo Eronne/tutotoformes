@@ -38,11 +38,14 @@ security:
                 path:     /
             provider: User
             form_login:
-                login_path: /login
-                check_path: /login
+                login_path: login
+                check_path: login
             logout:
                 path: /logout
                 target: /
+                success_handler: logout_success_handler
+                invalidate_session: false
+
             # activate different ways to authenticate
 
             # http_basic: ~

@@ -56,9 +56,8 @@ class RoleListener implements EventSubscriberInterface
                     return $token->providerKey;
                 };
                 $boundProviderKeyGetter = Closure::bind($providerKeyGetter, null, $token);
-
+                
                 // check & load roles for user here if necessary
-
                 $this->tokenStorage->setToken(
                     new UsernamePasswordToken(
                         $user,
@@ -69,6 +68,7 @@ class RoleListener implements EventSubscriberInterface
                 );
             }
         }
+
     }
 
     /** {@inheritdoc} */

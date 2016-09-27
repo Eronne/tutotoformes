@@ -2,7 +2,8 @@
     <a class="{% if app.request.attributes.get('_route') == page %}active{% endif %} item">{{ page }}</a>
 {% endfor %}
 <div class="brand">
-    <a href="{{ path('homepage') }}" class="item {{ route_name == "homepage" ? 'active' }}">{{ app_name }} {{ app.request.get('_internal') }}</a>
+    <a href="{{ path('homepage') }}"
+       class="item {{ route_name == "homepage" ? 'active' }}">{{ app_name }}</a>
 </div>
 
 <div class="menu">
@@ -11,17 +12,11 @@
         <a class="item {% if route_name starts with "admin" %}active{% endif %}" href="{{ path('admin_index') }}">Administration</a>
     {% endif %}
     {% if app.user %}
-        <div class="item profile">
-            <a href="" class="">Mon profil</a>
-        </div>
-        <div class="item">
-            <a href="{{ path('logout') }}" class="">Se déconnecter</a>
-        </div>
-
+        <a href="" class="item profile">Mon profil</a>
+        <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
     {% else %}
-        <div class="item login">
-            <a href="{{ path('login') }}">Connexion / Inscription</a>
-        </div>
+        <a class="item login" href="{{ path('login') }}">Connexion / Inscription</a>
+
 
     {% endif %}
 </div>

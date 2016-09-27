@@ -7,13 +7,23 @@
 
 
         <div class="jumbotron">
-            <div class="heading">
-                <h1>{{ app.user ? "Bienvenue " ~ app.user.username : "Venez sur notre site" }}</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque nihil officiis provident quidem
-                    repellendus. Aliquid asperiores fuga illo ipsum iure magnam natus nulla quod reprehenderit, sunt.
-                    Accusamus explicabo non unde!</p>
-            </div>
-            <a href="{{ path('login') }}" class="button large primary">S'inscrire</a>
+            {% if app.user %}
+                <div class="heading">
+                    <h1>Bienvenue, {{ app.user.username }}</h1>
+                    <p>C'est cool de te revoir mon bon ami !</p>
+                </div>
+                <a href="{{ path('login') }}" class="button large primary"><i class="fa fa-graduation-cap">&nbsp;&nbsp;</i>Suivi de
+                    mes cours</a>
+            {% else %}
+                <div class="heading">
+                    <h1>Venez sur notre site</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque nihil officiis provident quidem
+                        repellendus. Aliquid asperiores fuga illo ipsum iure magnam natus nulla quod reprehenderit,
+                        sunt. Accusamus explicabo non unde!</p>
+                </div>
+                <a href="{{ path('login') }}" class="button large primary">S'inscrire</a>
+            {% endif %}
+
         </div>
 
         <section id="tutoriels">
@@ -35,7 +45,8 @@
                     </div>
                     <div class="tutoriel">
                         <div class="overlay"></div>
-                        <img src="http://sass-lang.com/assets/img/styleguide/color-1c4aab2b.png" alt="" class="thumbnail">
+                        <img src="http://sass-lang.com/assets/img/styleguide/color-1c4aab2b.png" alt=""
+                             class="thumbnail">
                         <div class="informations">
                             <h3 class="title">Sass</h3>
                             <div class="description">Voici le tuto SASS</div>

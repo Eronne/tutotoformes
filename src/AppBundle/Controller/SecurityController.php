@@ -12,9 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 class SecurityController extends Controller
 {
 
+
     /**
-     * @param $name
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @internal param $name
      * @Route("/login", name="login")
      */
     public function loginAction(Request $request)
@@ -76,8 +78,8 @@ class SecurityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($newUser);
             $em->flush();
-            $this->addFlash('success', "Vous avez bien été inscrit ! Vous pouvez désormais vous connecter.");
-            return $this->redirectToRoute('login');
+
+            return $this->redirectToRoute('email_send_verification', ['id' => $userRepository->findOneBy(['email' => $newUser->getEmail()])->getId()]);
 
         }
 
@@ -87,7 +89,6 @@ class SecurityController extends Controller
      * @Route("/logout", name="logout")
      */
     public function logoutAction(){
-
     }
 
 }
