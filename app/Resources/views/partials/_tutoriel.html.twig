@@ -1,0 +1,14 @@
+<a style="color: inherit" href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug }) }}">
+    <div class="tutoriel">
+        <div class="overlay"></div>
+        <img src="{{ tutoriel.thumbnailLink }}" alt="" class="thumbnail">
+        <div class="informations">
+            <h3 class="title">{{ tutoriel.title }}</h3>
+            <div class="subtitle">{{ tutoriel.subtitle }}</div>
+            <div class="metas">
+                <span class="author">{{ tutoriel.author.username }}</span>
+                <span class="date">{{ tutoriel.createdAt|date_locale }}</span>
+            </div>
+        </div>
+    </div>
+</a>

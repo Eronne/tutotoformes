@@ -231,6 +231,10 @@ footer {
     width: 50%;
     transform: scaleY(-1); }
 
+pre {
+  padding: 20px;
+  background: #e3e7e8; }
+
 .field {
   position: relative;
   margin: 20px 0; }

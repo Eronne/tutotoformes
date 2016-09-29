@@ -43,7 +43,6 @@
         {% endfor %}
     </div>
 {% endif %}
-
 <main {% if app.request.attributes.get('_route') != "homepage" %}class="pusher"{% endif %}>
     {% block body %}{% endblock %}
 </main>

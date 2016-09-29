@@ -284,13 +284,17 @@ class TutorielPage
         $doc->loadHTML($content);
         $doc->saveHTML();
         $h2 = $doc->getElementsByTagName("h2");
+
         $subparts = [];
         for($i = 0; $i < $h2->length; $i++) {
             array_push($subparts, ['title' => $h2->item($i)->nodeValue]);
+
             if($h2->item($i)->childNodes->length > 1){
                 $subparts[$i]['anchor_name'] = $h2->item($i)->firstChild->attributes->getNamedItem('id')->nodeValue;
             }
         }
         return $subparts;
     }
+
+
 }

@@ -30,29 +30,22 @@
         <section id="tutoriels">
 
             <div class="container">
-                <h2>Les derniers tutoriels</h2>
-                <div class="tutoriels">
-                    {% for tutoriel in last_tutoriels %}
-                        <a style="color: inherit" href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug }) }}">
-                            <div class="tutoriel">
-                                <div class="overlay"></div>
-                                <img src="{{ tutoriel.thumbnailLink }}" alt="" class="thumbnail">
-                                <div class="informations">
-                                    <h3 class="title">{{ tutoriel.title }}</h3>
-                                    <div class="subtitle">{{ tutoriel.subtitle }}</div>
-                                    <div class="metas">
-                                        <span class="author">{{ tutoriel.author.username }}</span>
-                                        <span class="date">{{ tutoriel.createdAt|date_locale }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-                <div class="spacer"></div>
-                <div class="center">
-                    <a href="" class="button primary medium">Voir tous les tutoriels</a>
-                </div>
+                {% if last_tutoriels|length > 0 %}
+                    <h2>Les derniers tutoriels</h2>
+                    <div class="tutoriels">
+                        {% for tutoriel in last_tutoriels %}
+                            {% embed 'partials/_tutoriel.html.twig' %}{% endembed %}
+                        {% endfor %}
+                    </div>
+                    <div class="spacer"></div>
+                    {% if last_tutoriels|length == 4 %}
+                        <div class="center">
+                            <a href="" class="button primary medium">Voir tous les tutoriels</a>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <h2>Aucun tutoriel pour le moment</h2>
+                {% endif %}
             </div>
         </section>
 
