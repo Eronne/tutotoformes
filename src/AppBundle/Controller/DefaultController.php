@@ -14,7 +14,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('index.html.twig');
+        $tutoriels = $this->getDoctrine()->getRepository('AppBundle:Tutoriel')->getFirstNth(4);
+        return $this->render('index.html.twig', ['last_tutoriels' => $tutoriels]);
     }
 
     /**

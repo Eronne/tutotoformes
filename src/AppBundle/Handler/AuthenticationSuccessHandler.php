@@ -33,7 +33,6 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
             return $this->httpUtils->createRedirectResponse($request, "/login");
         }
 
-        $this->container->get('session')->getFlashBag()->add('notification success', "Vous êtes désormais connecté !");
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
     }
 }

@@ -56,6 +56,8 @@ class Utils
                     ->setDuration($params['duration'])
                     ->setSubtitle($params['subtitle'])
                     ->setIsDraft((key_exists('draft', $params)) ? 1 : 0)
+                    ->setThumbnailLink($params['thumbnail'])
+                    ->setDescription($params['description'])
                     ->setTitle($params['title']);
                 return $tutoriel;
                 break;
@@ -94,7 +96,10 @@ class Utils
                 ->setSubtitle($params['subtitle'])
                 ->setTitle($params['title'])
                 ->setIsDraft((key_exists('draft', $params)) ? 1 : 0)
+                ->setThumbnailLink($params['thumbnail'])
+                ->setDescription($params['description'])
                 ->setEditedAt(new \DateTime('now'));
+
         } elseif ($entity instanceof TutorielPage) {
             $params = $request->get('_tutorielpage');
             if (!$params) {

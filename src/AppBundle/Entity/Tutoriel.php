@@ -36,6 +36,18 @@ class Tutoriel
     private $subtitle;
 
     /**
+     * @var string
+     * @ORM\Column(name="thumbnail_link", type="string", length=255, nullable=true)
+     */
+    private $thumbnailLink;
+
+    /**
+     * @var string
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="duration", type="integer", nullable=true)
@@ -371,5 +383,53 @@ class Tutoriel
         }
 
         return $text;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Tutoriel
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set thumbnailLink
+     *
+     * @param string $thumbnailLink
+     *
+     * @return Tutoriel
+     */
+    public function setThumbnailLink($thumbnailLink)
+    {
+        $this->thumbnailLink = $thumbnailLink;
+
+        return $this;
+    }
+
+    /**
+     * Get thumbnailLink
+     *
+     * @return string
+     */
+    public function getThumbnailLink()
+    {
+        return $this->thumbnailLink;
     }
 }

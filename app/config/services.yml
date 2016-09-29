@@ -16,6 +16,12 @@ services:
             - '@doctrine.orm.default_entity_manager'
             - '@security.token_storage'
 
+    app.twig_extension:
+      class: AppBundle\Twig\AppExtension
+      public: false
+      tags:
+        - { name: twig.extension }
+
     app.utils:
         class: AppBundle\Utils
         arguments: ['@swiftmailer.mailer', '@doctrine.orm.entity_manager']

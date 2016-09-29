@@ -23,7 +23,7 @@ class MailController extends Controller
         $user->setToken($this->get('app.utils')->str_random());
         $this->getDoctrine()->getManager()->flush();
         $globals = $this->get('twig')->getGlobals();
-        $this->get('app.utils')->sendMail("Vérifier votre adresse email", 'no-reply@' . strtolower($globals['app_name']) . '.fr', $globals['app_name'], $user->getEmail(),
+        $this->get('app.utils')->sendMail("Vérifiez votre adresse email", 'no-reply@' . strtolower($globals['app_name']) . '.fr', $globals['app_name'], $user->getEmail(),
             $this->renderView('mails/validation.html.twig', ['user' => $user]), "text/html");
             $this->addFlash('notification info', "Un email de vérification vous a été envoyé. Confirmez votre inscription via cet email");
         return $this->redirectToRoute("login");
@@ -45,8 +45,13 @@ class MailController extends Controller
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute("login");
         } else {
-            $this->addFlash("notification error", "Les jetons d'accès ne correspondent pas ! Impossible de confirmer votre compte.");
-            return $this->redirectToRoute("login");
+            if($user->getConfirmedAt() != null) {
+                $this->addFlash("notification info", "Votre compte a déjà été confirmé. Connectez-vous dès maintenant !");
+                return $this->redirectToRoute("login");
+            } else {
+                $this->addFlash("notification error", "Impossible de vérifier l'authenticité de votre demande");
+                return $this->redirectToRoute("login");
+            }
         }
     }
 

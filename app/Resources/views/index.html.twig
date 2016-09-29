@@ -12,7 +12,8 @@
                     <h1>Bienvenue, {{ app.user.username }}</h1>
                     <p>C'est cool de te revoir mon bon ami !</p>
                 </div>
-                <a href="{{ path('login') }}" class="button  icon large primary"><span class="icon"><i class="fa fa-graduation-cap"></i></span>Suivi de
+                <a href="{{ path('login') }}" class="button  icon large primary"><span class="icon"><i
+                                class="fa fa-graduation-cap"></i></span>Suivi de
                     mes cours</a>
             {% else %}
                 <div class="heading">
@@ -25,61 +26,28 @@
             {% endif %}
 
         </div>
-
+        <div class="arrow-separator"></div>
         <section id="tutoriels">
 
             <div class="container">
                 <h2>Les derniers tutoriels</h2>
                 <div class="tutoriels">
-                    <div class="tutoriel">
-                        <div class="overlay"></div>
-                        <img src="https://git-for-windows.github.io/img/git_logo.png" alt="" class="thumbnail">
-                        <div class="informations">
-                            <h3 class="title">Git</h3>
-                            <div class="description">Voici le tuto git</div>
-                            <div class="metas">
-                                <span class="author">Omar Jbara</span>
-                                <span class="date">12 Septembre 2016</span>
+                    {% for tutoriel in last_tutoriels %}
+                        <a style="color: inherit" href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug }) }}">
+                            <div class="tutoriel">
+                                <div class="overlay"></div>
+                                <img src="{{ tutoriel.thumbnailLink }}" alt="" class="thumbnail">
+                                <div class="informations">
+                                    <h3 class="title">{{ tutoriel.title }}</h3>
+                                    <div class="subtitle">{{ tutoriel.subtitle }}</div>
+                                    <div class="metas">
+                                        <span class="author">{{ tutoriel.author.username }}</span>
+                                        <span class="date">{{ tutoriel.createdAt|date_locale }}</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="tutoriel">
-                        <div class="overlay"></div>
-                        <img src="http://sass-lang.com/assets/img/styleguide/color-1c4aab2b.png" alt=""
-                             class="thumbnail">
-                        <div class="informations">
-                            <h3 class="title">Sass</h3>
-                            <div class="description">Voici le tuto SASS</div>
-                            <div class="metas">
-                                <span class="author">Omar Jbara</span>
-                                <span class="date">12 Septembre 2016</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tutoriel">
-                        <div class="overlay"></div>
-                        <img src="https://git-for-windows.github.io/img/git_logo.png" alt="" class="thumbnail">
-                        <div class="informations">
-                            <h3 class="title">Git</h3>
-                            <div class="description">Voici le tuto git</div>
-                            <div class="metas">
-                                <span class="author">Omar Jbara</span>
-                                <span class="date">12 Septembre 2016</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tutoriel">
-                        <div class="overlay"></div>
-                        <img src="https://git-for-windows.github.io/img/git_logo.png" alt="" class="thumbnail">
-                        <div class="informations">
-                            <h3 class="title">Git</h3>
-                            <div class="description">Voici le tuto git</div>
-                            <div class="metas">
-                                <span class="author">Omar Jbara</span>
-                                <span class="date">12 Septembre 2016</span>
-                            </div>
-                        </div>
-                    </div>
+                        </a>
+                    {% endfor %}
                 </div>
                 <div class="spacer"></div>
                 <div class="center">

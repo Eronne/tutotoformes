@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Tutoriel;
 
 /**
  * TutorielRepository
@@ -10,4 +11,18 @@ namespace AppBundle\Repository;
  */
 class TutorielRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param $number
+     * @return Tutoriel[]
+     */
+    public function getFirstNth($number) {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('tutoriel')
+            ->from('AppBundle:Tutoriel', 'tutoriel')
+            ->setMaxResults($number)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

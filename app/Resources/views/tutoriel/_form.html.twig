@@ -10,6 +10,14 @@
             <input type="text" name="_tutoriel[subtitle]" {% if edit %}value="{{ tutoriel.subtitle }}"{% endif %}>
         </div>
         <div class="field">
+            <label>URL de la miniature</label>
+            <input type="text" name="_tutoriel[thumbnail]" {% if edit %}value="{{ tutoriel.thumbnailLink }}"{% endif %}>
+        </div>
+        <div class="field">
+            <label>Description</label>
+            <textarea name="_tutoriel[description]" id="" cols="30" rows="10">{% if edit %}{{ tutoriel.description }}{% endif %}</textarea>
+        </div>
+        <div class="field">
             <label>Auteur</label>
             <select name="_tutoriel[author]" class="ui dropdown">
                 {% for user in users %}

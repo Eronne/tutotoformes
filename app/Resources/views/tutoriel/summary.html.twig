@@ -1,0 +1,45 @@
+{% embed 'base.html.twig' with {title: tutoriel.title ~ ' - Sommaire'} %}
+
+    {% block body %}
+        <div class="jumbotron">
+            <div class="heading tutoriel">
+                <h1>{{ tutoriel.title }}</h1>
+                <p>{{ tutoriel.subtitle }}</p>
+            </div>
+        </div>
+        <div class="arrow-separator"></div>
+        <div class="container">
+            <div class="tutoriel-content">
+                {{ tutoriel.description|raw }}
+            </div>
+            {% if tutoriel.tutorialPages|length > 0 %}
+                <div class="spacer"></div>
+                <div class="summary">
+                    <ol class="titles">
+                        {% for page in tutoriel.tutorialPages %}
+                            <li>
+                                <h3>{{ page.title }}</h3>
+                                {% if page.subparts|length > 0 %}
+                                    <ol class="subtitles">
+                                        {% for subpart in page.subparts %}
+                                            <li><a href="{{ path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) }}{{ subpart['anchor_name'] is defined ? '#' ~ subpart['anchor_name'] : '' }}">{{ subpart.title }}</a></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ol>
+
+                </div>
+                <div class="spacer"></div>
+                <div class="center">
+                    <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}" class="button primary medium">Commencer le cours</a>
+                </div>
+            {% else %}
+                <h1>Aucunes pages disponible</h1>
+            {% endif %}
+
+        </div>
+    {% endblock %}
+
+{% endembed %}

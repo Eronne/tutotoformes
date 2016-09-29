@@ -30,7 +30,7 @@ class TutorielPageController extends Controller
             $tutorielPage->setTutoriel($tutoriel);
             $em->persist($tutorielPage);
             $em->flush();
-            $this->addFlash('notification positive', 'La page a bien été ajouté');
+            $this->addFlash('notification success', 'La page a bien été ajouté');
             return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
         }
     }
@@ -52,7 +52,7 @@ class TutorielPageController extends Controller
         } else {
             $this->get('app.utils')->updateEntityFromParameters($tutorielPage, $request);
             $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('notification positive', "La page a bien été modifié");
+            $this->addFlash('notification success', "La page a bien été modifié");
             return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
 
         }
@@ -68,14 +68,14 @@ class TutorielPageController extends Controller
      */
     public function removeAction(Request $request, Tutoriel $tutoriel, $slug_page){
         $pageRepo = $this->getDoctrine()->getManager()->getRepository('AppBundle:TutorielPage');
-        $tutorielPage = $pageRepo->findOneBy(['slug' => $slug_page]);
+        $tutorielPage = $pageRepo->findOneBy(['slug' => $slug_page, 'tutoriel' => $tutoriel]);
         if(!$tutoriel && !$tutorielPage){
             return $this->createNotFoundException();
         }
         $em = $this->getDoctrine()->getManager();
 
-        $prevPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() - 1]);
-        $nextPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() + 1]);
+        $prevPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() - 1, 'tutoriel' => $tutoriel]);
+        $nextPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
 
         if(!$prevPage && $nextPage) {
             foreach ($pageRepo->findAll() as $page){
@@ -88,7 +88,7 @@ class TutorielPageController extends Controller
         }
         $em->remove($tutorielPage);
         $em->flush();
-        $this->addFlash('notification positive', "La page a bien été supprimé");
+        $this->addFlash('notification success', "La page a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
     }
 

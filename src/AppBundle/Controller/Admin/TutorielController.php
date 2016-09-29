@@ -44,7 +44,7 @@ class TutorielController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($tutoriel);
             $em->flush();
-            $this->addFlash('notification positive', "Le tutoriel a bien été ajouté !");
+            $this->addFlash('notification success', "Le tutoriel a bien été ajouté !");
             return $this->redirectToRoute('admin_tutoriels_index');
         }
     }
@@ -67,8 +67,7 @@ class TutorielController extends Controller
             $em = $this->getDoctrine()->getManager();
             $this->get('app.utils')->updateEntityFromParameters($tutoriel, $request);
             $em->flush();
-            $this->addFlash('notification positive', "Le tutoriel a bien été modifié");
-
+            $this->addFlash('notification success', "Le tutoriel a bien été modifié");
             return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
         }
     }
@@ -88,8 +87,29 @@ class TutorielController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($tutoriel);
         $em->flush();
-        $this->addFlash('notification positive', "Le tutoriel a bien été supprimé");
+        $this->addFlash('notification success', "Le tutoriel a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriels_index');
+    }
+
+    /**
+     * @param Request $request
+     * @param Tutoriel $tutoriel
+     * @Route("/tutoriel/{slug}", name="tutoriel_summary_show")
+     * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    public function showSummaryAction(Request $request, Tutoriel $tutoriel){
+
+        if(!$tutoriel){
+            return $this->createNotFoundException("Le tutoriel n'a pas été trouvé");
+        }
+        $pageRepo = $this->getDoctrine()->getManager()->getRepository('AppBundle:TutorielPage');
+
+        $nextPage = $pageRepo->findOneBy(['pageNumber' => 1, 'tutoriel' => $tutoriel]);
+
+//        var_dump($pageRepo->findOneBy(['pageNumber' => 1, 'tutoriel' => $tutoriel])->getSubparts());
+//        die();
+        return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage]);
+
     }
 
     /**
@@ -102,17 +122,20 @@ class TutorielController extends Controller
         if(!$tutoriel){
             return $this->createNotFoundException();
         }
-        $page = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page]);
+        $page = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page, 'tutoriel' => $tutoriel]);
         if(!$page) {
             return $this->createNotFoundException();
         }
 
         $pageRepo = $this->getDoctrine()->getManager()->getRepository('AppBundle:TutorielPage');
 
-        $prevPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() - 1]);
-        $nextPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() + 1]);
+        $prevPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() - 1, 'tutoriel' => $tutoriel]);
+        $nextPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
+
 
 
         return $this->render('tutoriel/page/show.html.twig', ['tutoriel' => $tutoriel, 'page' => $page, 'prev_page' => $prevPage, 'next_page' => $nextPage]);
     }
+
+
 }

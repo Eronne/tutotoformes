@@ -36,6 +36,18 @@ class Tutoriel
     private $subtitle;
 
     /**
+     * @var string
+     * @ORM\Column(name="thumbnail_link", type="string", length=255, nullable=true)
+     */
+    private $thumbnailLink;
+
+    /**
+     * @var string
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="duration", type="integer", nullable=true)
@@ -247,7 +259,7 @@ class Tutoriel
      *
      * @return Tutoriel
      */
-    public function addTutorialPage(\AppBundle\Entity\TutorielPage $tutorialPage)
+    public function addTutorialPage(TutorielPage $tutorialPage)
     {
         $this->tutorialPages[] = $tutorialPage;
 
@@ -259,7 +271,7 @@ class Tutoriel
      *
      * @param \AppBundle\Entity\TutorielPage $tutorialPage
      */
-    public function removeTutorialPage(\AppBundle\Entity\TutorielPage $tutorialPage)
+    public function removeTutorialPage(TutorielPage $tutorialPage)
     {
         $this->tutorialPages->removeElement($tutorialPage);
     }
@@ -371,5 +383,29 @@ class Tutoriel
         }
 
         return $text;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Tutoriel
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

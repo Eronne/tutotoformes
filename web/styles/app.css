@@ -15,12 +15,25 @@ body {
   overflow-x: hidden;
   height: 100%; }
 
+h1.tutoriel-title {
+  position: relative;
+  text-transform: uppercase;
+  color: #1b567b; }
+  h1.tutoriel-title:before {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    content: '';
+    height: 10px;
+    width: 30%;
+    background-color: #e74c3c; }
+
 h2 {
   color: #2980b9;
   padding-left: 10px;
   border-left: #e74c3c 3px solid; }
 
-p {
+p, ul, ol, table {
   font-family: Lato, Geomanist, Roboto, sans-serif; }
 
 .center {
@@ -119,10 +132,9 @@ p {
         margin-top: -19px; }
 
 .spacer {
-  height: 0;
-  width: 0;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  height: 1px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   display: block; }
 
 header.fixed {
@@ -227,23 +239,28 @@ footer {
     position: relative;
     outline: none;
     border: none;
-    padding: 20px 20px 20px 60px;
+    padding: 20px 20px 20px 80px;
     width: 100%;
     background-color: #e3e7e8; }
     .field input:focus {
       box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.1); }
+      .field input:focus + i {
+        width: 100% !important; }
   .field label {
     display: block; }
   .field.icon i {
-    color: black;
+    transition: all 0.3s ease-in-out;
+    color: rgba(0, 0, 0, 0.6);
     position: absolute;
-    line-height: 60px;
-    text-align: center;
+    width: 60px;
+    height: 100%;
+    line-height: 1;
     top: 0;
-    left: 20px;
     margin: 0;
+    padding: 20px;
     font-size: 22px;
-    opacity: 0.6; }
+    background: rgba(0, 0, 0, 0.04);
+    z-index: 1; }
 
 .floated-left {
   float: left; }
@@ -274,6 +291,9 @@ footer {
   position: relative;
   padding: 50px 50px 98px 50px;
   animation: infiniteScroll 80s linear infinite; }
+  .jumbotron.tutoriel {
+    height: 200px;
+    margin-bottom: 40px; }
   .jumbotron::before {
     content: '';
     position: absolute;
@@ -289,10 +309,51 @@ footer {
     position: relative;
     z-index: 1;
     width: 400px; }
+    .jumbotron .heading.tutoriel {
+      text-align: center; }
 
-section#tutoriels {
+.summary {
+  padding: 40px;
+  background: #e3e7e8; }
+  .summary h3 {
+    font-family: Geomanist, Lato, Roboto, sans-serif;
+    font-size: 24px;
+    position: relative;
+    margin: 20px 0 20px 42px;
+    color: #1b567b; }
+  .summary ol.subtitles {
+    padding-left: 80px;
+    font-size: 18px;
+    color: #1b567b;
+    font-weight: 700; }
+    .summary ol.subtitles li {
+      margin-bottom: 10px; }
+  .summary ol.titles {
+    counter-reset: titles;
+    list-style-type: upper-roman; }
+    .summary ol.titles > li {
+      position: relative;
+      list-style: none; }
+      .summary ol.titles > li:before {
+        content: counter(titles);
+        counter-increment: titles;
+        position: absolute;
+        padding-right: 6px;
+        font-size: 39px;
+        line-height: 30px;
+        border-right: 3px solid #e74c3c;
+        color: #2980b9;
+        top: -6px; }
+  .summary a {
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit; }
+    .summary a:hover {
+      color: #123951; }
+
+.arrow-separator {
   position: relative; }
-  section#tutoriels::before {
+  .arrow-separator::before {
     background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23ecf0f1' /%3E%3C/svg%3E") no-repeat;
     background-size: 100% 100%;
     content: '';
@@ -301,7 +362,7 @@ section#tutoriels {
     height: 100px;
     position: absolute;
     width: 100%; }
-  section#tutoriels::after {
+  .arrow-separator::after {
     background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,0 100,100' style='fill:%23ecf0f1' /%3E%3C/svg%3E") no-repeat;
     background-size: 100% 100%;
     content: '';
@@ -324,8 +385,10 @@ section#tutoriels {
     background-color: #2c3e50;
     position: relative;
     overflow: hidden;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    transform: translate3d(0, 0, 0); }
     .tutoriels .tutoriel .overlay {
+      transform: translate3d(0, 0, 0);
       transition: all 0.3s;
       position: relative;
       z-index: 5;
@@ -344,8 +407,9 @@ section#tutoriels {
       min-width: 50%;
       min-height: 50%;
       overflow-x: hidden;
-      transform: scale(0.4); }
+      transform: translate3d(0, 0, 0) scale(0.4); }
     .tutoriels .tutoriel .informations {
+      transform: translate3d(0, 0, 0);
       transition: all .3s;
       position: absolute;
       padding: 25px;
@@ -384,16 +448,26 @@ section#tutoriels {
     .tutoriels .tutoriel:hover {
       cursor: pointer; }
     .tutoriels .tutoriel .overlay.hover {
+      transform: translate3d(0, 0, 0);
       transition: all 0.3s;
       opacity: .25; }
     .tutoriels .tutoriel:hover > img.thumbnail {
       filter: blur(10px);
-      transform: scale(0.6);
+      transform: translate3d(0, 0, 0) scale(0.6);
       bottom: 125px; }
     .tutoriels .tutoriel:hover > .overlay {
       opacity: 0.25; }
     .tutoriels .tutoriel:hover > .informations {
       bottom: 0; }
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  .navigation .left {
+    align-self: flex-start; }
+  .navigation .right {
+    align-self: flex-start; }
 
 .flashbags {
   transition: all 0.3s ease-in-out;
@@ -466,5 +540,7 @@ section#tutoriels {
     background-position: 0 574px; }
   100% {
     background-position: 1920px 574px; } }
+.tutoriel-content {
+  font-size: 14px; }
 
 /*# sourceMappingURL=app.css.map */

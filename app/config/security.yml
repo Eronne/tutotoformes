@@ -12,7 +12,7 @@ security:
         User:
             entity:
                 class: AppBundle:Utilisateur
-                property: username
+                property: email
 
     encoders:
         AppBundle\Entity\Utilisateur:

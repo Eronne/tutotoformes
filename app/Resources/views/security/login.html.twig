@@ -18,9 +18,9 @@
             <div class="grid has-gutter ">
                 <section id="login">
                     <h2>Connexion</h2>
-                    <form action="/" method="post">
+                    <form action="{{ path('login') }}" method="post">
                         <div class="field icon">
-                            <input type="text" name="_username" required placeholder="Nom d'utilisateur" value="{{ last_username|default('') }}">
+                            <input type="text" name="_username" required placeholder="Adresse mail" value="{{ last_username|default('') }}">
                             <i class="fa fa-user"></i>
                         </div>
                         <div class="field icon">
@@ -42,13 +42,16 @@
                         </div>
 
                         <div class="field icon">
-                            <input type="email" name="_email" required placeholder="Email">
+                            <input type="email" name="_email" required placeholder="Adresse mail">
                             <i class="fa fa-envelope"></i>
                         </div>
                         <div class="field icon">
                             <input type="password" name="_password[0]" required placeholder="Mot de passe">
-                            <i class="fa fa-key"></i>
+                            <i style="background: rgba(0, 0, 0, 0.02);" class="fa fa-key"></i>
                             <input id="password_repeat" type="password" required name="_password[1]">
+                            <i style="background: rgba(0, 0, 0, 0.02);" >&nbsp;</i>
+
+
                         </div>
 
                         <div class="clearfix">
