@@ -1,8 +1,63 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin");
 /* Couleurs concernant les messages d'alertes */
 @font-face {
   font-family: "Geomanist";
   src: url("fonts/geomanist-regular-webfont.eot"), url("fonts/geomanist-regular-webfont.woff"), url("fonts/geomanist-regular-webfont.woff2"), url("fonts/geomanist-regular-webfont.ttf"), url("fonts/geomanist-regular-webfont.svg"); }
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lato Regular"), local("Lato-Regular"), url(https://fonts.gstatic.com/s/lato/v11/UyBMtLsHKBKXelqf4x7VRQ.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lato Regular"), local("Lato-Regular"), url(fonts/1YwB1sO8YE1Lyjf12WNiUA.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Lato Bold"), local("Lato-Bold"), url(fonts/ObQr5XYcoH0WBoUxiaYK3_Y6323mHUZFJMgTvxaG2iE.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Lato Bold"), local("Lato-Bold"), url(fonts/H2DMvhDLycM56KNuAtbJYA.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local("Lato Italic"), local("Lato-Italic"), url(fonts/YMOYVM-eg6Qs9YzV9OSqZfesZW2xOQ-xsNqO47m55DA.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 400;
+  src: local("Lato Italic"), local("Lato-Italic"), url(fonts/PLygLKRVCQnA5fhu3qk5fQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local("Lato Bold Italic"), local("Lato-BoldItalic"), url(fonts/AcvTq8Q0lyKKNxRlL28RnxJtnKITppOI_IvcXXDNrsc.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: italic;
+  font-weight: 700;
+  src: local("Lato Bold Italic"), local("Lato-BoldItalic"), url(fonts/HkF_qI1x_noxlxhrhMQYEFtXRa8TVwTICgirnJhmVJw.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
 * {
   box-sizing: border-box; }
 
@@ -16,17 +71,26 @@ body {
   height: 100%; }
 
 h1.tutoriel-title {
+  text-align: center;
   position: relative;
   text-transform: uppercase;
-  color: #1b567b; }
+  color: #2980b9; }
   h1.tutoriel-title:before {
     position: absolute;
-    top: 10px;
+    bottom: 16px;
     left: 0;
     content: '';
     height: 10px;
     width: 30%;
     background-color: #e74c3c; }
+  h1.tutoriel-title:after {
+    position: absolute;
+    bottom: 16px;
+    content: '';
+    height: 10px;
+    width: 30%;
+    background-color: #e74c3c;
+    right: 0; }
 
 h2 {
   color: #2980b9;
@@ -377,6 +441,12 @@ pre {
     width: 100%;
     transform: scaleX(-1); }
 
+i.fa.fa-angle-right {
+  transition: all 0.3s; }
+  i.fa.fa-angle-right.unfolded {
+    transform-origin: left;
+    transform: rotate(90deg) translateX(-2px); }
+
 .tutoriels {
   display: flex;
   flex-direction: row;
@@ -464,10 +534,70 @@ pre {
     .tutoriels .tutoriel:hover > .informations {
       bottom: 0; }
 
+.sidebar {
+  padding-bottom: 40px;
+  background-color: #da4737;
+  align-self: flex-start; }
+  .sidebar a {
+    color: #e3e7e8;
+    text-decoration: none; }
+    .sidebar a:hover {
+      font-weight: 700; }
+  .sidebar .page {
+    transition: all 0.3s;
+    background: #e74c3c;
+    padding: 20px;
+    color: #ecf0f1; }
+    .sidebar .page:hover {
+      cursor: pointer;
+      background: #da4737; }
+    .sidebar .page.active {
+      background: #2980b9; }
+      .sidebar .page.active:hover {
+        background: #277ab1; }
+    .sidebar .page.summary {
+      padding: 0;
+      line-height: 40px;
+      height: 40px;
+      text-align: center;
+      background: #da4737; }
+      .sidebar .page.summary a:hover {
+        color: #2c3e50; }
+    .sidebar .page .subpages {
+      transition: all 0.6s;
+      max-height: 0;
+      transform-origin: top;
+      transform: scaleY(0);
+      opacity: 0;
+      margin-left: 30px; }
+      .sidebar .page .subpages a {
+        opacity: 0.7; }
+        .sidebar .page .subpages a:hover {
+          opacity: 1; }
+      .sidebar .page .subpages.visible {
+        transition: all 0.6s;
+        margin-top: 10px;
+        transform-origin: top;
+        transform: scaleY(1);
+        max-height: 200px;
+        opacity: 1; }
+
+.tutoriel-content img {
+  max-width: 100%; }
+
 .navigation {
   display: flex;
   flex-direction: row;
-  justify-content: space-between; }
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #e3e7e8; }
+  .navigation a {
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none; }
+    .navigation a:hover {
+      cursor: pointer;
+      color: black;
+      font-weight: 700; }
   .navigation .left {
     align-self: flex-start; }
   .navigation .right {

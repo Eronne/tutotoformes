@@ -18,7 +18,7 @@
                     <ol class="titles">
                         {% for page in tutoriel.tutorialPages %}
                             <li>
-                                <h3>{{ page.title }}</h3>
+                                <h3><a href="{{ path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) }}">{{ page.title }}</a></h3>
                                 {% if page.subparts|length > 0 %}
                                     <ol class="subtitles">
                                         {% for subpart in page.subparts %}
@@ -33,8 +33,12 @@
                 </div>
                 <div class="spacer"></div>
                 <div class="center">
-                    <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}" class="button primary medium">Commencer le cours</a>
-                </div>
+                    {% if app.user %}
+                        <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}" class="button primary medium">Commencer le cours</a>
+                    {% else %}
+                        <a href="{{ path('login') }}" class="button primary medium">Inscrivez vous pour commencer le cours</a>
+                    {% endif %}
+                        </div>
             {% else %}
                 <h1>Aucunes pages disponible</h1>
             {% endif %}

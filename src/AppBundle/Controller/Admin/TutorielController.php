@@ -116,6 +116,7 @@ class TutorielController extends Controller
      * @param Request $request
      * @param Tutoriel $tutoriel
      * @Route("/tutoriel/{slug}/{slug_page}", name="tutoriel_show")
+     * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function showAction(Request $request, Tutoriel $tutoriel, $slug_page) {
