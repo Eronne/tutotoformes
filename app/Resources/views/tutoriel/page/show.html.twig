@@ -37,14 +37,19 @@
                                 <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i class="fa fa-home">&nbsp;&nbsp;</i>Retourner au sommaire</a>
                             {% endif %}
                         </div>
+
                         <div class="right">
                             {% if next_page %}
                                 <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }}&nbsp;&nbsp;
                                     <i class="fa fa-arrow-right"></i></a>
                             {% endif %}
                         </div>
-                    </div>
 
+                    </div>
+                    <div class="spacer"></div>
+                    {% if app.user and ((is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN')) %}
+                        <a href="{{ path('admin_tutoriel_page_edit', {'id': tutoriel.id, 'slug_page': page.slug}) }}" class="button icon small secondary"><span class="icon"><i class="fa fa-edit"></i></span>Éditer la page</a>
+                    {% endif %}
                 </div>
             </div>
             <div class="spacer"></div>

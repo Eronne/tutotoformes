@@ -462,7 +462,7 @@ class Tutoriel
      *
      * @return Tutoriel
      */
-    public function setImageFile(File $image = null)
+    public function setThumbnailFile(File $image = null)
     {
         $this->thumbnailFile = $image;
 

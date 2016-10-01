@@ -158,14 +158,31 @@ p, ul, ol, table {
       border: #b1c2c6 3px solid;
       color: black;
       background-color: #ecf0f1; }
+  .button.secondary {
+    background-color: #2980b9;
+    color: white;
+    border: #409ad5 3px solid; }
+    .button.secondary:hover {
+      cursor: pointer;
+      border: #b1c2c6 3px solid;
+      color: black;
+      background-color: #ecf0f1; }
   .button.inversed {
-    background-color: transparent;
-    color: #e74c3c;
-    border: #e74c3c 3px solid; }
-    .button.inversed:hover {
-      color: #ecf0f1;
-      background-color: #e74c3c;
-      border: #ed7669 3px solid; }
+    background-color: transparent; }
+    .button.inversed.primary {
+      color: #e74c3c;
+      border: #e74c3c 3px solid; }
+      .button.inversed.primary:hover {
+        color: #ecf0f1;
+        background-color: #e74c3c;
+        border: #ed7669 3px solid; }
+    .button.inversed.secondary {
+      color: #2980b9;
+      border: #2980b9 3px solid; }
+      .button.inversed.secondary:hover {
+        color: #ecf0f1;
+        background-color: #2980b9;
+        border: #409ad5 3px solid; }
   .button.icon {
     padding-left: 4.5em;
     position: relative; }

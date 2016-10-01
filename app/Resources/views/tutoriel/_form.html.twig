@@ -10,7 +10,7 @@
             <input type="text" name="_tutoriel[subtitle]" {% if edit %}value="{{ tutoriel.subtitle }}"{% endif %}>
         </div>
         <div class="field">
-            <input type="file" name="_tutoriel[thumbnailImage]">
+            <input type="file" name="_tutoriel[thumbnailImage]" accept="image/*">
         </div>
         <div class="field">
             <label>URL de la miniature</label>
@@ -46,7 +46,7 @@
     </div>
 
     <div class="field">
-        <button type="submit" class="ui button primary">{{ edit ? 'Éditer' : 'Créer' }}</button>
+        <button type="submit" class="ui button primary">{{ edit ? 'Éditer' : 'Ajouter' }}</button>
     </div>
 
 

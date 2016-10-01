@@ -68,6 +68,8 @@ vich_uploader:
         tutoriel_thumb:
             uri_prefix:         /uploads/tutoriels/
             upload_destination: '%kernel.root_dir%/../web/uploads/tutoriels'
+            inject_on_load:     true
+            namer:              tutoriel.namer
 
 # Swiftmailer Configuration
 swiftmailer:

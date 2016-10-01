@@ -24,7 +24,7 @@ services:
 
     app.utils:
         class: AppBundle\Utils
-        arguments: ['@swiftmailer.mailer', '@doctrine.orm.entity_manager']
+        arguments: ['@swiftmailer.mailer', '@doctrine.orm.entity_manager', '@service_container']
 
     security.authentication.success_handler:
         class: AppBundle\Handler\AuthenticationSuccessHandler
@@ -35,3 +35,6 @@ services:
     logout_success_handler:
         class: AppBundle\Handler\LogoutSuccessHandler
         arguments: ['@security.http_utils', '@service_container']
+
+    tutoriel.namer:
+        class: AppBundle\Namer\TutorielNamer

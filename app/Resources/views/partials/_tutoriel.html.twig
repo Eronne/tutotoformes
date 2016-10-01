@@ -1,7 +1,7 @@
 <a style="color: inherit" href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug }) }}">
     <div class="tutoriel">
         <div class="overlay"></div>
-        <img src="{{ tutoriel.thumbnailLink }}" alt="" class="thumbnail">
+        <img src="{{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}" alt="" class="thumbnail">
         <div class="informations">
             <h3 class="title">{{ tutoriel.title }}</h3>
             <div class="subtitle">{{ tutoriel.subtitle }}</div>

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\TutorielPage;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,8 +16,9 @@ class TutorielPageController extends Controller
      * @param Request $request
      * @param Tutoriel $tutoriel
      * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @throws Exception
      * @Route("/admin/tutoriel/{id}/page/add", name="admin_tutoriel_page_add")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
      */
     public function addAction(Request $request, Tutoriel $tutoriel){
         if(!$tutoriel){
@@ -25,9 +27,20 @@ class TutorielPageController extends Controller
         if($request->getMethod() == "GET"){
             return $this->render('tutoriel/page/add.html.twig', ['tutoriel' => $tutoriel]);
         } else {
-            $tutorielPage = $this->get('app.utils')->createEntityFromParameters('AppBundle:TutorielPage', $request);
+            $params = $request->get('_tutorielpage');
+
+            if (!$params) {
+                throw new Exception('Le paramètre "tutorielpage" n a pas été trouvé dans les paramètres de la requête');
+            }
+
+            $tutorielPage = new TutorielPage();
+            $tutorielPage->setCreatedAt(new \DateTime('now'))
+                ->setTitle($params['title'])
+                ->setPageNumber($params['page_number'])
+                ->setContent($params['content'])
+                ->setTutoriel($tutoriel);
+
             $em = $this->getDoctrine()->getManager();
-            $tutorielPage->setTutoriel($tutoriel);
             $em->persist($tutorielPage);
             $em->flush();
             $this->addFlash('notification success', 'La page a bien été ajouté');
@@ -38,9 +51,11 @@ class TutorielPageController extends Controller
     /**
      * @param Request $request
      * @param Tutoriel $tutoriel
+     * @param $slug_page
      * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @Route("/admin/tutoriel/{id}/page/{slug_page}", name="admin_tutoriel_page_edit")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @throws Exception
+     * @Route("/admin/tutoriel/edit/{id}/page/{slug_page}", name="admin_tutoriel_page_edit")
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
      */
     public function editAction(Request $request, Tutoriel $tutoriel, $slug_page){
         $tutorielPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page]);
@@ -50,7 +65,15 @@ class TutorielPageController extends Controller
         if($request->getMethod() == "GET"){
             return $this->render('tutoriel/page/edit.html.twig', ['tutoriel' => $tutoriel, 'page' => $tutorielPage]);
         } else {
-            $this->get('app.utils')->updateEntityFromParameters($tutorielPage, $request);
+            $params = $request->get('_tutorielpage');
+            if (!$params) {
+                throw new Exception('Le paramètre "tutorielpage" n a pas été trouvé dans les paramètres de la requête');
+            }
+            $tutorielPage->setEditedAt(new \DateTime('now'))
+                ->setContent($params['content'])
+                ->setPageNumber($params['page_number'])
+                ->setTitle($params['title']);
+
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notification success', "La page a bien été modifié");
             return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);

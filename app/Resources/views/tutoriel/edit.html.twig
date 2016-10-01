@@ -5,7 +5,7 @@
 
         <div class="page-body">
             <div class="ui container">
-                <h1>Éditer le tutoriel</h1>
+                <h1>Éditer le tutoriel {{ tutoriel.title }}</h1>
                 {% embed 'tutoriel/_form.html.twig' with {edit: 1} %}{% endembed %}
                 <h2>Pages du tutoriel</h2>
                 {% if tutoriel.tutorialPages.count == 0 %}<h3>Il n y a encore rien par ici !</h3>

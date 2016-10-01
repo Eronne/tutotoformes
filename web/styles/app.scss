@@ -127,15 +127,39 @@ p, ul, ol, table {
       background-color: $white;
     }
   }
+  &.secondary {
+    background-color: $blue;
+    color: white;
+    border: lighten($blue, 10%) 3px solid;
+    &:hover {
+      cursor: pointer;
+      border: darken($white, 20%) 3px solid;
+      color: black;
+      background-color: $white;
+    }
+  }
   &.inversed {
     background-color: transparent;
-    color: $red;
-    border: $red 3px solid;
-    &:hover {
-      color: $white;
-      background-color: $red;
-      border: lighten($red, 10%) 3px solid;
+    &.primary {
+      color: $red;
+      border: $red 3px solid;
+      &:hover {
+        color: $white;
+        background-color: $red;
+        border: lighten($red, 10%) 3px solid;
+      }
     }
+    &.secondary {
+      color: $blue;
+      border: $blue 3px solid;
+      &:hover {
+        color: $white;
+        background-color: $blue;
+        border: lighten($blue, 10%) 3px solid;
+      }
+    }
+
+
   }
 
   &.icon {

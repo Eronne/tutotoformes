@@ -14,15 +14,30 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
 
     /**
      * @param $number
-     * @return Tutoriel[]
+     * @param string $order
+     * @return \AppBundle\Entity\Tutoriel[]
      */
-    public function getFirstNth($number) {
+    public function getFirstNth($number, $order = 'DESC') {
         $qb = $this->getEntityManager()->createQueryBuilder();
         return $qb->select('tutoriel')
             ->from('AppBundle:Tutoriel', 'tutoriel')
+            ->orderBy('tutoriel.createdAt', $order)
             ->setMaxResults($number)
             ->getQuery()
             ->getResult();
     }
+
+    public function findAll($order = 'DESC'){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('tutoriel')
+            ->from('AppBundle:Tutoriel', 'tutoriel')
+            ->orderBy('tutoriel.createdAt', $order)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
 
 }

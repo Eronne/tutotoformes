@@ -5,6 +5,9 @@
             <div class="heading tutoriel">
                 <h1>{{ tutoriel.title }}</h1>
                 <p>{{ tutoriel.subtitle }}</p>
+                <div class="metas">
+                    <span class="author"></span><span class="date"></span>
+                </div>
             </div>
         </div>
         <div class="arrow-separator"></div>
@@ -35,6 +38,9 @@
                 <div class="center">
                     {% if app.user %}
                         <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}" class="button primary medium">Commencer le cours</a>
+                        {% if app.user and ((is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN')) %}
+                            <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}" class="button icon secondary medium"><span class="icon"><i class="fa fa-edit"></i></span>Éditer le cours</a>
+                        {% endif %}
                     {% else %}
                         <a href="{{ path('login') }}" class="button primary medium">Inscrivez vous pour commencer le cours</a>
                     {% endif %}
