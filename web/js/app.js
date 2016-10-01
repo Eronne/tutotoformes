@@ -9,6 +9,7 @@ $(document).ready(function () {
     var sidebar = $('.sidebar');
 
     sidebar.stick_in_parent({offset_top: 80});
+    sidebar.children(' ')
     sidebar.children('.page:not(".active")').on('mouseover', function () {
         console.log('dsqd');
         var page = $(this);

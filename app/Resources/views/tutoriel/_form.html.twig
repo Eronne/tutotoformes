@@ -1,4 +1,4 @@
-<form class="ui form" action="" method="post">
+<form class="ui form" action="" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_tutoriel[difficulty]" value="2">
     <div class="three fields">
         <div class="field">
@@ -8,6 +8,9 @@
         <div class="field">
             <label>Sous titre</label>
             <input type="text" name="_tutoriel[subtitle]" {% if edit %}value="{{ tutoriel.subtitle }}"{% endif %}>
+        </div>
+        <div class="field">
+            <input type="file" name="_tutoriel[thumbnailImage]">
         </div>
         <div class="field">
             <label>URL de la miniature</label>

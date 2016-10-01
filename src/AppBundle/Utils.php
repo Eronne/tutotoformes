@@ -83,10 +83,11 @@ class Utils
      * @param $entity Tutoriel|TutorielPage
      * @param Request $request
      */
-    public function updateEntityFromParameters(&$entity, Request $request)
+    public function     updateEntityFromParameters(&$entity, Request $request)
     {
         if ($entity instanceof Tutoriel) {
             $params = $request->get('_tutoriel');
+            $file = $request->files->get('_tutoriel');
             if (!$params) {
                 throw new Exception('Le paramètre "tutoriel" n a pas été trouvé dans les paramètres de la requête');
             }
@@ -96,9 +97,13 @@ class Utils
                 ->setSubtitle($params['subtitle'])
                 ->setTitle($params['title'])
                 ->setIsDraft((key_exists('draft', $params)) ? 1 : 0)
+//                ->setImageFile()
                 ->setThumbnailLink($params['thumbnail'])
                 ->setDescription($params['description'])
                 ->setEditedAt(new \DateTime('now'));
+            if($file) {
+                $entity->setImageFile($file);
+            }
 
         } elseif ($entity instanceof TutorielPage) {
             $params = $request->get('_tutorielpage');
