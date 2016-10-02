@@ -276,10 +276,13 @@ class TutorielPage
     }
 
     /**
-     * @return string[]
+     * @return bool|\string[]
      */
     public function getSubparts(){
         $content = $this->content;
+        if($content === '') {
+            return null;
+        }
         $doc = new \DOMDocument();
         $doc->loadHTML($content);
         $doc->saveHTML();

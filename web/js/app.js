@@ -105,11 +105,9 @@ $(document).ready(function () {
                 {title: 'Paragraphe', block: 'p'},
                 {title: 'Pre', block: 'pre'},
                 {title: 'Span', block: 'span'},
-                {
-                    title: 'Message', block: 'div', styles: {
-                    padding: '20px', background: '#2aa0cc', color: 'white', border: '1px solid #2AA0CC'
-                }
-                }
+                {title: 'Message info', block: 'div', styles: {padding: '20px', background: '#2aa0cc', color: 'white', border: '3px solid #61c1e4', margin: '10px 0'} },
+                {title: 'Message success', block: 'div', styles: {padding: '20px', background: '#56b965', color: 'white', border: '3px solid #84d08f', margin: '10px 0'} },
+                {title: 'Message error', block: 'div', styles: {padding: '20px', background: '#e74c3c', color: 'white', border: '3px solid #fd7c6f', margin: '10px 0'} }
             ],
             toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
             toolbar2: 'print preview media | forecolor backcolor emoticons codesample',

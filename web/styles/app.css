@@ -396,6 +396,9 @@ pre {
     width: 400px; }
     .jumbotron .heading.tutoriel {
       text-align: center; }
+      .jumbotron .heading.tutoriel .metas {
+        padding: 20px;
+        opacity: 0.75; }
 
 .summary {
   padding: 40px;
@@ -464,6 +467,18 @@ i.fa.fa-angle-right {
     transform-origin: left;
     transform: rotate(90deg) translateX(-2px); }
 
+span.author {
+  margin-right: 20px; }
+  span.author::before {
+    font-family: FontAwesome;
+    content: '\f007';
+    margin-right: 10px; }
+
+span.date::before {
+  font-family: FontAwesome;
+  content: '\f073';
+  margin-right: 10px; }
+
 .tutoriels {
   display: flex;
   flex-direction: row;
@@ -478,6 +493,16 @@ i.fa.fa-angle-right {
     overflow: hidden;
     margin-bottom: 20px;
     transform: translate3d(0, 0, 0); }
+    .tutoriels .tutoriel .tutoriel-title {
+      transition: all 0.3s;
+      position: absolute;
+      width: 100%;
+      line-height: 310px;
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 54px;
+      text-decoration: none;
+      text-align: center; }
     .tutoriels .tutoriel .overlay {
       transform: translate3d(0, 0, 0);
       transition: all 0.3s;
@@ -526,16 +551,6 @@ i.fa.fa-angle-right {
       text-align: right;
       font-size: 14px;
       color: rgba(0, 0, 0, 0.65); }
-      .tutoriels .tutoriel .metas .author {
-        margin-right: 20px; }
-        .tutoriels .tutoriel .metas .author::before {
-          font-family: FontAwesome;
-          content: '\f007';
-          margin-right: 10px; }
-      .tutoriels .tutoriel .metas .date::before {
-        font-family: FontAwesome;
-        content: '\f073';
-        margin-right: 10px; }
     .tutoriels .tutoriel:hover {
       cursor: pointer; }
     .tutoriels .tutoriel .overlay.hover {
@@ -546,6 +561,9 @@ i.fa.fa-angle-right {
       filter: blur(10px);
       transform: translate3d(0, 0, 0) scale(0.6);
       bottom: 125px; }
+    .tutoriels .tutoriel:hover > .tutoriel-title {
+      line-height: 148px;
+      font-size: 72px; }
     .tutoriels .tutoriel:hover > .overlay {
       opacity: 0.25; }
     .tutoriels .tutoriel:hover > .informations {
@@ -607,7 +625,8 @@ i.fa.fa-angle-right {
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
-  background-color: #e3e7e8; }
+  background-color: #e3e7e8;
+  margin-top: 24px; }
   .navigation a {
     color: rgba(0, 0, 0, 0.6);
     text-decoration: none; }
@@ -682,6 +701,20 @@ i.fa.fa-angle-right {
 .notification i.fa-close {
   display: none; }
 
+@media screen and (max-width: 720px) {
+  .tutoriel .informations {
+    bottom: 0 !important; }
+  .tutoriel > img.thumbnail {
+    filter: blur(10px) !important;
+    transform: translate3d(0, 0, 0) scale(0.6) !important;
+    bottom: 125px !important; }
+  .tutoriel > .tutoriel-title {
+    line-height: 148px !important;
+    font-size: 72px !important; }
+  .tutoriel > .overlay {
+    opacity: 0.25 !important; }
+  .tutoriel > .informations {
+    bottom: 0 !important; } }
 @media only screen and (max-width: 1300px) {
   .container {
     width: 100%;

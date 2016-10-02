@@ -43,7 +43,8 @@ class TutorielPageController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($tutorielPage);
             $em->flush();
-            $this->addFlash('notification success', 'La page a bien été ajouté');
+            $this->addFlash('notification success', "La page a bien été ajouté. <a href='" . $this->get('router')->generate('tutoriel_show',
+                    ['slug' => $tutoriel->getSlug(), 'slug_page' => $tutorielPage->getSlug()]) ."'>Voir le tutoriel</a>");
             return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
         }
     }
@@ -58,7 +59,9 @@ class TutorielPageController extends Controller
      * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
      */
     public function editAction(Request $request, Tutoriel $tutoriel, $slug_page){
+        /** @var TutorielPage $tutorielPage */
         $tutorielPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page]);
+
         if(!$tutoriel && !$tutorielPage){
             return $this->createNotFoundException();
         }
@@ -76,7 +79,7 @@ class TutorielPageController extends Controller
 
             $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notification success', "La page a bien été modifié");
-            return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
+            return $this->redirectToRoute('admin_tutoriel_page_edit', ['id' => $tutoriel->getId(), 'slug_page' => $tutorielPage->getSlug()]);
 
         }
     }

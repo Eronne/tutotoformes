@@ -433,6 +433,10 @@ pre {
     width: 400px;
     &.tutoriel {
       text-align: center;
+      & .metas {
+        padding: 20px;
+        opacity: 0.75;
+      }
     }
   }
 }
@@ -529,6 +533,21 @@ i.fa.fa-angle-right {
   }
 }
 
+span.author {
+  margin-right: 20px;
+  &::before {
+    font-family: FontAwesome;
+    content: '\f007';
+    margin-right: 10px;
+
+  }
+}
+span.date::before {
+  font-family: FontAwesome;
+  content: '\f073';
+  margin-right: 10px;
+}
+
 .tutoriels {
   display: flex;
   flex-direction: row;
@@ -544,6 +563,21 @@ i.fa.fa-angle-right {
     overflow: hidden;
     margin-bottom: 20px;
     transform: translate3d(0, 0, 0);
+
+    & .tutoriel-title {
+
+      transition: all 0.3s;
+      position: absolute;
+      width: 100%;
+      line-height: 310px;
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 54px;
+      text-decoration: none;
+      text-align: center;
+
+
+    }
 
     & .overlay {
       transform: translate3d(0, 0, 0);
@@ -604,20 +638,6 @@ i.fa.fa-angle-right {
       font-size: 14px;
       color: rgba(0, 0, 0, 0.65);
 
-      & .author {
-        margin-right: 20px;
-        &::before {
-          font-family: FontAwesome;
-          content: '\f007';
-          margin-right: 10px;
-
-        }
-      }
-      & .date::before {
-        font-family: FontAwesome;
-        content: '\f073';
-        margin-right: 10px;
-      }
     }
 
     &:hover {
@@ -635,6 +655,11 @@ i.fa.fa-angle-right {
       filter: blur(10px);
       transform: translate3d(0,0,0) scale(0.6);
       bottom: 125px;
+    }
+
+    &:hover > .tutoriel-title {
+      line-height: 148px;
+      font-size: 72px;
     }
 
     &:hover > .overlay {
@@ -722,6 +747,7 @@ i.fa.fa-angle-right {
   justify-content: space-between;
   padding: 20px;
   background-color: #e3e7e8;
+  margin-top: 24px;
   & a {
     color: rgba(0, 0, 0, 0.6);
     text-decoration: none;
@@ -817,11 +843,43 @@ i.fa.fa-angle-right {
   display: none;
 }
 
+@media screen and (max-width: 720px) {
+
+  .tutoriel {
+    & .informations {
+      bottom: 0 !important;
+    }
+
+    & > img.thumbnail {
+      filter: blur(10px) !important;
+      transform: translate3d(0,0,0) scale(0.6) !important;
+      bottom: 125px !important;
+    }
+
+    & > .tutoriel-title {
+      line-height: 148px !important;
+      font-size: 72px !important;
+    }
+
+    & > .overlay {
+      opacity: 0.25 !important;
+    }
+
+    & > .informations {
+      bottom: 0 !important;
+    }
+
+  }
+
+}
+
 @media only screen and (max-width: 1300px) {
   .container {
     width: 100%;
     padding: 0 3%;
   }
+
+
 
 }
 

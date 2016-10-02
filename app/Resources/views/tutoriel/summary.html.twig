@@ -6,7 +6,7 @@
                 <h1>{{ tutoriel.title }}</h1>
                 <p>{{ tutoriel.subtitle }}</p>
                 <div class="metas">
-                    <span class="author"></span><span class="date"></span>
+                    <span class="author">{{ tutoriel.author.username }}</span><span class="date">{{ tutoriel.createdAt|date('d/m/Y') }}</span>
                 </div>
             </div>
         </div>

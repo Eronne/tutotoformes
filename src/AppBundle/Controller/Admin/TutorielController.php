@@ -35,7 +35,7 @@ class TutorielController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws Exception
      * @Route("/admin/tutoriel/add", name="admin_tutoriel_add")
-     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
+     * @Security("has_role('ROLE_ADMIN') or has_role('ROLE_WRITER')")
      */
     public function addAction(Request $request){
         if($request->getMethod() == "GET"){
