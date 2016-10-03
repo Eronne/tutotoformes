@@ -490,6 +490,13 @@ span.author {
     content: '\f007';
     margin-right: 10px; }
 
+span.time {
+  margin-left: 16px; }
+  span.time::before {
+    font-family: FontAwesome;
+    content: '\f017';
+    margin-right: 10px; }
+
 span.date::before {
   font-family: FontAwesome;
   content: '\f073';
