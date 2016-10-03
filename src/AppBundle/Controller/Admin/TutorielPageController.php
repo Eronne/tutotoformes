@@ -34,10 +34,16 @@ class TutorielPageController extends Controller
             }
 
             $tutorielPage = new TutorielPage();
+            $html = new \DOMDocument();
+            $html->loadHTML($params['content']);
+            $h2 = $html->getElementsByTagName('h2');
+            for($i = 0; $i < $h2->length; $i++){
+                $h2->item($i)->setAttribute('id', self::slugify($h2->item($i)->nodeValue));
+            }
             $tutorielPage->setCreatedAt(new \DateTime('now'))
                 ->setTitle($params['title'])
                 ->setPageNumber($params['page_number'])
-                ->setContent($params['content'])
+                ->setContent($html->saveHTML())
                 ->setTutoriel($tutoriel);
 
             $em = $this->getDoctrine()->getManager();
@@ -72,14 +78,20 @@ class TutorielPageController extends Controller
             if (!$params) {
                 throw new Exception('Le paramètre "tutorielpage" n a pas été trouvé dans les paramètres de la requête');
             }
+            $html = new \DOMDocument();
+            $html->loadHTML($params['content']);
+            $h2 = $html->getElementsByTagName('h2');
+            for($i = 0; $i < $h2->length; $i++){
+                $h2->item($i)->setAttribute('id', self::slugify($h2->item($i)->nodeValue));
+            }
             $tutorielPage->setEditedAt(new \DateTime('now'))
-                ->setContent($params['content'])
+                ->setContent($html->saveHTML())
                 ->setPageNumber($params['page_number'])
                 ->setTitle($params['title']);
 
             $this->getDoctrine()->getManager()->flush();
-            $this->addFlash('notification success', "La page a bien été modifié");
-            return $this->redirectToRoute('admin_tutoriel_page_edit', ['id' => $tutoriel->getId(), 'slug_page' => $tutorielPage->getSlug()]);
+            $this->addFlash('notification success', "La page a bien été modifié.");
+            return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $tutorielPage->getSlug()]);
 
         }
     }
@@ -116,6 +128,33 @@ class TutorielPageController extends Controller
         $em->flush();
         $this->addFlash('notification success', "La page a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
+    }
+
+    static private function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 
 
