@@ -292,8 +292,8 @@ class TutorielPage
         for($i = 0; $i < $h2->length; $i++) {
             array_push($subparts, ['title' => $h2->item($i)->nodeValue]);
 
-            if($h2->item($i)->childNodes->length > 1){
-                $subparts[$i]['anchor_name'] = $h2->item($i)->firstChild->attributes->getNamedItem('id')->nodeValue;
+            if($h2->item($i)->attributes->getNamedItem('id')){
+                $subparts[$i]['anchor_name'] = $h2->item($i)->attributes->getNamedItem('id')->nodeValue;
             }
         }
         return $subparts;

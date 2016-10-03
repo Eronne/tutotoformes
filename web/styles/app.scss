@@ -16,6 +16,7 @@ body {
 }
 
 h1.tutoriel-title {
+  font-family: Geomanist, Lato, Roboto, sans-serif !important;
   text-align: center;
   position: relative;
   text-transform: uppercase;
@@ -44,6 +45,12 @@ h2 {
   color: $blue;
   padding-left: 10px;
   border-left: $red 3px solid;
+  font-family: Geomanist, Lato, Roboto, sans-serif !important;
+}
+
+h3 {
+  font-family: Geomanist, Lato, Roboto, sans-serif !important;
+
 }
 
 p, ul, ol, table {
@@ -331,6 +338,11 @@ pre {
   background: $darkwhite;
 }
 
+:not(pre) > code[class*="language-"], pre[class*="language-"], code[class*="language-"], pre[class*="language-"] {
+  font-size: 0.9rem !important;
+
+}
+
 .field {
   position: relative;
   margin: 20px 0;
@@ -439,6 +451,15 @@ pre {
       }
     }
   }
+}
+
+code {
+  font-family: monospace;
+  background: $darkwhite;
+  padding: 3px 3px 3px 5px;
+  color: #da4737;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 1px $white;
 }
 
 .summary {
@@ -569,6 +590,7 @@ span.date::before {
       transition: all 0.3s;
       position: absolute;
       width: 100%;
+      color: $blue;
       line-height: 310px;
       margin: 0;
       text-transform: uppercase;
@@ -736,6 +758,7 @@ span.date::before {
 }
 
 .tutoriel-content {
+  font-family: Lato, Geomanist, Roboto, sans-serif !important;
   & img {
     max-width: 100%;
   }
@@ -896,5 +919,5 @@ span.date::before {
 }
 
 .tutoriel-content {
-  font-size: 14px;
+  font-size: 1rem;
 }

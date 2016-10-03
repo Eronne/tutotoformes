@@ -1,6 +1,6 @@
 <a style="color: inherit" href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug }) }}">
     <div class="tutoriel">
-        {% if tutoriel.thumbnailLink is null %}
+        {% if tutoriel.thumbnailLink is null or tutoriel.thumbnailLink == '' %}
             <h3 class="tutoriel-title">{{ tutoriel.title }}</h3>
         {% else %}
             <img src="{{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}" alt="" class="thumbnail">

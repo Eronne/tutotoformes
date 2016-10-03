@@ -3,13 +3,14 @@
     <div class="three fields">
         <div class="field">
             <label>Titre</label>
-            <input type="text" name="_tutoriel[title]" {% if edit %}value="{{ tutoriel.title }}"{% endif %}>
+            <input required type="text" name="_tutoriel[title]" {% if edit %}value="{{ tutoriel.title }}"{% endif %}>
         </div>
         <div class="field">
             <label>Sous titre</label>
-            <input type="text" name="_tutoriel[subtitle]" {% if edit %}value="{{ tutoriel.subtitle }}"{% endif %}>
+            <input required type="text" name="_tutoriel[subtitle]" {% if edit %}value="{{ tutoriel.subtitle }}"{% endif %}>
         </div>
         <div class="field">
+            <label>Miniature (taille recommandé : 256x256 px)</label>
             <input type="file" name="_tutoriel[thumbnailImage]" accept="image/*">
         </div>
         <div class="field">
@@ -34,7 +35,7 @@
     <div class="three fields">
         <div class="field">
             <label>Durée approximative (en minutes)</label>
-            <input type="number" {% if edit %}value="{{ tutoriel.duration }}{% endif %}" name="_tutoriel[duration]">
+            <input required type="number" {% if edit %}value="{{ tutoriel.duration }}{% endif %}" name="_tutoriel[duration]">
         </div>
         <div class="field">
             <label>Difficulté</label>

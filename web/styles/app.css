@@ -71,6 +71,7 @@ body {
   height: 100%; }
 
 h1.tutoriel-title {
+  font-family: Geomanist, Lato, Roboto, sans-serif !important;
   text-align: center;
   position: relative;
   text-transform: uppercase;
@@ -95,7 +96,11 @@ h1.tutoriel-title {
 h2 {
   color: #2980b9;
   padding-left: 10px;
-  border-left: #e74c3c 3px solid; }
+  border-left: #e74c3c 3px solid;
+  font-family: Geomanist, Lato, Roboto, sans-serif !important; }
+
+h3 {
+  font-family: Geomanist, Lato, Roboto, sans-serif !important; }
 
 p, ul, ol, table {
   font-family: Lato, Geomanist, Roboto, sans-serif; }
@@ -316,6 +321,9 @@ pre {
   padding: 20px;
   background: #e3e7e8; }
 
+:not(pre) > code[class*="language-"], pre[class*="language-"], code[class*="language-"], pre[class*="language-"] {
+  font-size: 0.9rem !important; }
+
 .field {
   position: relative;
   margin: 20px 0; }
@@ -399,6 +407,14 @@ pre {
       .jumbotron .heading.tutoriel .metas {
         padding: 20px;
         opacity: 0.75; }
+
+code {
+  font-family: monospace;
+  background: #e3e7e8;
+  padding: 3px 3px 3px 5px;
+  color: #da4737;
+  font-size: 1.1rem;
+  text-shadow: 0 1px 1px #ecf0f1; }
 
 .summary {
   padding: 40px;
@@ -497,6 +513,7 @@ span.date::before {
       transition: all 0.3s;
       position: absolute;
       width: 100%;
+      color: #2980b9;
       line-height: 310px;
       margin: 0;
       text-transform: uppercase;
@@ -617,8 +634,10 @@ span.date::before {
         max-height: 200px;
         opacity: 1; }
 
-.tutoriel-content img {
-  max-width: 100%; }
+.tutoriel-content {
+  font-family: Lato, Geomanist, Roboto, sans-serif !important; }
+  .tutoriel-content img {
+    max-width: 100%; }
 
 .navigation {
   display: flex;
@@ -725,6 +744,6 @@ span.date::before {
   100% {
     background-position: 1920px 574px; } }
 .tutoriel-content {
-  font-size: 14px; }
+  font-size: 1rem; }
 
 /*# sourceMappingURL=app.css.map */

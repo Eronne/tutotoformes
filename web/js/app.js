@@ -26,7 +26,7 @@ $(document).ready(function () {
         e.preventDefault();
         var link = $(this);
         $('html, body').animate({
-            scrollTop: $('a#' + link.data('to')).offset().top - 100
+            scrollTop: $('h2#' + link.data('to')).offset().top - 100
         }, 400);
     });
 
@@ -96,21 +96,83 @@ $(document).ready(function () {
                 {text: 'Twig', value: 'twig'}
             ],
             style_formats: [
-                {title: 'H1', block: 'h1'},
-                {title: 'H2', block: 'h2'},
-                {title: 'H3', block: 'h3'},
-                {title: 'H4', block: 'h4'},
-                {title: 'H5', block: 'h5'},
-                {title: 'H6', block: 'h6'},
-                {title: 'Paragraphe', block: 'p'},
-                {title: 'Pre', block: 'pre'},
-                {title: 'Span', block: 'span'},
-                {title: 'Message info', block: 'div', styles: {padding: '20px', background: '#2aa0cc', color: 'white', border: '3px solid #61c1e4', margin: '10px 0'} },
-                {title: 'Message success', block: 'div', styles: {padding: '20px', background: '#56b965', color: 'white', border: '3px solid #84d08f', margin: '10px 0'} },
-                {title: 'Message error', block: 'div', styles: {padding: '20px', background: '#e74c3c', color: 'white', border: '3px solid #fd7c6f', margin: '10px 0'} }
+                {
+                    title: 'Headers', items: [
+                    {title: 'Header 1', format: 'h1'},
+                    {title: 'Header 2', format: 'h2'},
+                    {title: 'Header 3', format: 'h3'},
+                    {title: 'Header 4', format: 'h4'},
+                    {title: 'Header 5', format: 'h5'},
+                    {title: 'Header 6', format: 'h6'}
+                ]
+                },
+                {
+                    title: 'Inline', items: [
+                    {title: 'Bold', icon: 'bold', format: 'bold'},
+                    {title: 'Italic', icon: 'italic', format: 'italic'},
+                    {title: 'Underline', icon: 'underline', format: 'underline'},
+                    {title: 'Strikethrough', icon: 'strikethrough', format: 'strikethrough'},
+                    {title: 'Superscript', icon: 'superscript', format: 'superscript'},
+                    {title: 'Subscript', icon: 'subscript', format: 'subscript'},
+                    {title: 'Code', icon: 'code', format: 'code'}
+                ]
+                },
+                {
+                    title: 'Blocks', items: [
+                    {title: 'Paragraph', format: 'p'},
+                    {title: 'Blockquote', format: 'blockquote'},
+                    {title: 'Div', format: 'div'},
+                    {title: 'Pre', format: 'pre'}
+                ]
+                },
+                {
+                    title: 'Alignment', items: [
+                    {title: 'Left', icon: 'alignleft', format: 'alignleft'},
+                    {title: 'Center', icon: 'aligncenter', format: 'aligncenter'},
+                    {title: 'Right', icon: 'alignright', format: 'alignright'},
+                    {title: 'Justify', icon: 'alignjustify', format: 'alignjustify'}
+                ]
+                },
+                {
+                    title: 'Alerts', items: [
+                    {
+                        title: 'Message info',
+                        block: 'div',
+                        styles: {
+                            padding: '20px',
+                            background: '#2aa0cc',
+                            color: 'white',
+                            border: '3px solid #61c1e4',
+                            margin: '10px 0'
+                        }
+                    },
+                    {
+                        title: 'Message success',
+                        block: 'div',
+                        styles: {
+                            padding: '20px',
+                            background: '#56b965',
+                            color: 'white',
+                            border: '3px solid #84d08f',
+                            margin: '10px 0'
+                        }
+                    },
+                    {
+                        title: 'Message error',
+                        block: 'div',
+                        styles: {
+                            padding: '20px',
+                            background: '#e74c3c',
+                            color: 'white',
+                            border: '3px solid #fd7c6f',
+                            margin: '10px 0'
+                        }
+                    }
+                ]
+                }
             ],
             toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-            toolbar2: 'print preview media | forecolor backcolor emoticons codesample',
+            toolbar2: 'print preview media | forecolor backcolor emoticons codesample | pastetext removeformat | fullscreen',
             content_css: ['/styles/mce.css']
         });
     }
