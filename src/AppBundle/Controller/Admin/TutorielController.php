@@ -118,7 +118,6 @@ class TutorielController extends Controller
                 ->setThumbnailLink($params['thumbnail'])
                 ->setDescription($params['description'])
                 ->setEditedAt(new \DateTime('now'));
-
             if($file != null) {
                 if($this->get('app.utils')->isValidFile($file, "image/.*")){
                     $tutoriel->setThumbnailFile($file);

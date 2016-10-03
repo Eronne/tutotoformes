@@ -63,4 +63,11 @@ class Utils
         return $randomString;
     }
 
+    public function setNullIfEmptyString($s){
+        if($s === '') {
+            return null;
+        }
+        return $s;
+    }
+
 }

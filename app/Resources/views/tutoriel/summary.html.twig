@@ -36,13 +36,11 @@
                 </div>
                 <div class="spacer"></div>
                 <div class="center">
+                    <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ (app.user) ? 'Commencer le cours' : 'Inscrivez vous pour commencer le cours' }}</a>
                     {% if app.user %}
-                        <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}" class="button primary medium">Commencer le cours</a>
-                        {% if app.user and ((is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN')) %}
-                            <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}" class="button icon secondary medium"><span class="icon"><i class="fa fa-edit"></i></span>Éditer le cours</a>
+                        {% if  (is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}" class="button icon secondary large"><span class="icon"><i class="fa fa-edit"></i></span>Éditer le cours</a>
                         {% endif %}
-                    {% else %}
-                        <a href="{{ path('login') }}" class="button primary medium">Inscrivez vous pour commencer le cours</a>
                     {% endif %}
                         </div>
             {% else %}
