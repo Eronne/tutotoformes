@@ -13,7 +13,7 @@
                     </div>
                     {% for page in tutoriel.tutorialPages %}
                         {% set page_url = path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) %}
-                        <div class="page{{ (current_page_slug == page.slug) ? ' active' }}{{ (page.pageNumber in tutoriel.userProgression(app.user).completedPages ) ? ' complete' }}">
+                        <div class="page{{ (current_page_slug == page.slug) ? ' active' }}{{ (page.slug in tutoriel.userProgression(app.user).completedPages ) ? ' complete' }}">
                             {% if page.subparts|length > 0 %}<i
                                 class="fa fa-angle-right {{ (current_page_slug == page.slug) ? 'unfolded' }}">
                                     &nbsp;</i>{% endif %}
@@ -31,7 +31,12 @@
                         </div>
                     {% endfor %}
                     <div class="progress">
-                        <i class="fa fa-clock-o">&nbsp;&nbsp;&nbsp;</i><div class="progressbar-tutoriel"><div class="progressbar-bg {{ (tutoriel.tutorialPages|length == tutoriel.userProgression(app.user).completedPages|length) ? 'complete' }}" style="width: {{ tutoriel.userProgression(app.user).progression }}%"></div></div><div class="progressbar-text">{{ tutoriel.userProgression(app.user).progression }}%</div>
+                        <i class="fa fa-clock-o">&nbsp;&nbsp;&nbsp;</i>
+                        <div class="progressbar-tutoriel">
+                            <div class="progressbar-bg {{ (tutoriel.tutorialPages|length == tutoriel.userProgression(app.user).completedPages|length) ? 'complete' }}"
+                                 style="width: {{ tutoriel.userProgression(app.user).progression }}%"></div>
+                        </div>
+                        <div class="progressbar-text">{{ tutoriel.userProgression(app.user).progression }}%</div>
                     </div>
                 </div>
                 <div class="tutoriel-content two-thirds">
@@ -64,17 +69,19 @@
                            class="button icon small secondary"><span class="icon"><i class="fa fa-edit"></i></span>Éditer
                             la page</a>
                     {% endif %}
-                    {% if page.pageNumber not in tutoriel.userProgression(app.user).completedPages %}
-                    <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
-                          method="post">
-                        <button class="button primary medium icon"><span class="icon"><i class="fa fa-check-circle"></i></span>Valider
-                            cette partie
-                        </button>
-                    </form>
+                    {% if page.slug not in tutoriel.userProgression(app.user).completedPages %}
+                        <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
+                              method="post">
+                            <button class="button primary medium icon"><span class="icon"><i
+                                            class="fa fa-check-circle"></i></span>Valider
+                                cette partie
+                            </button>
+                        </form>
                     {% else %}
                         <form action="{{ path('tutoriel_unmark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                               method="post">
-                            <button class="button primary medium icon"><span class="icon"><i class="fa fa-remove"></i></span>Dévalider la partie
+                            <button class="button primary medium icon"><span class="icon"><i
+                                            class="fa fa-remove"></i></span>Dévalider la partie
                             </button>
                         </form>
                     {% endif %}

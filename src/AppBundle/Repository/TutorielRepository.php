@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 use AppBundle\Entity\Tutoriel;
+use AppBundle\Entity\Utilisateur;
 
 /**
  * TutorielRepository
@@ -34,6 +35,22 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('tutoriel.createdAt', $order)
             ->getQuery()
             ->getResult();
+    }
+
+    public function getTutorielsStartedBy(Utilisateur $user, $showFinished){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('tutoriel')
+            ->from('AppBundle:Tutoriel', 'tutoriel')
+            ->innerJoin('tutoriel.userProgression', 'tup')
+            ->where('tup.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('tup.startedAt is not NULL');
+        if(!$showFinished){
+            $qb->andWhere('tup.finishedAt is NULL');
+        }
+        return $qb->getQuery()
+            ->getResult();
+
     }
 
 

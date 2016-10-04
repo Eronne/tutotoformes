@@ -112,12 +112,14 @@ class TutorielPageController extends Controller
         if(!$tutoriel && !$tutorielPage){
             return $this->createNotFoundException();
         }
+
         $em = $this->getDoctrine()->getManager();
-        $pageNumberRemoved = $tutorielPage->getPageNumber();
 
 
         $prevPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() - 1, 'tutoriel' => $tutoriel]);
         $nextPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
+
+        $userProgression = $tutoriel->getUserProgression($this->get('security.token_storage')->getToken()->getUser());
 
         if(!$prevPage && $nextPage) {
             foreach ($pageRepo->findAll() as $page){
@@ -129,10 +131,15 @@ class TutorielPageController extends Controller
             }
         }
 
-
+        if (in_array($tutorielPage->getSlug(), $userProgression->getCompletedPages())) {
+            $array = $userProgression->getCompletedPages();
+            $key = array_search($tutorielPage->getSlug(), $array);
+            unset($array[$key]);
+            $userProgression->setCompletedPages($array);
+        }
         $em->remove($tutorielPage);
         $em->flush();
-        $this->UpdateUserProgression($tutoriel, $this->get('security.token_storage')->getToken()->getUser(), $pageNumberRemoved);
+        $this->UpdateUserProgression($tutoriel, $this->get('security.token_storage')->getToken()->getUser());
         $this->addFlash('notification success', "La page a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
     }
@@ -164,7 +171,7 @@ class TutorielPageController extends Controller
         return $text;
     }
 
-    private function UpdateUserProgression(Tutoriel $tutoriel, Utilisateur $user, $pageNumberRemoved){
+    private function UpdateUserProgression(Tutoriel $tutoriel, Utilisateur $user){
 
 
         /* TODO: Ajouter les pages par leur slug */
@@ -179,27 +186,7 @@ class TutorielPageController extends Controller
             $this->getDoctrine()->getEntityManager()->flush();
             $userProgression = $tutoriel->getUserProgression($user);
         }
-        $pages = [];
-        foreach ($tutoriel->getTutorialPages() as $p) {
-            array_push($pages, $p->getPageNumber());
-        }
-        var_dump($pages);
-        $diffs = (array_diff($tutoriel->getUserProgression($user)->getCompletedPages(), $pages));
-        $final = $tutoriel->getUserProgression($user)->getCompletedPages();
-        if ($diffs) {
-            foreach($diffs as $diff){
-                if(($key = array_search($diff, $final)) !== false) {
-                    unset($final[$key]);
-                }
-            }
-        }
-        $key = array_search($pageNumberRemoved, $final);
-        if($pageNumberRemoved < max($final)){
-            unset($final[$key]);
-        }
 
-
-        $userProgression->setCompletedPages($final);
         $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
         $this->getDoctrine()->getEntityManager()->flush();
     }

@@ -12,7 +12,7 @@
         <a class="item {% if route_name starts with "admin" %}active{% endif %}" href="{{ path('admin_index') }}">Administration</a>
     {% endif %}
     {% if app.user %}
-        <a href="" class="item profile">Mon profil</a>
+        <a href="{{ path('my_profile') }}" class="item profile">Mon profil</a>
         <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
     {% else %}
         <a class="item login" href="{{ path('login') }}">Connexion / Inscription</a>

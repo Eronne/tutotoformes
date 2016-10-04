@@ -24,6 +24,14 @@ class UserProgression
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="started_at", type="datetime", nullable=true)
+     */
+    private $startedAt;
+
+
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="finished_at", type="datetime", nullable=true)
      */
     private $finishedAt;
@@ -41,6 +49,7 @@ class UserProgression
      * @ORM\Column(name="completed_pages", type="simple_array", nullable=true)
      */
     private $completedPages = [];
+
 
 
     /**
@@ -205,9 +214,37 @@ class UserProgression
     }
 
     /**
-     * @return int
+     * @return null|string
      */
-    public function getLastCompletedPageNumber(){
-        return max($this->getCompletedPages());
+    public function getLastCompletedPageSlug(){
+        if(count($this->getCompletedPages()) > 0) {
+            $array = $this->getCompletedPages();
+            return end($array);
+        }
+        return null;
+    }
+
+    /**
+     * Set startedAt
+     *
+     * @param \DateTime $startedAt
+     *
+     * @return UserProgression
+     */
+    public function setStartedAt($startedAt)
+    {
+        $this->startedAt = $startedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get startedAt
+     *
+     * @return \DateTime
+     */
+    public function getStartedAt()
+    {
+        return $this->startedAt;
     }
 }

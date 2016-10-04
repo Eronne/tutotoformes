@@ -409,6 +409,11 @@ class Tutoriel
         return $text;
     }
 
+    public function hasFinish(Utilisateur $user){
+        return ($this->getUserProgression($user)->getProgression() == 100);
+    }
+
+
     /**
      * Set description
      *
