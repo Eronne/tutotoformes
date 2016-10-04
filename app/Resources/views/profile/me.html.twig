@@ -8,9 +8,9 @@
                 <h1>Bienvenue {{ user.username }}</h1>
                 <div class="spacer"></div>
                 <h2>Vos tutoriels en cours</h2>
-                <div class="tutoriels">
+                <div class="active-tutoriels">
                     {% for tutoriel in following_tutoriels %}
-                        {% embed 'partials/_tutoriel.html.twig' %}{% endembed %}
+                        {% embed 'partials/_active_tutoriel.html.twig' %}{% endembed %}
                     {% endfor %}
                 </div>
                 <div class="spacer"></div>

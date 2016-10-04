@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $tutorielRepo = $this->getDoctrine()->getRepository('AppBundle:Tutoriel');
-        $followingTutoriels = $tutorielRepo->getTutorielsStartedBy($user, false);
+        $followingTutoriels = $tutorielRepo->getTutorielsStartedBy($user, true);
 
 
 

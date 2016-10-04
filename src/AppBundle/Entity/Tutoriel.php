@@ -114,7 +114,7 @@ class Tutoriel
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserProgression", mappedBy="tutoriel")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserProgression", mappedBy="tutoriel", cascade={"remove"})
      */
     private $userProgression;
 
