@@ -4,6 +4,8 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\TutorielPage;
+use AppBundle\Entity\UserProgression;
+use AppBundle\Entity\Utilisateur;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -111,6 +113,8 @@ class TutorielPageController extends Controller
             return $this->createNotFoundException();
         }
         $em = $this->getDoctrine()->getManager();
+        $pageNumberRemoved = $tutorielPage->getPageNumber();
+
 
         $prevPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() - 1, 'tutoriel' => $tutoriel]);
         $nextPage = $pageRepo->findOneBy(['pageNumber' => $tutorielPage->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
@@ -124,8 +128,11 @@ class TutorielPageController extends Controller
                 $page->setPageNumber($page->getPageNumber() - 1);
             }
         }
+
+
         $em->remove($tutorielPage);
         $em->flush();
+        $this->UpdateUserProgression($tutoriel, $this->get('security.token_storage')->getToken()->getUser(), $pageNumberRemoved);
         $this->addFlash('notification success', "La page a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
     }
@@ -156,6 +163,47 @@ class TutorielPageController extends Controller
 
         return $text;
     }
+
+    private function UpdateUserProgression(Tutoriel $tutoriel, Utilisateur $user, $pageNumberRemoved){
+
+
+        /* TODO: Ajouter les pages par leur slug */
+
+        $userProgression = $tutoriel->getUserProgression($user);
+
+        if (!$userProgression) {
+            $up = new UserProgression();
+            $up->setTutoriel($tutoriel)
+                ->setUser($user);
+            $this->getDoctrine()->getEntityManager()->persist($up);
+            $this->getDoctrine()->getEntityManager()->flush();
+            $userProgression = $tutoriel->getUserProgression($user);
+        }
+        $pages = [];
+        foreach ($tutoriel->getTutorialPages() as $p) {
+            array_push($pages, $p->getPageNumber());
+        }
+        var_dump($pages);
+        $diffs = (array_diff($tutoriel->getUserProgression($user)->getCompletedPages(), $pages));
+        $final = $tutoriel->getUserProgression($user)->getCompletedPages();
+        if ($diffs) {
+            foreach($diffs as $diff){
+                if(($key = array_search($diff, $final)) !== false) {
+                    unset($final[$key]);
+                }
+            }
+        }
+        $key = array_search($pageNumberRemoved, $final);
+        if($pageNumberRemoved < max($final)){
+            unset($final[$key]);
+        }
+
+
+        $userProgression->setCompletedPages($final);
+        $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
+        $this->getDoctrine()->getEntityManager()->flush();
+    }
+
 
 
 

@@ -1,7 +1,10 @@
 <?php
 
 namespace AppBundle\Repository;
+
+use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\TutorielPage;
+use Doctrine\ORM\Query\Expr;
 
 /**
  * TutorielPageRepository
@@ -16,12 +19,14 @@ class TutorielPageRepository extends \Doctrine\ORM\EntityRepository
      * @param $number
      * @return TutorielPage[]
      */
-    public function findAllSuperiorToPage($number){
+    public function findAllSuperiorToPage($number)
+    {
         $qb = $this->getEntityManager()->createQueryBuilder();
         return $qb->select('tutorielPage')
             ->from('AppBundle:TutorielPage', 'tutorielPage')
             ->where($qb->expr()->gt('tutorielPage.pageNumber', $number))
             ->getQuery()->getResult();
     }
+
 
 }

@@ -36,7 +36,17 @@
                 </div>
                 <div class="spacer"></div>
                 <div class="center">
-                    <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ (app.user) ? 'Commencer le cours' : 'Inscrivez vous pour commencer le cours' }}</a>
+                        {% if app.user %}
+                            {% if tutoriel.userProgression(app.user).hasCompletedTutoriel(tutoriel) %}
+                    <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Revoir le cours</a>
+                            {% elseif tutoriel.userProgression(app.user).hasStartedTutoriel %}
+                                <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': last_page_completed.slug, 'slug': tutoriel.slug}) }}">Reprendre le cours</a>
+                            {% else %}
+                                <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Commencer le cours</a>
+                            {% endif %}
+                        {% else %}
+                            Inscrivez-vous pour commencer le cours
+                        {% endif %}
                     {% if app.user %}
                         {% if  (is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN') %}
                             <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}" class="button icon secondary large"><span class="icon"><i class="fa fa-edit"></i></span>Éditer le cours</a>

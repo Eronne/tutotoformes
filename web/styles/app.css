@@ -594,7 +594,6 @@ span.date::before {
       bottom: 0; }
 
 .sidebar {
-  padding-bottom: 40px;
   background-color: #da4737;
   align-self: flex-start; }
   .sidebar a {
@@ -602,6 +601,34 @@ span.date::before {
     text-decoration: none; }
     .sidebar a:hover {
       font-weight: 700; }
+  .sidebar .progress {
+    padding: 0;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    color: #ecf0f1;
+    background: #da4737;
+    justify-content: center;
+    display: flex;
+    align-items: center; }
+    .sidebar .progress .progressbar-text {
+      margin-left: 10px; }
+    .sidebar .progress .progressbar-tutoriel {
+      position: relative;
+      background-color: #268fb7;
+      height: 10px;
+      width: 100%;
+      max-width: 60%;
+      display: inline-block; }
+      .sidebar .progress .progressbar-tutoriel .progressbar-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 10px;
+        content: '';
+        background-color: #2aa0cc; }
+        .sidebar .progress .progressbar-tutoriel .progressbar-bg.complete {
+          background-color: #56b965; }
   .sidebar .page {
     transition: all 0.3s;
     background: #e74c3c;
@@ -610,6 +637,10 @@ span.date::before {
     .sidebar .page:hover {
       cursor: pointer;
       background: #da4737; }
+    .sidebar .page.complete > a:after {
+      font-family: FontAwesome;
+      content: '\f00c';
+      margin-left: 10px; }
     .sidebar .page.active {
       background: #2980b9; }
       .sidebar .page.active:hover {

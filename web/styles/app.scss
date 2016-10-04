@@ -705,7 +705,6 @@ span.date::before {
 }
 
 .sidebar {
-  padding-bottom: 40px;
   background-color: #da4737;
   align-self: flex-start;
 
@@ -717,6 +716,39 @@ span.date::before {
     }
   }
 
+  & .progress {
+    padding: 0;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    color: $white;
+    background: #da4737;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    & .progressbar-text {
+      margin-left: 10px;
+    }
+    & .progressbar-tutoriel {
+      position: relative;
+      background-color: darken($info, 5%);
+      height: 10px;
+      width: 100%;
+      max-width: 60%;
+      display: inline-block;
+      & .progressbar-bg {
+        position: absolute;
+        top: 0;
+        left:0;
+        height: 10px;
+        content: '';
+        background-color: $info;
+        &.complete {
+          background-color: $success;
+        }
+      }
+    }
+  }
   & .page {
     transition: all 0.3s;
     background: $red;
@@ -725,6 +757,13 @@ span.date::before {
     &:hover {
       cursor: pointer;
       background: #da4737;
+    }
+    &.complete {
+      & > a:after {
+        font-family: FontAwesome;
+        content: '\f00c';
+        margin-left: 10px;
+      }
     }
     &.active {
       background: $blue;

@@ -4,10 +4,14 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\TutorielPage;
+use AppBundle\Entity\UserProgression;
+use AppBundle\Entity\Utilisateur;
+use Doctrine\Common\Collections\Criteria;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -22,7 +26,6 @@ class TutorielController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/admin/tutoriel/", name="admin_tutoriels_index")
      * @Security("has_role('ROLE_ADMIN')")
-
      */
     public function indexAction(Request $request)
     {
@@ -37,8 +40,9 @@ class TutorielController extends Controller
      * @Route("/admin/tutoriel/add", name="admin_tutoriel_add")
      * @Security("has_role('ROLE_ADMIN') or has_role('ROLE_WRITER')")
      */
-    public function addAction(Request $request){
-        if($request->getMethod() == "GET"){
+    public function addAction(Request $request)
+    {
+        if ($request->getMethod() == "GET") {
             $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findAll();
             return $this->render('tutoriel/add.html.twig', ['users' => $users]);
         } else {
@@ -64,8 +68,8 @@ class TutorielController extends Controller
                 ->setDescription($params['description'])
                 ->setTitle($params['title']);
 
-            if($file != null) {
-                if($this->get('app.utils')->isValidFile($file, "image/.*")){
+            if ($file != null) {
+                if ($this->get('app.utils')->isValidFile($file, "image/.*")) {
                     $tutoriel->setThumbnailFile($file);
                 } else {
                     $this->addFlash('notification error', "Veuillez uploader une image valide !");
@@ -90,14 +94,15 @@ class TutorielController extends Controller
      * @Route("/admin/tutoriel/edit/{id}", name="admin_tutoriel_edit")
      * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
      */
-    public function editAction(Request $request, Tutoriel $tutoriel){
-        if(!$tutoriel){
+    public function editAction(Request $request, Tutoriel $tutoriel)
+    {
+        if (!$tutoriel) {
             return $this->createNotFoundException();
         }
 
         $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findAll();
 
-        if($request->getMethod() === "GET"){
+        if ($request->getMethod() === "GET") {
             return $this->render('tutoriel/edit.html.twig', ['tutoriel' => $tutoriel, 'users' => $users]);
         } else {
             $em = $this->getDoctrine()->getManager();
@@ -118,8 +123,8 @@ class TutorielController extends Controller
                 ->setThumbnailLink($params['thumbnail'])
                 ->setDescription($params['description'])
                 ->setEditedAt(new \DateTime('now'));
-            if($file != null) {
-                if($this->get('app.utils')->isValidFile($file, "image/.*")){
+            if ($file != null) {
+                if ($this->get('app.utils')->isValidFile($file, "image/.*")) {
                     $tutoriel->setThumbnailFile($file);
                 } else {
                     $this->addFlash('notification error', "Veuillez uploader une image valide !");
@@ -138,11 +143,11 @@ class TutorielController extends Controller
      * @param Tutoriel $tutoriel
      * @Route("/admin/tutoriel/remove/{id}", name="admin_tutoriel_remove")
      * @Security("has_role('ROLE_ADMIN')")
-
      * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function removeAction(Request $request, Tutoriel $tutoriel){
-        if(!$tutoriel){
+    public function removeAction(Request $request, Tutoriel $tutoriel)
+    {
+        if (!$tutoriel) {
             return $this->createNotFoundException();
         }
         $em = $this->getDoctrine()->getManager();
@@ -158,18 +163,31 @@ class TutorielController extends Controller
      * @Route("/tutoriel/{slug}", name="tutoriel_summary_show")
      * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showSummaryAction(Request $request, Tutoriel $tutoriel){
+    public function showSummaryAction(Request $request, Tutoriel $tutoriel)
+    {
 
-        if(!$tutoriel){
+        if (!$tutoriel) {
             return $this->createNotFoundException("Le tutoriel n'a pas été trouvé");
         }
         $pageRepo = $this->getDoctrine()->getManager()->getRepository('AppBundle:TutorielPage');
 
         $nextPage = $pageRepo->findOneBy(['pageNumber' => 1, 'tutoriel' => $tutoriel]);
 
-//        var_dump($pageRepo->findOneBy(['pageNumber' => 1, 'tutoriel' => $tutoriel])->getSubparts());
-//        die();
-        return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage]);
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $this->UpdateUserProgression($tutoriel, $user);
+
+        $lastPageCompleted = null;
+        if($user){
+            if($pageRepo->findOneBy(['tutoriel' => $tutoriel, 'pageNumber' => $tutoriel->getUserProgression($user)->getLastCompletedPageNumber() + 1 ])) {
+                $lastPageCompleted = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'pageNumber' => $tutoriel->getUserProgression($user)->getLastCompletedPageNumber() + 1 ]);
+            } else {
+                $lastPageCompleted = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'pageNumber' => $tutoriel->getUserProgression($user)->getLastCompletedPageNumber()]);
+            }
+        }
+
+
+        return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage, 'last_page_completed' => $lastPageCompleted]);
 
     }
 
@@ -180,14 +198,18 @@ class TutorielController extends Controller
      * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function showAction(Request $request, Tutoriel $tutoriel, $slug_page) {
-        if(!$tutoriel){
+    public function showAction(Request $request, Tutoriel $tutoriel, $slug_page)
+    {
+        if (!$tutoriel) {
             return $this->createNotFoundException();
         }
         $page = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page, 'tutoriel' => $tutoriel]);
-        if(!$page) {
+        if (!$page) {
             return $this->createNotFoundException();
         }
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $this->UpdateUserProgression($tutoriel, $user);
 
         $pageRepo = $this->getDoctrine()->getManager()->getRepository('AppBundle:TutorielPage');
 
@@ -195,8 +217,127 @@ class TutorielController extends Controller
         $nextPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
 
 
-
         return $this->render('tutoriel/page/show.html.twig', ['tutoriel' => $tutoriel, 'page' => $page, 'prev_page' => $prevPage, 'next_page' => $nextPage]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $tutoriel
+     * @param $slug_page
+     * @Route("/tutoriel/{slug}/has-completed/{slug_page}",name="tutoriel_mark_page_as_complete")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function markPartAsCompleteAction(Request $request, Tutoriel $tutoriel, $slug_page)
+    {
+        $page = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page, 'tutoriel' => $tutoriel]);
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userProgression = $tutoriel->getUserProgression($user);
+
+        if (!$userProgression) {
+            $up = new UserProgression();
+            $up->setTutoriel($tutoriel)
+                ->setUser($user);
+            $this->getDoctrine()->getEntityManager()->persist($up);
+            $this->getDoctrine()->getEntityManager()->flush();
+            $userProgression = $tutoriel->getUserProgression($user);
+        }
+
+        if (!in_array($page->getPageNumber(), $userProgression->getCompletedPages())) {
+            $array = $userProgression->getCompletedPages();
+            array_push($array, $page->getPageNumber());
+            $userProgression->setCompletedPages($array);
+        }
+
+        $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
+
+        $this->getDoctrine()->getEntityManager()->flush();
+        $nextPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
+
+        if ($userProgression->getProgression() == 100) {
+            $this->addFlash("notification success", "Félicitations ! Vous avez complété le tutoriel '" . $tutoriel->getTitle() . "' !");
+            $userProgression->setFinishedAt(new \DateTime('now'));
+            $this->getDoctrine()->getEntityManager()->flush();
+            return $this->redirectToRoute('tutoriel_summary_show', ['slug' => $tutoriel->getSlug()]);
+        } elseif ($nextPage) {
+            return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $nextPage->getSlug()]);
+        }
+        return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $page->getSlug()]);
+
+    }
+
+
+    /**
+     * @param Request $request
+     * @param $tutoriel
+     * @param $slug_page
+     * @Route("/tutoriel/{slug}/has-not-completed/{slug_page}",name="tutoriel_unmark_page_as_complete")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function unmarkPartAsCompleteAction(Request $request, Tutoriel $tutoriel, $slug_page)
+    {
+        $page = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page, 'tutoriel' => $tutoriel]);
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $userProgression = $tutoriel->getUserProgression($user);
+
+        if (!$userProgression) {
+            $up = new UserProgression();
+            $up->setTutoriel($tutoriel)
+                ->setUser($user);
+            $this->getDoctrine()->getEntityManager()->persist($up);
+            $this->getDoctrine()->getEntityManager()->flush();
+            $userProgression = $tutoriel->getUserProgression($user);
+        }
+
+        if (in_array($page->getPageNumber(), $userProgression->getCompletedPages())) {
+            $array = $userProgression->getCompletedPages();
+            $key = array_search($page->getPageNumber(), $array);
+            unset($array[$key]);
+            $userProgression->setCompletedPages($array);
+        }
+
+        $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
+
+        $this->getDoctrine()->getEntityManager()->flush();
+        $nextPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
+
+        if ($nextPage) {
+            return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $nextPage->getSlug()]);
+        }
+        return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $page->getSlug()]);
+
+    }
+
+    private function UpdateUserProgression(Tutoriel $tutoriel, Utilisateur $user){
+
+
+        $userProgression = $tutoriel->getUserProgression($user);
+
+        if (!$userProgression) {
+            $up = new UserProgression();
+            $up->setTutoriel($tutoriel)
+                ->setUser($user);
+            $this->getDoctrine()->getEntityManager()->persist($up);
+            $this->getDoctrine()->getEntityManager()->flush();
+            $userProgression = $tutoriel->getUserProgression($user);
+        }
+        $pages = [];
+        foreach ($tutoriel->getTutorialPages() as $p) {
+            array_push($pages, $p->getPageNumber());
+        }
+        $diffs = (array_diff($tutoriel->getUserProgression($user)->getCompletedPages(), $pages));
+        $final = $tutoriel->getUserProgression($user)->getCompletedPages();
+        if ($diffs) {
+            foreach($diffs as $diff){
+                if(($key = array_search($diff, $final)) !== false) {
+                    unset($final[$key]);
+                }
+            }
+        }
+        $userProgression->setCompletedPages($final);
+        $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
+        $this->getDoctrine()->getEntityManager()->flush();
     }
 
 

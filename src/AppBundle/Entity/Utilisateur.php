@@ -20,7 +20,7 @@ class Utilisateur implements UserInterface, \Serializable
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -88,6 +88,7 @@ class Utilisateur implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tutoriel", mappedBy="author")
      */
     private $tutoriels;
+
 
 
     /**

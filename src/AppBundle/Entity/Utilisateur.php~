@@ -20,7 +20,7 @@ class Utilisateur implements UserInterface, \Serializable
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -88,6 +88,7 @@ class Utilisateur implements UserInterface, \Serializable
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tutoriel", mappedBy="author")
      */
     private $tutoriels;
+
 
 
     /**
@@ -431,5 +432,29 @@ class Utilisateur implements UserInterface, \Serializable
 
     public function isConfirmed() {
         return ($this->getConfirmedAt() != null);
+    }
+
+    /**
+     * Set lastLogin
+     *
+     * @param \DateTime $lastLogin
+     *
+     * @return Utilisateur
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->last_login = $lastLogin;
+
+        return $this;
+    }
+
+    /**
+     * Get lastLogin
+     *
+     * @return \DateTime
+     */
+    public function getLastLogin()
+    {
+        return $this->last_login;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -104,9 +106,17 @@ class Tutoriel
     private $tutorialPages;
 
     /**
+     * @var Utilisateur
+     *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur", inversedBy="tutoriels")
      */
     private $author;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserProgression", mappedBy="tutoriel")
+     */
+    private $userProgression;
 
 
 
@@ -259,6 +269,7 @@ class Tutoriel
     public function __construct()
     {
         $this->tutorialPages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userProgression = new ArrayCollection();
     }
 
     /**
@@ -288,11 +299,13 @@ class Tutoriel
     /**
      * Get tutorialPages
      *
-     * @return  \Doctrine\Common\Collections\Collection|TutorielPage[]
+     * @param string $order
+     * @return TutorielPage[]|\Doctrine\Common\Collections\Collection
      */
-    public function getTutorialPages()
+    public function getTutorialPages($order = 'ASC')
     {
-        return $this->tutorialPages;
+        $criteria = Criteria::create()->orderBy(['pageNumber' => $order]);
+        return $this->tutorialPages->matching($criteria);
     }
 
     /**
@@ -462,7 +475,7 @@ class Tutoriel
      *
      * @return Tutoriel
      */
-    public function setImageFile(File $image = null)
+    public function setThumbnailFile(File $image = null)
     {
         $this->thumbnailFile = $image;
 
@@ -474,4 +487,42 @@ class Tutoriel
 
         return $this;
     }
+
+    /**
+     * Add userProgression
+     *
+     * @param \AppBundle\Entity\UserProgression $userProgression
+     *
+     * @return Tutoriel
+     */
+    public function addUserProgression(\AppBundle\Entity\UserProgression $userProgression)
+    {
+        $this->userProgression[] = $userProgression;
+
+        return $this;
+    }
+
+    /**
+     * Remove userProgression
+     *
+     * @param \AppBundle\Entity\UserProgression $userProgression
+     */
+    public function removeUserProgression(\AppBundle\Entity\UserProgression $userProgression)
+    {
+        $this->userProgression->removeElement($userProgression);
+    }
+
+    /**
+     * Get userProgression
+     *
+     * @return UserProgression
+     */
+    public function getUserProgression($user)
+    {
+        $criteria = Criteria::create()->where(Criteria::expr()->eq('user', $user));
+
+        return $this->userProgression->matching($criteria)->first();
+    }
+
+
 }

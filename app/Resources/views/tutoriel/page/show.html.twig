@@ -1,5 +1,5 @@
 {% embed 'base.html.twig' with {title: tutoriel.title ~ ' - ' ~ page.title} %}
-    {% set current_page_slug = app.request.attributes.get('slug_page')  %}
+    {% set current_page_slug = app.request.attributes.get('slug_page') %}
 
     {% block body %}
         <div class="container">
@@ -8,22 +8,31 @@
             <div class="grid has-gutter">
                 <div class="sidebar">
                     <div class="page summary">
-                        <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i class="fa fa-home">&nbsp;&nbsp;</i>Retourner au sommaire</a>
+                        <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i class="fa fa-home">
+                                &nbsp;&nbsp;</i>Retourner au sommaire</a>
                     </div>
                     {% for page in tutoriel.tutorialPages %}
                         {% set page_url = path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) %}
-                        <div class="page {{ (current_page_slug == page.slug) ? 'active' }}">
-                            {% if page.subparts|length > 0 %}<i class="fa fa-angle-right {{ (current_page_slug == page.slug) ? 'unfolded' }}">&nbsp;</i>{% endif %}
+                        <div class="page{{ (current_page_slug == page.slug) ? ' active' }}{{ (page.pageNumber in tutoriel.userProgression(app.user).completedPages ) ? ' complete' }}">
+                            {% if page.subparts|length > 0 %}<i
+                                class="fa fa-angle-right {{ (current_page_slug == page.slug) ? 'unfolded' }}">
+                                    &nbsp;</i>{% endif %}
                             <a href="{{ page_url }}">{{ page.pageNumber ~ ' - ' ~ page.title }}</a>
                             {% if page.subparts|length > 0 %}
                                 <div class="subpages {% if app.request.attributes.get('slug_page') == page.slug %}visible{% endif %}">
                                     {% for subpage in page.subparts %}
-                                        <div class="subpage"><a {% if subpage.anchor_name is defined %}data-to="{{ subpage.anchor_name }}"{% endif %} href="{{ page_url }}{% if subpage.anchor_name is defined %}#{{ subpage.anchor_name }}{% endif %}">{{ loop.index ~ " - " ~ subpage.title }}</a></div>
+                                        <div class="subpage"><a
+                                                    {% if subpage.anchor_name is defined %}data-to="{{ subpage.anchor_name }}"{% endif %}
+                                                    href="{{ page_url }}{% if subpage.anchor_name is defined %}#{{ subpage.anchor_name }}{% endif %}">{{ loop.index ~ " - " ~ subpage.title }}</a>
+                                        </div>
                                     {% endfor %}
                                 </div>
                             {% endif %}
                         </div>
                     {% endfor %}
+                    <div class="progress">
+                        <i class="fa fa-clock-o">&nbsp;&nbsp;&nbsp;</i><div class="progressbar-tutoriel"><div class="progressbar-bg {{ (tutoriel.tutorialPages|length == tutoriel.userProgression(app.user).completedPages|length) ? 'complete' }}" style="width: {{ tutoriel.userProgression(app.user).progression }}%"></div></div><div class="progressbar-text">{{ tutoriel.userProgression(app.user).progression }}%</div>
+                    </div>
                 </div>
                 <div class="tutoriel-content two-thirds">
                     {{ page.content|raw }}
@@ -34,13 +43,16 @@
                                     <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ prev_page.title }}
                                 </a>
                             {% else %}
-                                <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i class="fa fa-home">&nbsp;&nbsp;</i>Retourner au sommaire</a>
+                                <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i
+                                            class="fa fa-home">&nbsp;&nbsp;</i>Retourner au sommaire</a>
                             {% endif %}
                         </div>
 
                         <div class="right">
                             {% if next_page %}
-                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }}&nbsp;&nbsp;
+
+                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }}
+                                    &nbsp;&nbsp;
                                     <i class="fa fa-arrow-right"></i></a>
                             {% endif %}
                         </div>
@@ -48,7 +60,23 @@
                     </div>
                     <div class="spacer"></div>
                     {% if app.user and ((is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN')) %}
-                        <a href="{{ path('admin_tutoriel_page_edit', {'id': tutoriel.id, 'slug_page': page.slug}) }}" class="button icon small secondary"><span class="icon"><i class="fa fa-edit"></i></span>Éditer la page</a>
+                        <a href="{{ path('admin_tutoriel_page_edit', {'id': tutoriel.id, 'slug_page': page.slug}) }}"
+                           class="button icon small secondary"><span class="icon"><i class="fa fa-edit"></i></span>Éditer
+                            la page</a>
+                    {% endif %}
+                    {% if page.pageNumber not in tutoriel.userProgression(app.user).completedPages %}
+                    <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
+                          method="post">
+                        <button class="button primary medium icon"><span class="icon"><i class="fa fa-check-circle"></i></span>Valider
+                            cette partie
+                        </button>
+                    </form>
+                    {% else %}
+                        <form action="{{ path('tutoriel_unmark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
+                              method="post">
+                            <button class="button primary medium icon"><span class="icon"><i class="fa fa-remove"></i></span>Dévalider la partie
+                            </button>
+                        </form>
                     {% endif %}
                 </div>
             </div>
