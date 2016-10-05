@@ -18,11 +18,12 @@
                 <p>Difficulté : <span class="value">{{ tutoriel.difficulty }}</span></p>
                 <p>Temps estimé : <span class="value">{{ tutoriel.duration }} minutes</span></p>
                 <div class="center">
+
                     {% if app.user %}
                         {% if tutoriel.userProgression(app.user).hasCompletedTutoriel(tutoriel) %}
                             <a class="button secondary inversed small" href="{{ path('tutoriel_show', {'slug_page': tutoriel.tutorialPages.first.slug, 'slug': tutoriel.slug}) }}">Revoir le cours</a>
                         {% elseif tutoriel.userProgression(app.user).hasStartedTutoriel %}
-                                <a class="button secondary inversed small" href="{{ path('tutoriel_show', {'slug_page': after_pages_complete[loop.index0].slug, 'slug': tutoriel.slug}) }}">Reprendre le cours</a>
+                                <a class="button secondary inversed small" href="{{ path('tutoriel_show', {'slug_page': repo.lastUnreadedSlug(tutoriel, user), 'slug': tutoriel.slug}) }}">Reprendre le cours</a>
                         {% else %}
                             <a class="button secondary inversed small" href="{{ path('tutoriel_show', {'slug_page': tutoriel.tutorialPages.first.slug, 'slug': tutoriel.slug}) }}">Commencer le cours</a>
                         {% endif %}

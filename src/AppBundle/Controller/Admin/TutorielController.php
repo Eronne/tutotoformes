@@ -175,6 +175,7 @@ class TutorielController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+
         if($user instanceof Utilisateur ){
 
             $up = $tutoriel->getUserProgression($user);
@@ -184,14 +185,9 @@ class TutorielController extends Controller
                 $lastPageCompleted = null;
 
                 if($user && count($up->getCompletedPages()) > 0){
-                    $beforeLastPage = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'slug' => $up->getLastCompletedPageSlug()]);
-                    if($beforeLastPage->getPageNumber() < $tutoriel->getTutorialPages()->count()){
-                        $lastPageCompleted = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'pageNumber' => $beforeLastPage->getPageNumber() + 1]);
-                    } else {
-                        $lastPageCompleted = $beforeLastPage;
-                    }
+                    $lastPageCompleted = $pageRepo->getLastUnreadedSlug($tutoriel, $user);
                 }
-                return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage, 'last_page_completed' => $lastPageCompleted]);
+                return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage, 'last_unreaded_slug' => $lastPageCompleted]);
 
             } else {
                 return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage]);

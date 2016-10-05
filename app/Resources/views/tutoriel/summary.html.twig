@@ -50,7 +50,7 @@
                                     le cours</a>
                             {% elseif tutoriel.userProgression(app.user).hasStartedTutoriel %}
                                 <a class="button primary large"
-                                   href="{{ path('tutoriel_show', {'slug_page': last_page_completed.slug, 'slug': tutoriel.slug}) }}">Reprendre
+                                   href="{{ path('tutoriel_show', {'slug_page': last_unreaded_slug, 'slug': tutoriel.slug}) }}">Reprendre
                                     le cours</a>
                             {% else %}
                                 <a class="button primary large"
