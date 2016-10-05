@@ -59,6 +59,25 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
 
     }
 
+    /**
+     * @param Utilisateur $user
+     * @param string $order
+     * @return Tutoriel[]
+     */
+    public function getFinishedTutorialsBy(Utilisateur $user, $order = 'DESC'){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('tutoriel')
+            ->from('AppBundle:Tutoriel', 'tutoriel')
+            ->innerJoin('tutoriel.userProgression', 'user_progression')
+            ->where('user_progression.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('user_progression.finishedAt is not NULL')
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
 
 
 

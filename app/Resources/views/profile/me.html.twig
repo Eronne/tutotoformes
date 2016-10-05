@@ -2,19 +2,47 @@
 
 
     {% block body %}
-
+        <div class="jumbotron">
+            <div class="heading tutoriel">
+                <h1>Bienvenue {{ user.username }}</h1>
+                <p>Ta page d'accueil</p>
+                <div class="metas">
+                    <span class="date">Inscrit depuis le {{ user.createdAt|date('d/m/Y') }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="arrow-separator"></div>
         <div class="page-body">
             <div class="container">
-                <h1>Bienvenue {{ user.username }}</h1>
-
-                <div class="spacer"></div>
-                <h2>Vos tutoriels en cours</h2>
-                <div class="active-tutoriels">
-                    {% for tutoriel in following_tutoriels %}
-                        {% embed 'partials/_active_tutoriel.html.twig' %}{% endembed %}
-                    {% endfor %}
-                </div>
-                <div class="spacer"></div>
+                {% if following_tutoriels|length > 0 %}
+                    <div class="spacer"></div>
+                    <h2>Vos tutoriels en cours</h2>
+                    <div class="active-tutoriels">
+                        {% for tutoriel in following_tutoriels %}
+                            {% embed 'partials/_active_tutoriel.html.twig' %}{% endembed %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if finished_tutoriels|length > 0 %}
+                    <div class="spacer"></div>
+                    <h2>Tutoriels terminés</h2>
+                    <div class="tutoriels">
+                        {% for tutoriel in finished_tutoriels %}
+                            {% embed 'partials/_tutoriel.html.twig' %}{% endembed %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if other_tutoriels|length > 0 %}
+                    <div class="spacer"></div>
+                    <h2>Autres tutoriels</h2>
+                    <div class="tutoriels others">
+                        {% for tutoriel in other_tutoriels %}
+                            {% if tutoriel.userProgression(app.user) == false or tutoriel.userProgression(app.user).startedAt is null %}
+                                {% embed 'partials/_tutoriel.html.twig' %}{% endembed %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
 
         </div>

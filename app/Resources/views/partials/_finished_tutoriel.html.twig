@@ -1,0 +1,43 @@
+{#<a style="color: inherit; text-decoration: none;" href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug }) }}">#}
+<div class="tutoriel">
+    <div class="thumbnail">
+        {% if tutoriel.thumbnailLink is null or tutoriel.thumbnailLink == '' %}
+            <h3 class="tutoriel-title">{{ tutoriel.title }}</h3>
+        {% else %}
+            <img src="{{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}" alt="" class="thumbnail">
+        {% endif %}
+    </div>
+    <div class="informations">
+        <span class="started-at">Commencé le {{ tutoriel.userProgression(app.user).startedAt|date('d/m/Y, à H:i') }}</span>
+        <div class="content">
+            <h3 class="title">{{ tutoriel.title }}</h3>
+            <p>Difficulté : <span class="value">{{ tutoriel.difficulty }}</span></p>
+            <p>Temps estimé : <span class="value">{{ tutoriel.duration }} minutes</span></p>
+            <div class="center">
+                {% if app.user %}
+                    {% if tutoriel.userProgression(app.user).hasCompletedTutoriel(tutoriel) %}
+                        <a class="button secondary inversed small" href="{{ path('tutoriel_show', {'slug_page': tutoriel.tutorialPages.first.slug, 'slug': tutoriel.slug}) }}">Revoir le cours</a>
+                    {% elseif tutoriel.userProgression(app.user).hasStartedTutoriel %}
+                        <a class="button secondary inversed small" href="{{ path('tutoriel_show', {'slug_page': after_pages_complete[loop.index0].slug, 'slug': tutoriel.slug}) }}">Reprendre le cours</a>
+                    {% else %}
+                        <a class="button secondary inversed small" href="{{ path('tutoriel_show', {'slug_page': tutoriel.tutorialPages.first.slug, 'slug': tutoriel.slug}) }}">Commencer le cours</a>
+                    {% endif %}
+                {% else %}
+                    Inscrivez-vous pour commencer le cours
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="metas">
+            <div class="progress">
+                <i class="fa fa-clock-o">&nbsp;&nbsp;&nbsp;</i>
+                <div class="progressbar-tutoriel">
+                    <div class="progressbar-bg {{ (tutoriel.tutorialPages|length == tutoriel.userProgression(app.user).completedPages|length) ? 'complete' }}"
+                         style="width: {{ tutoriel.userProgression(app.user).progression }}%"></div>
+                </div>
+                <div class="progressbar-text">{{ tutoriel.userProgression(app.user).progression }}%</div>
+            </div>
+        </div>
+    </div>
+</div>
+{#</a>#}

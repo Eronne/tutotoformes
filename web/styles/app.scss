@@ -253,6 +253,9 @@ header.fixed {
                     cursor: pointer;
                     background-color: rgba(0, 0, 0, 0.18);
                 }
+                &.active {
+                    background-color: rgba(0, 0, 0, 0.18);
+                }
                 &.login {
                     background-color: $red;
                     &:hover {
@@ -585,6 +588,10 @@ span.date::before {
     justify-content: space-around;
     align-content: space-around;
 
+
+    &.others {
+        justify-content: center;
+    }
     & .tutoriel {
         width: 570px;
         height: 310px;
@@ -593,6 +600,10 @@ span.date::before {
         overflow: hidden;
         margin-bottom: 20px;
         transform: translate3d(0, 0, 0);
+
+        &.others {
+            margin-right: 0;
+        }
 
         & .tutoriel-title {
 

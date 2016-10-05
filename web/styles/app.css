@@ -257,6 +257,8 @@ header.fixed {
         header.fixed nav.main-nav .menu .item:hover {
           cursor: pointer;
           background-color: rgba(0, 0, 0, 0.18); }
+        header.fixed nav.main-nav .menu .item.active {
+          background-color: rgba(0, 0, 0, 0.18); }
         header.fixed nav.main-nav .menu .item.login {
           background-color: #e74c3c; }
           header.fixed nav.main-nav .menu .item.login:hover {
@@ -508,6 +510,8 @@ span.date::before {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-around; }
+  .tutoriels.others {
+    justify-content: center; }
   .tutoriels .tutoriel {
     width: 570px;
     height: 310px;
@@ -516,6 +520,8 @@ span.date::before {
     overflow: hidden;
     margin-bottom: 20px;
     transform: translate3d(0, 0, 0); }
+    .tutoriels .tutoriel.others {
+      margin-right: 0; }
     .tutoriels .tutoriel .tutoriel-title {
       transition: all 0.3s;
       position: absolute;
