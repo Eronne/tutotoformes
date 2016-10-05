@@ -139,6 +139,7 @@ class TutorielPageController extends Controller
         }
         $em->remove($tutorielPage);
         $em->flush();
+
         $this->UpdateUserProgression($tutoriel,$tutorielPage, $this->get('security.token_storage')->getToken()->getUser(), true);
         $this->addFlash('notification success', "La page a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
@@ -179,6 +180,7 @@ class TutorielPageController extends Controller
         if (!$userProgression) {
             $up = new UserProgression();
             $up->setTutoriel($tutoriel)
+                ->setProgression(0)
                 ->setUser($user);
             $this->getDoctrine()->getEntityManager()->persist($up);
             $this->getDoctrine()->getEntityManager()->flush();

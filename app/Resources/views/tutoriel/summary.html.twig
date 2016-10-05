@@ -6,7 +6,9 @@
                 <h1>{{ tutoriel.title }}</h1>
                 <p>{{ tutoriel.subtitle }}</p>
                 <div class="metas">
-                    <span class="author">{{ tutoriel.author.username }}</span><span class="date">{{ tutoriel.createdAt|date('d/m/Y') }}</span><span class="time">{{ tutoriel.duration }} minutes</span>
+                    <span class="author">{{ tutoriel.author.username }}</span><span
+                            class="date">{{ tutoriel.createdAt|date('d/m/Y') }}</span><span
+                            class="time">{{ tutoriel.duration }} minutes</span>
                 </div>
             </div>
         </div>
@@ -21,11 +23,15 @@
                     <ol class="titles">
                         {% for page in tutoriel.tutorialPages %}
                             <li>
-                                <h3><a href="{{ path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) }}">{{ page.title }}</a></h3>
+                                <h3>
+                                    <a href="{{ path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) }}">{{ page.title }}</a>
+                                </h3>
                                 {% if page.subparts|length > 0 %}
                                     <ol class="subtitles">
                                         {% for subpart in page.subparts %}
-                                            <li><a href="{{ path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) }}{{ subpart['anchor_name'] is defined ? '#' ~ subpart['anchor_name'] : '' }}">{{ subpart.title }}</a></li>
+                                            <li>
+                                                <a href="{{ path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) }}{{ subpart['anchor_name'] is defined ? '#' ~ subpart['anchor_name'] : '' }}">{{ subpart.title }}</a>
+                                            </li>
                                         {% endfor %}
                                     </ol>
                                 {% endif %}
@@ -36,23 +42,40 @@
                 </div>
                 <div class="spacer"></div>
                 <div class="center">
-                        {% if app.user %}
+                    {% if app.user %}
+                        {% if tutoriel.userProgression(app.user) %}
                             {% if tutoriel.userProgression(app.user).hasCompletedTutoriel(tutoriel) %}
-                    <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Revoir le cours</a>
+                                <a class="button primary large"
+                                   href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Revoir
+                                    le cours</a>
                             {% elseif tutoriel.userProgression(app.user).hasStartedTutoriel %}
-                                <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': last_page_completed.slug, 'slug': tutoriel.slug}) }}">Reprendre le cours</a>
+                                <a class="button primary large"
+                                   href="{{ path('tutoriel_show', {'slug_page': last_page_completed.slug, 'slug': tutoriel.slug}) }}">Reprendre
+                                    le cours</a>
                             {% else %}
-                                <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Commencer le cours</a>
+                                <a class="button primary large"
+                                   href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Commencer
+                                    le cours</a>
                             {% endif %}
                         {% else %}
-                            <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Inscrivez-vous pour commencer le cours</a>
+                            <a class="button primary large"
+                               href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Commencer
+                                le cours</a>
                         {% endif %}
+                    {% else %}
+                        <a class="button primary large"
+                           href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Inscrivez-vous
+                            pour commencer le cours</a>
+                    {% endif %}
+
                     {% if app.user %}
                         {% if  (is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN') %}
-                            <a  href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}" class="button icon secondary large"><span class="icon"><i class="fa fa-edit"></i></span>Éditer le cours</a>
+                            <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}"
+                               class="button icon secondary large"><span class="icon"><i class="fa fa-edit"></i></span>Éditer
+                                le cours</a>
                         {% endif %}
                     {% endif %}
-                        </div>
+                </div>
             {% else %}
                 <h1>Aucunes pages disponible</h1>
             {% endif %}
