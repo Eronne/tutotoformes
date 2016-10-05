@@ -175,23 +175,29 @@ class TutorielController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $this->UpdateUserProgression($tutoriel, $user);
+        if($user instanceof Utilisateur){
+            $this->UpdateUserProgression($tutoriel, $user);
 
-        $up = $tutoriel->getUserProgression($user);
+            $up = $tutoriel->getUserProgression($user);
 
-        $lastPageCompleted = null;
+            $lastPageCompleted = null;
 
-        if($user && count($up->getCompletedPages()) > 0){
-            $beforeLastPage = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'slug' => $up->getLastCompletedPageSlug()]);
-            if($beforeLastPage->getPageNumber() < $tutoriel->getTutorialPages()->count()){
-                $lastPageCompleted = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'pageNumber' => $beforeLastPage->getPageNumber() + 1]);
-            } else {
-                $lastPageCompleted = $beforeLastPage;
+            if($user && count($up->getCompletedPages()) > 0){
+                $beforeLastPage = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'slug' => $up->getLastCompletedPageSlug()]);
+                if($beforeLastPage->getPageNumber() < $tutoriel->getTutorialPages()->count()){
+                    $lastPageCompleted = $pageRepo->findOneBy(['tutoriel' => $tutoriel, 'pageNumber' => $beforeLastPage->getPageNumber() + 1]);
+                } else {
+                    $lastPageCompleted = $beforeLastPage;
+                }
             }
+            return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage, 'last_page_completed' => $lastPageCompleted]);
+
+        } else {
+            return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage]);
         }
 
 
-        return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage, 'last_page_completed' => $lastPageCompleted]);
+
 
     }
 

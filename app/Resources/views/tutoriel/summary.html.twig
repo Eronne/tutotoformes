@@ -45,11 +45,11 @@
                                 <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Commencer le cours</a>
                             {% endif %}
                         {% else %}
-                            Inscrivez-vous pour commencer le cours
+                            <a class="button primary large" href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">Inscrivez-vous pour commencer le cours</a>
                         {% endif %}
                     {% if app.user %}
                         {% if  (is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}" class="button icon secondary large"><span class="icon"><i class="fa fa-edit"></i></span>Éditer le cours</a>
+                            <a  href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}" class="button icon secondary large"><span class="icon"><i class="fa fa-edit"></i></span>Éditer le cours</a>
                         {% endif %}
                     {% endif %}
                         </div>
