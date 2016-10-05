@@ -225,11 +225,12 @@ class TutorielController extends Controller
         $prevPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() - 1, 'tutoriel' => $tutoriel]);
         $nextPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
 
+        $this->UpdateUserProgression($tutoriel, $user);
+
         if(!$prevPage && $tutoriel->getUserProgression($user)->getStartedAt() == null) {
             $tutoriel->getUserProgression($user)->setStartedAt(new \DateTime('now'));
 
         }
-        $this->UpdateUserProgression($tutoriel, $user);
 
 
 
