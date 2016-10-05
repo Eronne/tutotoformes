@@ -176,7 +176,7 @@ class TutorielController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         if($user instanceof Utilisateur){
-            $this->UpdateUserProgression($tutoriel, $user);
+//            $this->UpdateUserProgression($tutoriel, $user);
 
             $up = $tutoriel->getUserProgression($user);
 
@@ -218,19 +218,10 @@ class TutorielController extends Controller
             return $this->createNotFoundException();
         }
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-
         $pageRepo = $this->getDoctrine()->getManager()->getRepository('AppBundle:TutorielPage');
 
         $prevPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() - 1, 'tutoriel' => $tutoriel]);
         $nextPage = $pageRepo->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
-
-        $this->UpdateUserProgression($tutoriel, $user);
-
-        if(!$prevPage && $tutoriel->getUserProgression($user)->getStartedAt() == null) {
-            $tutoriel->getUserProgression($user)->setStartedAt(new \DateTime('now'));
-
-        }
 
 
 
@@ -251,24 +242,8 @@ class TutorielController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
         $userProgression = $tutoriel->getUserProgression($user);
 
-        if (!$userProgression) {
-            $up = new UserProgression();
-            $up->setTutoriel($tutoriel)
-                ->setUser($user);
-            $this->getDoctrine()->getEntityManager()->persist($up);
-            $this->getDoctrine()->getEntityManager()->flush();
-            $userProgression = $tutoriel->getUserProgression($user);
-        }
+        $this->UpdateUserProgression($tutoriel, $page, $user, false);
 
-        if (!in_array($page->getSlug(), $userProgression->getCompletedPages())) {
-            $array = $userProgression->getCompletedPages();
-            array_push($array, $page->getSlug());
-            $userProgression->setCompletedPages($array);
-        }
-
-        $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
-
-        $this->getDoctrine()->getEntityManager()->flush();
         $nextPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
 
         if ($userProgression->getProgression() == 100) {
@@ -307,17 +282,15 @@ class TutorielController extends Controller
             $userProgression = $tutoriel->getUserProgression($user);
         }
 
-        if (in_array($page->getSlug(), $userProgression->getCompletedPages())) {
-            $array = $userProgression->getCompletedPages();
-            $key = array_search($page->getSlug(), $array);
-            unset($array[$key]);
-            $userProgression->setCompletedPages($array);
-        }
+
+
+
         $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
 
         $this->getDoctrine()->getEntityManager()->flush();
         $nextPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
-        $this->UpdateUserProgression($tutoriel, $this->get('security.token_storage')->getToken()->getUser());
+
+        $this->UpdateUserProgression($tutoriel, $page, $user, true);
 
         if ($nextPage) {
             return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $nextPage->getSlug()]);
@@ -326,7 +299,7 @@ class TutorielController extends Controller
 
     }
 
-    private function UpdateUserProgression(Tutoriel $tutoriel, Utilisateur $user){
+    private function UpdateUserProgression(Tutoriel $tutoriel, TutorielPage $page, Utilisateur $user, $delete){
 
 
         $userProgression = $tutoriel->getUserProgression($user);
@@ -340,12 +313,19 @@ class TutorielController extends Controller
             $userProgression = $tutoriel->getUserProgression($user);
         }
 
-        if(!$userProgression->getStartedAt() && $tutoriel->getUserProgression($user)->getLastCompletedPageSlug()){
-            $userProgression->setStartedAt(new \DateTime('now'));
-            $this->getDoctrine()->getEntityManager()->flush();
+        if(!$delete) {
+            if (!in_array($page->getSlug(), $userProgression->getCompletedPages())) {
+                $array = $userProgression->getCompletedPages();
+                array_push($array, $page->getSlug());
+                $userProgression->setCompletedPages($array);
+            }
         } else {
-            $userProgression->setStartedAt(null);
-            $this->getDoctrine()->getEntityManager()->flush();
+            if (in_array($page->getSlug(), $userProgression->getCompletedPages())) {
+                $array = $userProgression->getCompletedPages();
+                $key = array_search($page->getSlug(), $array);
+                unset($array[$key]);
+                $userProgression->setCompletedPages($array);
+            }
         }
 
         if(count($userProgression->getCompletedPages()) == 0){
@@ -355,6 +335,14 @@ class TutorielController extends Controller
         }
         if($userProgression->getProgression() != 100){
             $userProgression->setFinishedAt(null);
+        }
+
+        if($userProgression->getStartedAt() == null && $tutoriel->getUserProgression($user)->getLastCompletedPageSlug() != null){
+            $userProgression->setStartedAt(new \DateTime('now'));
+            $this->getDoctrine()->getEntityManager()->flush();
+        } else if($userProgression->getStartedAt() != null && $userProgression->getProgression() == 0) {
+            $userProgression->setStartedAt(null);
+            $this->getDoctrine()->getEntityManager()->flush();
         }
         $this->getDoctrine()->getEntityManager()->flush();
     }

@@ -139,7 +139,7 @@ class TutorielPageController extends Controller
         }
         $em->remove($tutorielPage);
         $em->flush();
-        $this->UpdateUserProgression($tutoriel, $this->get('security.token_storage')->getToken()->getUser());
+        $this->UpdateUserProgression($tutoriel,$tutorielPage, $this->get('security.token_storage')->getToken()->getUser(), true);
         $this->addFlash('notification success', "La page a bien été supprimé");
         return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
     }
@@ -171,7 +171,7 @@ class TutorielPageController extends Controller
         return $text;
     }
 
-    private function UpdateUserProgression(Tutoriel $tutoriel, Utilisateur $user){
+    private function UpdateUserProgression(Tutoriel $tutoriel, TutorielPage $page, Utilisateur $user, $delete){
 
 
         $userProgression = $tutoriel->getUserProgression($user);
@@ -185,21 +185,40 @@ class TutorielPageController extends Controller
             $userProgression = $tutoriel->getUserProgression($user);
         }
 
-        if(!$userProgression->getStartedAt() && $tutoriel->getUserProgression($user)->getLastCompletedPageSlug()){
-            $userProgression->setStartedAt(new \DateTime('now'));
-            $this->getDoctrine()->getEntityManager()->flush();
+        if(!$delete) {
+            if (!in_array($page->getSlug(), $userProgression->getCompletedPages())) {
+                $array = $userProgression->getCompletedPages();
+                array_push($array, $page->getSlug());
+                $userProgression->setCompletedPages($array);
+            }
         } else {
-            $userProgression->setStartedAt(null);
-            $this->getDoctrine()->getEntityManager()->flush();
+            if (in_array($page->getSlug(), $userProgression->getCompletedPages())) {
+                $array = $userProgression->getCompletedPages();
+                $key = array_search($page->getSlug(), $array);
+                unset($array[$key]);
+                $userProgression->setCompletedPages($array);
+            }
         }
 
-        $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
-
+        if(count($userProgression->getCompletedPages()) == 0){
+            $userProgression->setProgression(0);
+        } else {
+            $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
+        }
         if($userProgression->getProgression() != 100){
             $userProgression->setFinishedAt(null);
         }
+
+        if($userProgression->getStartedAt() == null && $tutoriel->getUserProgression($user)->getLastCompletedPageSlug() != null){
+            $userProgression->setStartedAt(new \DateTime('now'));
+            $this->getDoctrine()->getEntityManager()->flush();
+        } else if($userProgression->getStartedAt() != null && $userProgression->getProgression() == 0) {
+            $userProgression->setStartedAt(null);
+            $this->getDoctrine()->getEntityManager()->flush();
+        }
         $this->getDoctrine()->getEntityManager()->flush();
     }
+
 
 
 
