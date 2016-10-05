@@ -174,8 +174,6 @@ class TutorielPageController extends Controller
     private function UpdateUserProgression(Tutoriel $tutoriel, Utilisateur $user){
 
 
-        /* TODO: Ajouter les pages par leur slug */
-
         $userProgression = $tutoriel->getUserProgression($user);
 
         if (!$userProgression) {
@@ -187,7 +185,13 @@ class TutorielPageController extends Controller
             $userProgression = $tutoriel->getUserProgression($user);
         }
 
+
+
         $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
+
+        if($userProgression->getProgression() != 100){
+            $userProgression->setFinishedAt(null);
+        }
         $this->getDoctrine()->getEntityManager()->flush();
     }
 

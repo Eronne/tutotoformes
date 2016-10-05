@@ -68,7 +68,7 @@ class Tutoriel
     /**
      * @var int
      *
-     * @ORM\Column(name="difficulty", type="integer")
+     * @ORM\Column(name="difficulty", type="string", length=60)
      */
     private $difficulty;
 
@@ -207,7 +207,7 @@ class Tutoriel
     /**
      * Set difficulty
      *
-     * @param integer $difficulty
+     * @param string $difficulty
      *
      * @return Tutoriel
      */
@@ -221,7 +221,7 @@ class Tutoriel
     /**
      * Get difficulty
      *
-     * @return int
+     * @return string
      */
     public function getDifficulty()
     {

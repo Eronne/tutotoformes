@@ -23,10 +23,14 @@ class ProfileController extends Controller
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $tutorielRepo = $this->getDoctrine()->getRepository('AppBundle:Tutoriel');
-        $followingTutoriels = $tutorielRepo->getTutorielsStartedBy($user, true);
+        $followingTutoriels = $tutorielRepo->getTutorielsStartedBy($user, false);
 
+        $userRepo = $this->getDoctrine()->getRepository('AppBundle:UserProgression');
+        $afterPagesCompleted = [];
+        foreach($followingTutoriels as $followingTutoriel) {
+            $afterPagesCompleted[] = $userRepo->getPageAfterLastCompleted($user, $followingTutoriel);
+        }
 
-
-        return $this->render('profile/me.html.twig', ['user' => $user, 'following_tutoriels' => $followingTutoriels]);
+        return $this->render('profile/me.html.twig', ['user' => $user, 'following_tutoriels' => $followingTutoriels, 'after_pages_complete' => $afterPagesCompleted]);
     }
 }

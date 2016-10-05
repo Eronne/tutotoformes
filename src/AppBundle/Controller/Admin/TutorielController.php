@@ -336,6 +336,9 @@ class TutorielController extends Controller
         } else {
             $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
         }
+        if($userProgression->getProgression() != 100){
+            $userProgression->setFinishedAt(null);
+        }
         $this->getDoctrine()->getEntityManager()->flush();
     }
 

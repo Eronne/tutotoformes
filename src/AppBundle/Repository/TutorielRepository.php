@@ -37,7 +37,12 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
-    public function getTutorielsStartedBy(Utilisateur $user, $showFinished){
+    /**
+     * @param Utilisateur $user
+     * @param $showFinished
+     * @return Tutoriel[]
+     */
+    public function getTutorielsStartedBy(Utilisateur $user, $showFinished, $order = 'DESC'){
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('tutoriel')
             ->from('AppBundle:Tutoriel', 'tutoriel')
@@ -48,6 +53,7 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
         if(!$showFinished){
             $qb->andWhere('tup.finishedAt is NULL');
         }
+            $qb->addOrderBy('tup.startedAt', $order);
         return $qb->getQuery()
             ->getResult();
 

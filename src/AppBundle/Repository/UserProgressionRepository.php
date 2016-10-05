@@ -1,6 +1,9 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Tutoriel;
+use AppBundle\Entity\TutorielPage;
+use AppBundle\Entity\Utilisateur;
 
 /**
  * UserProgressionRepository
@@ -10,4 +13,42 @@ namespace AppBundle\Repository;
  */
 class UserProgressionRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param Utilisateur $user
+     * @param Tutoriel $tutoriel
+     * @return TutorielPage|array
+     */
+    public function getPageAfterLastCompleted(Utilisateur $user, Tutoriel $tutoriel){
+        $qb1 = $this->getEntityManager()->createQueryBuilder();
+        /** @var TutorielPage[] $beforeLast */
+        $beforeLast = $qb1->select('tp')
+            ->from('AppBundle:TutorielPage', 'tp')
+            ->where('tp.slug = :slug')
+            ->setParameter('slug', $tutoriel->getUserProgression($user)->getLastCompletedPageSlug())
+            ->getQuery()
+            ->getResult();
+        if($beforeLast) {
+            $qb = $this->getEntityManager()->createQueryBuilder();
+            $result = $qb->select('tutoriel_page')
+                ->from('AppBundle:TutorielPage', 'tutoriel_page')
+                ->innerJoin('tutoriel_page.tutoriel', 'tutoriel')
+                ->innerJoin('tutoriel.userProgression', 'user_progression')
+                ->where('user_progression.user = :user')
+                ->setParameter('user', $user)
+                ->andWhere('user_progression.tutoriel = :tutoriel')
+                ->setParameter('tutoriel', $tutoriel)
+                ->andWhere('tutoriel_page.pageNumber = :n')
+                ->setParameter('n', $beforeLast[0]->getPageNumber() + 1)
+                ->getQuery()
+                ->getArrayResult();
+            return ($result) ? $result[0] : $beforeLast[0];
+        } else {
+            return null;
+        }
+
+
+
+    }
+
 }

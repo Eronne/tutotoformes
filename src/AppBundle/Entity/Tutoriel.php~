@@ -68,7 +68,7 @@ class Tutoriel
     /**
      * @var int
      *
-     * @ORM\Column(name="difficulty", type="integer")
+     * @ORM\Column(name="difficulty", type="string", length=60)
      */
     private $difficulty;
 
@@ -114,7 +114,7 @@ class Tutoriel
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserProgression", mappedBy="tutoriel")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserProgression", mappedBy="tutoriel", cascade={"remove"})
      */
     private $userProgression;
 
@@ -308,6 +308,8 @@ class Tutoriel
         return $this->tutorialPages->matching($criteria);
     }
 
+
+
     /**
      * Set author
      *
@@ -406,6 +408,11 @@ class Tutoriel
 
         return $text;
     }
+
+    public function hasFinish(Utilisateur $user){
+        return ($this->getUserProgression($user)->getProgression() == 100);
+    }
+
 
     /**
      * Set description
