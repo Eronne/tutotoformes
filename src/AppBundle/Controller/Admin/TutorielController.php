@@ -338,10 +338,15 @@ class TutorielController extends Controller
             $this->getDoctrine()->getEntityManager()->flush();
             $userProgression = $tutoriel->getUserProgression($user);
         }
+
         if(!$userProgression->getStartedAt() && $tutoriel->getUserProgression($user)->getLastCompletedPageSlug()){
             $userProgression->setStartedAt(new \DateTime('now'));
             $this->getDoctrine()->getEntityManager()->flush();
+        } else {
+            $userProgression->setStartedAt(null);
+            $this->getDoctrine()->getEntityManager()->flush();
         }
+
         if(count($userProgression->getCompletedPages()) == 0){
             $userProgression->setProgression(0);
         } else {

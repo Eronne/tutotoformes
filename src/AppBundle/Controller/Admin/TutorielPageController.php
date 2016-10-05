@@ -185,7 +185,13 @@ class TutorielPageController extends Controller
             $userProgression = $tutoriel->getUserProgression($user);
         }
 
-
+        if(!$userProgression->getStartedAt() && $tutoriel->getUserProgression($user)->getLastCompletedPageSlug()){
+            $userProgression->setStartedAt(new \DateTime('now'));
+            $this->getDoctrine()->getEntityManager()->flush();
+        } else {
+            $userProgression->setStartedAt(null);
+            $this->getDoctrine()->getEntityManager()->flush();
+        }
 
         $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
 
