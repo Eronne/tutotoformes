@@ -42,11 +42,14 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
     public function findAll($order = 'DESC', $showDraft = false)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        return $qb->select('tutoriel')
-            ->from('AppBundle:Tutoriel', 'tutoriel')
-            ->where('tutoriel.isDraft = :draft')
-            ->setParameter('draft', $showDraft)
-            ->orderBy('tutoriel.createdAt', $order)
+        $qb->select('tutoriel')
+            ->from('AppBundle:Tutoriel', 'tutoriel');
+        if (!$showDraft) {
+            $qb->where('tutoriel.isDraft = :draft')
+                ->setParameter('draft', $showDraft);
+
+        }
+        return $qb->orderBy('tutoriel.createdAt', $order)
             ->getQuery()
             ->getResult();
     }
