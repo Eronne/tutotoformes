@@ -39,7 +39,11 @@
         </div>
         <div class="field">
             <label>Difficulté</label>
-            <div class="ui star rating" data-rating="{{ edit ? tutoriel.difficulty : '2' }}" data-max-rating="4"></div>
+            <select name="_tutoriel[difficulty]">
+                <option {{ (edit and tutoriel.difficulty == "Facile") ? 'selected' }} value="Facile">Facile</option>
+                <option {{ (edit and tutoriel.difficulty == "Normale") ? 'selected' }} value="Normale">Normale</option>
+                <option {{ (edit and tutoriel.difficulty == "Difficile") ? 'selected' }} value="Difficile">Difficile</option>
+            </select>
         </div>
         <div class="field">
             <label>Brouillon ?</label>
