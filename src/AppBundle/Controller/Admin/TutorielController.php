@@ -29,7 +29,7 @@ class TutorielController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $tutoriels = $this->getDoctrine()->getRepository('AppBundle:Tutoriel')->findAll();
+        $tutoriels = $this->getDoctrine()->getRepository('AppBundle:Tutoriel')->findAll('DESC', true);
         return $this->render('tutoriel/index.html.twig', ['tutoriels' => $tutoriels]);
     }
 
