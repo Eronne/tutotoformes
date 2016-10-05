@@ -28,6 +28,7 @@ class ProfileController extends Controller
         $finishedTutoriels = $tutorielRepo->getFinishedTutorialsBy($user);
         $otherTutoriels = $tutorielRepo->findAll();
         $userRepo = $this->getDoctrine()->getRepository('AppBundle:UserProgression');
+
         $afterPagesCompleted = [];
         foreach($followingTutoriels as $followingTutoriel) {
             $afterPagesCompleted[] = $userRepo->getPageAfterLastCompleted($user, $followingTutoriel);

@@ -317,6 +317,7 @@ class TutorielController extends Controller
 
         $this->getDoctrine()->getEntityManager()->flush();
         $nextPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['pageNumber' => $page->getPageNumber() + 1, 'tutoriel' => $tutoriel]);
+        $this->UpdateUserProgression($tutoriel, $this->get('security.token_storage')->getToken()->getUser());
 
         if ($nextPage) {
             return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $nextPage->getSlug()]);

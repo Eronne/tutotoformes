@@ -4,7 +4,11 @@
         {% if tutoriel.thumbnailLink is null or tutoriel.thumbnailLink == '' %}
             <h3 class="tutoriel-title">{{ tutoriel.title }}</h3>
         {% else %}
-            <img src="{{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}" alt="" class="thumbnail">
+            {% if tutoriel.thumbnailLink starts with 'http' %}
+                <img src="{{ tutoriel.thumbnailLink }}" alt="" class="thumbnail">
+            {% else %}
+                <img src="{{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}" alt="" class="thumbnail">
+            {% endif %}
         {% endif %}
     </div>
     <div class="informations">
