@@ -73,7 +73,7 @@
                         {% if page.slug not in tutoriel.userProgression(app.user).completedPages %}
                             <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                                   method="post">
-                                <button class="button primary medium icon"><span class="icon"><i
+                                <button id="markButton" class="button primary medium icon"><span class="icon"><i
                                                 class="fa fa-check-circle"></i></span>Valider
                                     cette partie
                                 </button>
@@ -81,7 +81,7 @@
                         {% else %}
                             <form action="{{ path('tutoriel_unmark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                                   method="post">
-                                <button class="button primary medium icon"><span class="icon"><i
+                                <button id="markButton" class="button primary medium icon"><span class="icon"><i
                                                 class="fa fa-remove"></i></span>Dévalider la partie
                                 </button>
                             </form>
@@ -89,7 +89,7 @@
                     {% else %}
                         <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                               method="post">
-                            <button class="button primary medium icon"><span class="icon"><i
+                            <button id="markButton" class="button primary medium icon"><span class="icon"><i
                                             class="fa fa-check-circle"></i></span>Valider
                                 cette partie
                             </button>
