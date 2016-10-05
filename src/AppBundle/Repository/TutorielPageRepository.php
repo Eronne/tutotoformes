@@ -59,7 +59,8 @@ class TutorielPageRepository extends \Doctrine\ORM\EntityRepository
         foreach ($tutorielPages as $tutorielPage){
             $tpslugs[] = $tutorielPage->getSlug();
         }
-        return array_values(array_diff($tpslugs, $cp['completedPages']))[0];
+        $final = array_diff($tpslugs, $cp['completedPages']);
+        return end($final);
 
     }
 
