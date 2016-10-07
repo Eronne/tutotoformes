@@ -182,7 +182,7 @@ p, ul, ol, table {
             width: 2.5em;
             height: 100%;
             line-height: 35px;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.11);
             &:before, :after {
                 left: 100%;
                 top: 50%;
@@ -195,7 +195,7 @@ p, ul, ol, table {
             }
             &:before {
                 border-color: rgba(194, 225, 245, 0);
-                border-left-color: rgba(0, 0, 0, 0.25);
+                border-left-color: rgba(0, 0, 0, 0.11);
                 border-width: 19px;
                 margin-top: -19px;
             }

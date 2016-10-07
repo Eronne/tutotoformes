@@ -47,18 +47,18 @@
     {% block body %}{% endblock %}
 </main>
 
+<footer>
+    <div class="container">
+        &copy; {{ 'now'|date('Y') }}
+    </div>
+</footer>
+
 <script src="{{ asset('js/jquery-2.1.4.js') }}"></script>
 <script src="{{ asset('js/tinymce.js') }}"></script>
 <script src="{{ asset('js/prism.js') }}"></script>
 <script src="{{ asset('js/jquery.sticky-kit.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 {% block javascripts %}{% endblock %}
-
-<footer>
-    <div class="container">
-        &copy; {{ 'now'|date('Y') }}
-    </div>
-</footer>
 
 </body>
 
