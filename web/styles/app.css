@@ -515,7 +515,7 @@ span.date::before {
     position: relative;
     overflow: hidden;
     margin-bottom: 20px;
-    transform: translate3d(0, 0, 0); }
+    transform: translateZ(0); }
     .tutoriels .tutoriel .tutoriel-title {
       transition: all 0.3s;
       position: absolute;
@@ -528,7 +528,6 @@ span.date::before {
       text-decoration: none;
       text-align: center; }
     .tutoriels .tutoriel .overlay {
-      transform: translate3d(0, 0, 0);
       transition: all 0.3s;
       position: relative;
       z-index: 5;
@@ -547,9 +546,8 @@ span.date::before {
       min-width: 50%;
       min-height: 50%;
       overflow-x: hidden;
-      transform: translate3d(0, 0, 0) scale(0.4); }
+      transform: scale(0.4); }
     .tutoriels .tutoriel .informations {
-      transform: translate3d(0, 0, 0);
       transition: all .3s;
       position: absolute;
       padding: 25px;
@@ -578,12 +576,11 @@ span.date::before {
     .tutoriels .tutoriel:hover {
       cursor: pointer; }
     .tutoriels .tutoriel .overlay.hover {
-      transform: translate3d(0, 0, 0);
       transition: all 0.3s;
       opacity: .25; }
     .tutoriels .tutoriel:hover > img.thumbnail {
       filter: blur(10px);
-      transform: translate3d(0, 0, 0) scale(0.6);
+      transform: scale(0.6);
       bottom: 125px; }
     .tutoriels .tutoriel:hover > .tutoriel-title {
       line-height: 148px;
@@ -651,7 +648,7 @@ span.date::before {
         min-width: 50%;
         min-height: 50%;
         overflow-x: hidden;
-        transform: translate3d(0, 0, 0) scale(0.4); }
+        transform: scale(0.4); }
     .active-tutoriels .tutoriel .informations {
       position: relative;
       display: inline-block;
@@ -827,7 +824,6 @@ span.date::before {
     bottom: 0 !important; }
   .tutoriel > img.thumbnail {
     filter: blur(10px) !important;
-    transform: translate3d(0, 0, 0) scale(0.6) !important;
     bottom: 125px !important; }
   .tutoriel > .tutoriel-title {
     line-height: 148px !important;

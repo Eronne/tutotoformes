@@ -592,7 +592,7 @@ span.date::before {
         position: relative;
         overflow: hidden;
         margin-bottom: 20px;
-        transform: translate3d(0, 0, 0);
+        transform: translateZ(0);
 
         & .tutoriel-title {
 
@@ -610,7 +610,6 @@ span.date::before {
         }
 
         & .overlay {
-            transform: translate3d(0, 0, 0);
 
             transition: all 0.3s;
             position: relative;
@@ -632,11 +631,10 @@ span.date::before {
             min-width: 50%;
             min-height: 50%;
             overflow-x: hidden;
-            transform: translate3d(0, 0, 0) scale(0.4);
+            transform: scale(0.4);
         }
 
         & .informations {
-            transform: translate3d(0, 0, 0);
 
             transition: all .3s;
             position: absolute;
@@ -675,7 +673,6 @@ span.date::before {
         }
 
         & .overlay.hover {
-            transform: translate3d(0, 0, 0);
 
             transition: all 0.3s;
             opacity: .25;
@@ -683,7 +680,7 @@ span.date::before {
 
         &:hover > img.thumbnail {
             filter: blur(10px);
-            transform: translate3d(0, 0, 0) scale(0.6);
+            transform: scale(0.6);
             bottom: 125px;
         }
 
@@ -770,7 +767,7 @@ span.date::before {
                min-width: 50%;
                min-height: 50%;
                overflow-x: hidden;
-               transform: translate3d(0, 0, 0) scale(0.4);
+               transform: scale(0.4);
            }
        }
        & .informations {
@@ -1013,7 +1010,6 @@ span.date::before {
 
         & > img.thumbnail {
             filter: blur(10px) !important;
-            transform: translate3d(0, 0, 0) scale(0.6) !important;
             bottom: 125px !important;
         }
 
