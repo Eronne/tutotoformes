@@ -201,7 +201,7 @@ p, ul, ol, table {
       width: 2.5em;
       height: 100%;
       line-height: 35px;
-      background: rgba(0, 0, 0, 0.25); }
+      background: rgba(0, 0, 0, 0.11); }
       .button.icon span.icon:before, .button.icon span.icon :after {
         left: 100%;
         top: 50%;
@@ -213,7 +213,7 @@ p, ul, ol, table {
         pointer-events: none; }
       .button.icon span.icon:before {
         border-color: rgba(194, 225, 245, 0);
-        border-left-color: rgba(0, 0, 0, 0.25);
+        border-left-color: rgba(0, 0, 0, 0.11);
         border-width: 19px;
         margin-top: -19px; }
 
@@ -256,6 +256,8 @@ header.fixed {
         transition: all .3s; }
         header.fixed nav.main-nav .menu .item:hover {
           cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.18); }
+        header.fixed nav.main-nav .menu .item.active {
           background-color: rgba(0, 0, 0, 0.18); }
         header.fixed nav.main-nav .menu .item.login {
           background-color: #e74c3c; }
@@ -508,6 +510,8 @@ span.date::before {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-around; }
+  .tutoriels.others {
+    justify-content: center; }
   .tutoriels .tutoriel {
     width: 570px;
     height: 310px;
@@ -515,7 +519,13 @@ span.date::before {
     position: relative;
     overflow: hidden;
     margin-bottom: 20px;
+<<<<<<< HEAD
     transform: translateZ(0); }
+=======
+    transform: translate3d(0, 0, 0); }
+    .tutoriels .tutoriel.others {
+      margin-right: 0; }
+>>>>>>> 6244cec00e057d65ac516dd1dd59ff59fca511a1
     .tutoriels .tutoriel .tutoriel-title {
       transition: all 0.3s;
       position: absolute;

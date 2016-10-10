@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\Utilisateur;
 
@@ -13,26 +14,42 @@ use AppBundle\Entity\Utilisateur;
 class TutorielRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
     /**
      * @param $number
      * @param string $order
+     * @param bool $showDraft
      * @return \AppBundle\Entity\Tutoriel[]
      */
-    public function getFirstNth($number, $order = 'DESC') {
+    public function getFirstNth($number, $order = 'DESC', $showDraft = false)
+    {
         $qb = $this->getEntityManager()->createQueryBuilder();
         return $qb->select('tutoriel')
             ->from('AppBundle:Tutoriel', 'tutoriel')
+            ->where('tutoriel.isDraft = :draft')
+            ->setParameter('draft', $showDraft)
             ->orderBy('tutoriel.createdAt', $order)
             ->setMaxResults($number)
             ->getQuery()
             ->getResult();
     }
 
-    public function findAll($order = 'DESC'){
+    /**
+     * @param string $order
+     * @param bool $showDraft
+     * @return Tutoriel[]
+     */
+    public function findAll($order = 'DESC', $showDraft = false)
+    {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        return $qb->select('tutoriel')
-            ->from('AppBundle:Tutoriel', 'tutoriel')
-            ->orderBy('tutoriel.createdAt', $order)
+        $qb->select('tutoriel')
+            ->from('AppBundle:Tutoriel', 'tutoriel');
+        if (!$showDraft) {
+            $qb->where('tutoriel.isDraft = :draft')
+                ->setParameter('draft', $showDraft);
+
+        }
+        return $qb->orderBy('tutoriel.createdAt', $order)
             ->getQuery()
             ->getResult();
     }
@@ -40,9 +57,11 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
     /**
      * @param Utilisateur $user
      * @param $showFinished
-     * @return Tutoriel[]
+     * @param string $order
+     * @return \AppBundle\Entity\Tutoriel[]
      */
-    public function getTutorielsStartedBy(Utilisateur $user, $showFinished, $order = 'DESC'){
+    public function getTutorielsStartedBy(Utilisateur $user, $showFinished, $order = 'DESC')
+    {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('tutoriel')
             ->from('AppBundle:Tutoriel', 'tutoriel')
@@ -50,17 +69,32 @@ class TutorielRepository extends \Doctrine\ORM\EntityRepository
             ->where('tup.user = :user')
             ->setParameter('user', $user)
             ->andWhere('tup.startedAt is not NULL');
-        if(!$showFinished){
+        if (!$showFinished) {
             $qb->andWhere('tup.finishedAt is NULL');
         }
-            $qb->addOrderBy('tup.startedAt', $order);
+        $qb->addOrderBy('tup.startedAt', $order);
         return $qb->getQuery()
             ->getResult();
 
     }
 
-
-
+    /**
+     * @param Utilisateur $user
+     * @param string $order
+     * @return Tutoriel[]
+     */
+    public function getFinishedTutorialsBy(Utilisateur $user, $order = 'DESC')
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('tutoriel')
+            ->from('AppBundle:Tutoriel', 'tutoriel')
+            ->innerJoin('tutoriel.userProgression', 'user_progression')
+            ->where('user_progression.user = :user')
+            ->setParameter('user', $user)
+            ->andWhere('user_progression.finishedAt is not NULL')
+            ->getQuery()
+            ->getResult();
+    }
 
 
 }

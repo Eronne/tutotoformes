@@ -182,7 +182,7 @@ p, ul, ol, table {
             width: 2.5em;
             height: 100%;
             line-height: 35px;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.11);
             &:before, :after {
                 left: 100%;
                 top: 50%;
@@ -195,7 +195,7 @@ p, ul, ol, table {
             }
             &:before {
                 border-color: rgba(194, 225, 245, 0);
-                border-left-color: rgba(0, 0, 0, 0.25);
+                border-left-color: rgba(0, 0, 0, 0.11);
                 border-width: 19px;
                 margin-top: -19px;
             }
@@ -251,6 +251,9 @@ header.fixed {
                 transition: all .3s;
                 &:hover {
                     cursor: pointer;
+                    background-color: rgba(0, 0, 0, 0.18);
+                }
+                &.active {
                     background-color: rgba(0, 0, 0, 0.18);
                 }
                 &.login {
@@ -585,6 +588,10 @@ span.date::before {
     justify-content: space-around;
     align-content: space-around;
 
+
+    &.others {
+        justify-content: center;
+    }
     & .tutoriel {
         width: 570px;
         height: 310px;
@@ -593,6 +600,10 @@ span.date::before {
         overflow: hidden;
         margin-bottom: 20px;
         transform: translateZ(0);
+
+        &.others {
+            margin-right: 0;
+        }
 
         & .tutoriel-title {
 
