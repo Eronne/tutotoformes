@@ -10,6 +10,7 @@ parameters:
     database_user:     '%db.name%'
     database_password: '%db.pass%'
     database_driver:   'pdo_pgsql'
+    database_dsn:       pgsql
 
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
