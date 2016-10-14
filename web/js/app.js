@@ -1,36 +1,41 @@
-var flashDuration = 6000;
+let flashDuration = 6000;
 
 $(document).ready(function () {
 	
-	var doc = $(document);
-	var header = $('nav.main-nav');
-	var relativeUrl = getUrlParts(document.documentURI).pathname;
+	let doc = $(this);
+	let header = $('nav.main-nav');
+	let relativeUrl = getUrlParts(document.documentURI).pathname;
 	
-	var sidebar = $('.sidebar');
+	let sidebar = $('.sidebar');
 	
-	var leftNav = $('.navigation .left a');
-	var rightNav = $('.navigation .right a');
-	var markButton = $('#markButton');
+	let leftNav = $('.navigation .left a');
+	let rightNav = $('.navigation .right a');
+	let markButton = $('#markButton');
+	
+	let forgotButton = $('button#forgotPassword');
 	
 	
+	$(forgotButton).on('click', () => {
+		openPopup();
+	});
 	
 	sidebar.stick_in_parent({offset_top: 80});
 	sidebar.children('.page:not(".active")').on('mouseover', function () {
-		var page = $(this);
+		let page = $(this);
 		page.children('i.fa.fa-angle-right').addClass('unfolded');
-		var subpages = page.children('.subpages');
+		let subpages = page.children('.subpages');
 		subpages.addClass('visible');
 	}).on('mouseleave', function () {
-		var page = $(this);
+		let page = $(this);
 		page.children('i.fa.fa-angle-right').removeClass('unfolded');
-		var subpages = page.children('.subpages');
+		let subpages = page.children('.subpages');
 		subpages.removeClass('visible');
 	});
 	
 	$('.page.active .subpage a').on('click', function (e) {
 		e.stopPropagation();
 		e.preventDefault();
-		var link = $(this);
+		let link = $(this);
 		$('html, body').animate({
 			scrollTop: $('h2#' + link.data('to')).offset().top - 100
 		}, 400);
@@ -183,11 +188,9 @@ $(document).ready(function () {
 		});
 	}
 	
-
-	
 	if (leftNav.length > 0) {
 		doc.on('keydown', function (e) {
-			if(e.shiftKey && e.keyCode === 81){
+			if (e.shiftKey && e.keyCode === 81) {
 				console.log('shortcut');
 				leftNav[0].click();
 			}
@@ -197,7 +200,7 @@ $(document).ready(function () {
 	if (rightNav.length > 0) {
 		doc.on('keydown', function (e) {
 			
-			if(e.shiftKey && e.keyCode === 68){
+			if (e.shiftKey && e.keyCode === 68) {
 				console.log('shortcut');
 				rightNav[0].click();
 			}
@@ -207,17 +210,39 @@ $(document).ready(function () {
 	if (markButton.length > 0) {
 		doc.on('keydown', function (e) {
 			
-			if(e.shiftKey && e.keyCode === 32){
+			if (e.shiftKey && e.keyCode === 32) {
 				console.log('shortcut');
 				markButton.click();
 			}
 		});
 	}
 	
+	doc.on('keydown', (e) => {
+		if ($('.popup.visible').length > 0 && e.keyCode === 27) {
+			e.preventDefault();
+			closePopup()
+		}
+	});
+	
+	$('.popup i.fa.fa-close').on('click', (e) => {
+		
+		e.preventDefault();
+		closePopup();
+	});
+	
+	$('.overlay').on('click', (e) => {
+		e.stopPropagation();
+		if ($(e.target).is($('.overlay.visible'))) {
+			e.preventDefault();
+			closePopup();
+		}
+	});
+	
+	
 });
 
 function getUrlParts(url) {
-	var a = document.createElement('a');
+	let a = document.createElement('a');
 	a.href = url;
 	
 	return {
@@ -232,6 +257,19 @@ function getUrlParts(url) {
 	};
 }
 
-function switchPage(direction) {
+function openPopup() {
+	$('.overlay').addClass('visible');
+	$('.popup').addClass('visible');
+	$('body').css({overflow: 'hidden'});
+	
+}
+
+function closePopup() {
+	
+	$('.overlay').removeClass('visible');
+	$('.popup').removeClass('visible');
+	$('body').css({overflow: 'auto'});
+	
+	
 	
 }

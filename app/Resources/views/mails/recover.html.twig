@@ -1,0 +1,4 @@
+<h1>Titre</h1>
+<p>Tiens tu veux reset ton mot de passe lol</p>
+<h2>Le lien</h2>
+<p><a href="{{ absolute_url(path('reset_password', {'password_token': password_token, 'username': user.username})) }}">Cliquer ici pour reset votre mot de passe</a></p>

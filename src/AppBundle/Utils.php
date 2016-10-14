@@ -41,11 +41,11 @@ class Utils
      * @param $subject string Le sujet du mail
      * @param $addresses string|string[] Adresse de l'expéditeur
      * @param $name string Alias pour l'expéditeur
-     * @param $to string Adresse à qui envoyer le mail
+     * @param $to string[] Adresse(s) à qui envoyer le mail
      * @param $body string Le corps du mail
      * @param $body_type string Le type MIME du corps
      */
-    public function sendMail($subject, $addresses = ['no-reply@tutotoformes.fr'], $name = null, $to, $body, $body_type)
+    public function sendMail($subject, $addresses = ['no-reply@tutotoformes.fr'], $name = 'Tutotoformes', $to, $body, $body_type)
     {
         $message = \Swift_Message::newInstance();
         $message->setSubject($subject)->setFrom($addresses, $name)->setTo($to)->setBody($body, $body_type);

@@ -1,0 +1,26 @@
+{% embed 'base.html.twig' with {title: 'Réinitialiser votre mot de passe'} %}
+
+    {% block body %}
+
+
+        <div class="page-body">
+            <div class="container">
+                <h1>Réinitialiser votre mot de passe</h1>
+                <form action="" method="post">
+                    <div class="field icon">
+                        <input type="password" name="_password[0]" required placeholder="Nouveau mot de passe">
+                        <i class="fa fa-key"></i>
+                    </div>
+                    <div class="field icon">
+                        <input type="password" name="_password[1]" required placeholder="Répeter le nouveau mot de passe">
+                        <i class="fa fa-key"></i>
+                    </div>
+                    <button type="submit" class="button secondary medium">Mettre à jour votre mot de passe</button>
+                </form>
+            </div>
+        </div>
+
+
+    {% endblock %}
+
+{% endembed %}

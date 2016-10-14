@@ -78,6 +78,18 @@ class Utilisateur implements UserInterface, \Serializable
     private $confirmed_at;
 
     /**
+     * @var string
+     * @ORM\Column(name="password_token", type="string", length=60, nullable=true)
+     */
+    private $passwordToken;
+
+    /**
+     * @var string
+     * @ORM\Column(name="password_reseted_at", type="datetime", nullable=true)
+     */
+    private $passwordResetedAt;
+
+    /**
      * @var Role[]
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Role", inversedBy="users")
@@ -456,5 +468,53 @@ class Utilisateur implements UserInterface, \Serializable
     public function getLastLogin()
     {
         return $this->last_login;
+    }
+
+    /**
+     * Set passwordToken
+     *
+     * @param string $passwordToken
+     *
+     * @return Utilisateur
+     */
+    public function setPasswordToken($passwordToken)
+    {
+        $this->passwordToken = $passwordToken;
+
+        return $this;
+    }
+
+    /**
+     * Get passwordToken
+     *
+     * @return string
+     */
+    public function getPasswordToken()
+    {
+        return $this->passwordToken;
+    }
+
+    /**
+     * Set passwordResetedAt
+     *
+     * @param \DateTime $passwordResetedAt
+     *
+     * @return Utilisateur
+     */
+    public function setPasswordResetedAt($passwordResetedAt)
+    {
+        $this->passwordResetedAt = $passwordResetedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get passwordResetedAt
+     *
+     * @return \DateTime
+     */
+    public function getPasswordResetedAt()
+    {
+        return $this->passwordResetedAt;
     }
 }

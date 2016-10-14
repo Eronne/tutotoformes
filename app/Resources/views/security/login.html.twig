@@ -14,8 +14,30 @@
         {% endif %}
 
         <div class="container">
+            <div class="overlay">
+                <div class="popup">
+                    <i class="fa fa-close"></i>
+                    <h3>Mot de passe oublié ?</h3>
+                    <p>Afin de récupérer votre mot de passe, veuillez renseigner votre adresse e-mail utilisé lors de votre inscription. <br>
+                    Si le mail existe, un lien pour réinitialiser votre mot de passe vous sera envoyé.</p>
+                    <form action="{{ path('recover_password') }}" method="post">
+                        <div class="grid has-gutter" style="align-items: baseline">
+                            <div class="field icon">
+                                <input type="email" name="_email_recovery" required placeholder="Adresse mail">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="one-quarter">
+                                <button type="submit" class="button icon inversed secondary small"><span class="icon"><i class="fa fa-check"></i></span>Envoyer</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+
             <div class="spacer"></div>
-            <div class="grid has-gutter ">
+            <div class="grid has-gutter">
                 <section id="login">
                     <h2>Connexion</h2>
                     <form action="{{ path('login') }}" method="post">
@@ -26,6 +48,11 @@
                         <div class="field icon">
                             <input type="password" name="_password" required placeholder="Mot de passe">
                             <i class="fa fa-key"></i>
+                        </div>
+                        <div class="field">
+                            <input type="checkbox" name="_remember_me" id="remember">
+                            <label for="remember">Se souvenir de moi</label>
+                            <span style="float: right;"><button type="button" id="forgotPassword">Mot de passe oublié ?</button></span>
                         </div>
                         <div class="clearfix">
                             <button type="submit" class="button icon primary small floated-right"><span class="icon"><i class="fa fa-sign-in"></i></span>Se connecter</button>
