@@ -42,7 +42,7 @@ button#forgotPassword {
     background-color: $white;
     overflow: hidden;
     &.visible {
-        transform: translateY(0);
+        transform: translateY(-250px);
 
     }
     & h3 {
