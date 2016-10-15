@@ -21,6 +21,9 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
     {
+        if($this->get('security.token_storage')->getToken()->getUser() instanceof Utilisateur) {
+            return $this->redirectToRoute('my_profile');
+        }
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $translated = null;

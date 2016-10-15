@@ -473,7 +473,8 @@ code {
   padding: 3px 3px 3px 5px;
   color: #da4737;
   font-size: 1.1rem;
-  text-shadow: 0 1px 1px #ecf0f1; }
+  text-shadow: 0 1px 1px #ecf0f1;
+  margin: 5px; }
 
 .summary {
   padding: 40px;
@@ -895,15 +896,25 @@ span.date::before {
     opacity: 0.25 !important; }
   .tutoriel > .informations {
     bottom: 0 !important; } }
+@media only screen and (max-width: 1300px) {
+  .container {
+    width: 100%;
+    padding: 0 3%; } }
+@media only screen and (max-width: 1260px) {
+  h1.tutoriel-title:before {
+    width: 20%; }
+  h1.tutoriel-title:after {
+    width: 20%; } }
+@media only screen and (max-width: 868px) {
+  h1.tutoriel-title:before {
+    width: 0; }
+  h1.tutoriel-title:after {
+    width: 0; } }
 @media only screen and (max-width: 600px) {
   .popup {
     width: 100%;
     left: 0;
     top: 0; } }
-@media only screen and (max-width: 1300px) {
-  .container {
-    width: 100%;
-    padding: 0 3%; } }
 @keyframes infiniteScroll {
   0% {
     background-position: 0 574px; }

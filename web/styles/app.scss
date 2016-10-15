@@ -532,6 +532,7 @@ code {
     color: #da4737;
     font-size: 1.1rem;
     text-shadow: 0 1px 1px $white;
+    margin: 5px;
 }
 
 .summary {
@@ -1111,19 +1112,46 @@ span.date::before {
 
 }
 
+@media only screen and (max-width: 1300px) {
+    .container {
+        width: 100%;
+        padding: 0 3%;
+    }
+
+}
+
+@media only screen and (max-width: 1260px) {
+
+    h1.tutoriel-title {
+        &:before {
+            width: 20%;
+        }
+        &:after {
+            width: 20%;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 868px) {
+
+    h1.tutoriel-title {
+        &:before {
+            width: 0;
+        }
+        &:after {
+            width: 0;
+        }
+    }
+
+}
+
+
 @media only screen and (max-width: 600px) {
     .popup {
         width: 100%;
         left: 0;
         top: 0;
-    }
-
-}
-
-@media only screen and (max-width: 1300px) {
-    .container {
-        width: 100%;
-        padding: 0 3%;
     }
 
 }
