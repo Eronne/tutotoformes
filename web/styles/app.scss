@@ -6,7 +6,7 @@
 }
 
 html {
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 body {
@@ -1160,9 +1160,9 @@ span.date::before {
 
 
 @media only screen and (max-width: 412px) {
-    html {
-        font-size: 0.85rem;
-    }
+    //html {
+    //    font-size: 14px;
+    //}
 
 }
 

@@ -62,7 +62,7 @@
   box-sizing: border-box; }
 
 html {
-  font-size: 1rem; }
+  font-size: 16px; }
 
 body {
   display: flex;
@@ -916,9 +916,6 @@ span.date::before {
     width: 100%;
     left: 0;
     top: 0; } }
-@media only screen and (max-width: 412px) {
-  html {
-    font-size: 0.85rem; } }
 @keyframes infiniteScroll {
   0% {
     background-position: 0 574px; }
