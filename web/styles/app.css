@@ -170,19 +170,19 @@ p, ul, ol, table {
   text-decoration: none;
   width: 200px;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.1rem;
   font-weight: 400;
   z-index: 1; }
   .button.small {
     width: auto;
     padding: 10px 1em 10px 1em;
-    font-size: 17px;
+    font-size: 1rem;
     line-height: 17px;
     font-weight: 300; }
   .button.medium {
     width: auto;
     padding: 7px 1em 7px 1em;
-    font-size: 18px;
+    font-size: 1.1rem;
     line-height: 40px;
     font-weight: 300;
     height: 60px; }
@@ -192,10 +192,10 @@ p, ul, ol, table {
         border-width: 28px !important;
         margin-top: -28px !important; }
       .button.medium span.icon i {
-        font-size: 25px; }
+        font-size: 1.8rem; }
   .button.large {
     padding: 20px 1em 20px 1em;
-    font-size: 20px;
+    font-size: 1.4rem;
     line-height: 20px;
     font-weight: 400;
     width: auto; }
@@ -205,7 +205,7 @@ p, ul, ol, table {
         border-width: 30px !important;
         margin-top: -30px !important; }
       .button.large span.icon i {
-        font-size: 30px; }
+        font-size: 2.2rem; }
   .button.primary {
     background-color: #e74c3c;
     color: white;
@@ -297,7 +297,7 @@ header.fixed {
     header.fixed nav.main-nav .brand {
       padding: 15px;
       font-weight: 600;
-      font-size: 24px; }
+      font-size: 1.8rem; }
     header.fixed nav.main-nav .menu {
       display: flex;
       justify-content: space-between;
@@ -410,7 +410,7 @@ pre {
     top: 0;
     margin: 0;
     padding: 20px;
-    font-size: 22px;
+    font-size: 1.4rem;
     background: rgba(0, 0, 0, 0.04);
     z-index: 1; }
 
@@ -481,13 +481,13 @@ code {
   background: #e3e7e8; }
   .summary h3 {
     font-family: Geomanist, Lato, Roboto, sans-serif;
-    font-size: 24px;
+    font-size: 1.5rem;
     position: relative;
     margin: 20px 0 20px 42px;
     color: #1b567b; }
   .summary ol.subtitles {
     padding-left: 80px;
-    font-size: 18px;
+    font-size: 1.1rem;
     color: #1b567b;
     font-weight: 700; }
     .summary ol.subtitles li {
@@ -503,7 +503,7 @@ code {
         counter-increment: titles;
         position: absolute;
         padding-right: 6px;
-        font-size: 39px;
+        font-size: 2.2rem;
         line-height: 30px;
         border-right: 3px solid #e74c3c;
         color: #2980b9;
@@ -588,7 +588,7 @@ span.date::before {
       line-height: 310px;
       margin: 0;
       text-transform: uppercase;
-      font-size: 54px;
+      font-size: 3rem;
       text-decoration: none;
       text-align: center; }
     .tutoriels .tutoriel .overlay {
@@ -623,7 +623,7 @@ span.date::before {
       z-index: 10; }
       .tutoriels .tutoriel .informations h3.title {
         text-transform: uppercase;
-        font-size: 20px;
+        font-size: 1.2rem;
         font-weight: 700;
         font-style: italic;
         margin: 10px auto; }
@@ -635,7 +635,7 @@ span.date::before {
       width: 100%;
       padding: 8px;
       text-align: right;
-      font-size: 14px;
+      font-size: 0.9rem;
       color: rgba(0, 0, 0, 0.65); }
     .tutoriels .tutoriel:hover {
       cursor: pointer; }
@@ -648,7 +648,7 @@ span.date::before {
       bottom: 125px; }
     .tutoriels .tutoriel:hover > .tutoriel-title {
       line-height: 148px;
-      font-size: 72px; }
+      font-size: 4rem; }
     .tutoriels .tutoriel:hover > .overlay {
       opacity: 0.25; }
     .tutoriels .tutoriel:hover > .informations {
@@ -725,7 +725,7 @@ span.date::before {
         text-align: right;
         font-style: italic;
         color: rgba(0, 0, 0, 0.59);
-        font-size: 12px; }
+        font-size: 0.7rem; }
       .active-tutoriels .tutoriel .informations span.value {
         font-weight: 700; }
       .active-tutoriels .tutoriel .informations .content {
@@ -891,7 +891,7 @@ span.date::before {
     bottom: 125px !important; }
   .tutoriel > .tutoriel-title {
     line-height: 148px !important;
-    font-size: 72px !important; }
+    font-size: 4rem !important; }
   .tutoriel > .overlay {
     opacity: 0.25 !important; }
   .tutoriel > .informations {
@@ -915,6 +915,9 @@ span.date::before {
     width: 100%;
     left: 0;
     top: 0; } }
+@media only screen and (max-width: 412px) {
+  html {
+    font-size: 0.85rem; } }
 @keyframes infiniteScroll {
   0% {
     background-position: 0 574px; }
