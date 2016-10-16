@@ -150,11 +150,11 @@ p, ul, ol, table {
         width: auto;
         padding: 7px 1em 7px 1em;
         font-size: 1.1rem;
-        line-height: 1.1rem;
+        line-height: 2.5rem;
         font-weight: 300;
         height: 60px;
         & span.icon {
-            line-height: 1.3rem !important;
+            line-height: 3.9rem !important;
             &:before {
                 border-width: 28px !important;
                 margin-top: -28px !important;
@@ -172,7 +172,7 @@ p, ul, ol, table {
         font-weight: 400;
         width: auto;
         & span.icon {
-            line-height: 4.25rem !important;
+            line-height: 4.5rem !important;
             &:before {
                 border-width: 30px !important;
                 margin-top: -30px !important;
@@ -244,7 +244,7 @@ p, ul, ol, table {
             top: 0;
             width: 2.5em;
             height: 100%;
-            line-height: 2.18rem;
+            line-height: 2.3rem;
             background: rgba(0, 0, 0, 0.11);
             &:before, :after {
                 left: 100%;
@@ -262,6 +262,7 @@ p, ul, ol, table {
                 border-width: 19px;
                 margin-top: -19px;
             }
+
         }
     }
 
