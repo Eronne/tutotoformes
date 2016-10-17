@@ -94,7 +94,7 @@ button#forgotPassword {
   background-color: #ecf0f1;
   overflow: hidden; }
   .popup.visible {
-    transform: translateY(-250px); }
+    transform: translateY(0); }
   .popup h3 {
     font-size: 2rem;
     text-transform: uppercase; }
