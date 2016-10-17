@@ -444,6 +444,8 @@ pre {
     &.icon {
         & i {
             transition: all 0.3s ease-in-out;
+            position: absolute;
+            left: 0;
             color: rgba(0, 0, 0, 0.6);
             position: absolute;
             width: 60px;
