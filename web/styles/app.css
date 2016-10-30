@@ -62,7 +62,7 @@
   box-sizing: border-box; }
 
 html {
-  font-size: 1rem; }
+  font-size: 16px; }
 
 body {
   display: flex;
@@ -94,7 +94,7 @@ button#forgotPassword {
   background-color: #ecf0f1;
   overflow: hidden; }
   .popup.visible {
-    transform: translateY(-250px); }
+    transform: translateY(0); }
   .popup h3 {
     font-size: 2rem;
     text-transform: uppercase; }
@@ -177,17 +177,17 @@ p, ul, ol, table {
     width: auto;
     padding: 10px 1em 10px 1em;
     font-size: 1rem;
-    line-height: 17px;
+    line-height: 1rem;
     font-weight: 300; }
   .button.medium {
     width: auto;
     padding: 7px 1em 7px 1em;
     font-size: 1.1rem;
-    line-height: 40px;
+    line-height: 2.5rem;
     font-weight: 300;
     height: 60px; }
     .button.medium span.icon {
-      line-height: 60px !important; }
+      line-height: 3.9rem !important; }
       .button.medium span.icon:before {
         border-width: 28px !important;
         margin-top: -28px !important; }
@@ -196,11 +196,11 @@ p, ul, ol, table {
   .button.large {
     padding: 20px 1em 20px 1em;
     font-size: 1.4rem;
-    line-height: 20px;
+    line-height: 1.4rem;
     font-weight: 400;
     width: auto; }
     .button.large span.icon {
-      line-height: 68px !important; }
+      line-height: 4.5rem !important; }
       .button.large span.icon:before {
         border-width: 30px !important;
         margin-top: -30px !important; }
@@ -252,7 +252,7 @@ p, ul, ol, table {
       top: 0;
       width: 2.5em;
       height: 100%;
-      line-height: 35px;
+      line-height: 2.3rem;
       background: rgba(0, 0, 0, 0.11); }
       .button.icon span.icon:before, .button.icon span.icon :after {
         left: 100%;
@@ -305,7 +305,7 @@ header.fixed {
       flex-direction: row; }
       header.fixed nav.main-nav .menu .item {
         padding: 0 20px;
-        line-height: 60px;
+        line-height: 3.75rem;
         transition: all .3s; }
         header.fixed nav.main-nav .menu .item:hover {
           cursor: pointer;
@@ -403,6 +403,8 @@ pre {
       display: inline-block; }
   .field.icon i {
     transition: all 0.3s ease-in-out;
+    position: absolute;
+    left: 0;
     color: rgba(0, 0, 0, 0.6);
     position: absolute;
     width: 60px;
@@ -455,7 +457,7 @@ pre {
     width: 100%;
     height: 100%;
     background-color: #1f608b;
-    opacity: 0.95;
+    opacity: 0.85;
     z-index: 0; }
   .jumbotron .heading {
     color: #ecf0f1;
@@ -916,9 +918,6 @@ span.date::before {
     width: 100%;
     left: 0;
     top: 0; } }
-@media only screen and (max-width: 412px) {
-  html {
-    font-size: 0.85rem; } }
 @keyframes infiniteScroll {
   0% {
     background-position: 0 574px; }
