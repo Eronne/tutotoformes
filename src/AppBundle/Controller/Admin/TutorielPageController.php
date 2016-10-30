@@ -50,12 +50,15 @@ class TutorielPageController extends Controller
                 ->setContent($html->saveHTML())
                 ->setTutoriel($tutoriel);
 
+
+            $em->persist($tutorielPage);
+            $em->flush();
+
             $userProgressions = $this->getDoctrine()->getRepository('AppBundle:UserProgression')->findBy(['tutoriel' => $tutoriel]);
             foreach($userProgressions as $userProgression) {
                 $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
-            }
 
-            $em->persist($tutorielPage);
+            }
             $em->flush();
 
             $this->addFlash('notification success', "La page a bien été ajouté. <a href='" . $this->get('router')->generate('tutoriel_show',
