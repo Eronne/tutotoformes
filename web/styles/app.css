@@ -297,7 +297,8 @@ header.fixed {
     header.fixed nav.main-nav .brand {
       padding: 15px;
       font-weight: 600;
-      font-size: 1.8rem; }
+      font-size: 1.8rem;
+      line-height: 1.8rem; }
     header.fixed nav.main-nav .menu {
       display: flex;
       justify-content: space-between;
