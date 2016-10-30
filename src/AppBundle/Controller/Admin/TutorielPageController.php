@@ -56,8 +56,7 @@ class TutorielPageController extends Controller
 
             $userProgressions = $this->getDoctrine()->getRepository('AppBundle:UserProgression')->findBy(['tutoriel' => $tutoriel]);
             foreach($userProgressions as $userProgression) {
-                $userProgression->setProgression(round(count($userProgression->getCompletedPages()) / $tutoriel->getTutorialPages()->count() * 100));
-
+                $this->UpdateUserProgression($tutoriel, $tutorielPage, $userProgression->getUser(), false);
             }
             $em->flush();
 
