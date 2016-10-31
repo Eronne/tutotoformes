@@ -35,6 +35,8 @@ class TutorielPageController extends Controller
                 throw new Exception('Le paramètre "tutorielpage" n a pas été trouvé dans les paramètres de la requête');
             }
 
+            $em = $this->getDoctrine()->getManager();
+
             $tutorielPage = new TutorielPage();
             $html = new \DOMDocument();
             $html->loadHTML($params['content']);
@@ -48,9 +50,16 @@ class TutorielPageController extends Controller
                 ->setContent($html->saveHTML())
                 ->setTutoriel($tutoriel);
 
-            $em = $this->getDoctrine()->getManager();
+
             $em->persist($tutorielPage);
             $em->flush();
+
+            $userProgressions = $this->getDoctrine()->getRepository('AppBundle:UserProgression')->findBy(['tutoriel' => $tutoriel]);
+            foreach($userProgressions as $userProgression) {
+                $this->UpdateUserProgression($tutoriel, $tutorielPage, $userProgression->getUser(), true);
+            }
+            $em->flush();
+
             $this->addFlash('notification success', "La page a bien été ajouté. <a href='" . $this->get('router')->generate('tutoriel_show',
                     ['slug' => $tutoriel->getSlug(), 'slug_page' => $tutorielPage->getSlug()]) ."'>Voir le tutoriel</a>");
             return $this->redirectToRoute('admin_tutoriel_edit', ['id' => $tutoriel->getId()]);
@@ -209,6 +218,8 @@ class TutorielPageController extends Controller
         }
         if($userProgression->getProgression() != 100){
             $userProgression->setFinishedAt(null);
+        } else {
+            $userProgression->setFinishedAt(new \DateTime('now'));
         }
 
         if($userProgression->getStartedAt() == null && $tutoriel->getUserProgression($user)->getLastCompletedPageSlug() != null){
