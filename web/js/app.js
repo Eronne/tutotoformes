@@ -94,7 +94,8 @@ $(document).ready(function () {
 				'advlist autolink lists link image charmap print preview hr anchor pagebreak',
 				'searchreplace wordcount visualblocks visualchars code codesample fullscreen',
 				'insertdatetime media nonbreaking save table contextmenu directionality',
-				'emoticons template paste textcolor colorpicker textpattern imagetools'
+				'emoticons template textcolor colorpicker textpattern imagetools',
+				'powerpaste bootstrapaccordion'
 			],
 			codesample_languages: [
 				{text: 'HTML/XML', value: 'markup'},
@@ -184,8 +185,8 @@ $(document).ready(function () {
 				]
 				}
 			],
-			toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-			toolbar2: 'print preview media | forecolor backcolor emoticons codesample | pastetext removeformat | fullscreen',
+			toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image pastetext',
+			toolbar2: 'print preview media | forecolor backcolor emoticons codesample | pastetext removeformat | fullscreen | bootstrapaccordion',
 			content_css: ['/styles/mce.css']
 		});
 	}
