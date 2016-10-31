@@ -95,7 +95,7 @@ $(document).ready(function () {
 				'searchreplace wordcount visualblocks visualchars code codesample fullscreen',
 				'insertdatetime media nonbreaking save table contextmenu directionality',
 				'emoticons template textcolor colorpicker textpattern imagetools',
-				'powerpaste bootstrapaccordion'
+				'powerpaste'
 			],
 			codesample_languages: [
 				{text: 'HTML/XML', value: 'markup'},
