@@ -186,7 +186,7 @@ $(document).ready(function () {
 				}
 			],
 			toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image pastetext',
-			toolbar2: 'print preview media | forecolor backcolor emoticons codesample | pastetext removeformat | fullscreen | bootstrapaccordion',
+			toolbar2: 'print preview media | forecolor backcolor emoticons codesample | pastetext removeformat | fullscreen',
 			content_css: ['/styles/mce.css']
 		});
 	}
