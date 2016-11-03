@@ -7,7 +7,7 @@
 </div>
 
 <div class="menu">
-    <a href="" class="item {{ route_name == "tutoriel" ? 'active' }}">Tutoriels</a>
+    <a href="{{ path('tutoriel_list') }}" class="item {{ route_name == "tutoriel_list" ? 'active' }}">Tutoriels</a>
     {% if app.user and is_granted('ROLE_ADMIN') %}
         <a class="item {% if route_name starts with "admin" %}active{% endif %}" href="{{ path('admin_index') }}">Administration</a>
     {% endif %}

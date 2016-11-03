@@ -78,7 +78,7 @@ button#forgotPassword {
     }
 }
 
-h1.tutoriel-title {
+h1.page-title {
     font-family: Geomanist, Lato, Roboto, sans-serif !important;
     text-align: center;
     position: relative;
@@ -666,6 +666,16 @@ span.date::before {
 
     &.others {
         justify-content: center;
+        & a {
+            & .tutoriel {
+                border-right: 6px solid #344a61;
+            }
+            &:last-of-type {
+                & .tutoriel {
+                    border-right: none;
+                }
+            }
+        }
     }
     & .tutoriel {
         width: 570px;
@@ -1145,7 +1155,7 @@ span.date::before {
 
 @media only screen and (max-width: 1260px) {
 
-    h1.tutoriel-title {
+    h1.page-title {
         &:before {
             width: 20%;
         }
@@ -1158,7 +1168,7 @@ span.date::before {
 
 @media only screen and (max-width: 868px) {
 
-    h1.tutoriel-title {
+    h1.page-title {
         &:before {
             width: 0;
         }

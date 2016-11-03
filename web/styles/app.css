@@ -122,13 +122,13 @@ button#forgotPassword {
     visibility: visible;
     opacity: 1; }
 
-h1.tutoriel-title {
+h1.page-title {
   font-family: Geomanist, Lato, Roboto, sans-serif !important;
   text-align: center;
   position: relative;
   text-transform: uppercase;
   color: #2980b9; }
-  h1.tutoriel-title:before {
+  h1.page-title:before {
     position: absolute;
     bottom: 16px;
     left: 0;
@@ -136,7 +136,7 @@ h1.tutoriel-title {
     height: 10px;
     width: 30%;
     background-color: #e74c3c; }
-  h1.tutoriel-title:after {
+  h1.page-title:after {
     position: absolute;
     bottom: 16px;
     content: '';
@@ -573,6 +573,10 @@ span.date::before {
   align-content: space-around; }
   .tutoriels.others {
     justify-content: center; }
+    .tutoriels.others a .tutoriel {
+      border-right: 6px solid #344a61; }
+    .tutoriels.others a:last-of-type .tutoriel {
+      border-right: none; }
   .tutoriels .tutoriel {
     width: 570px;
     height: 310px;
@@ -918,14 +922,14 @@ span.date::before {
     width: 100%;
     padding: 0 3%; } }
 @media only screen and (max-width: 1260px) {
-  h1.tutoriel-title:before {
+  h1.page-title:before {
     width: 20%; }
-  h1.tutoriel-title:after {
+  h1.page-title:after {
     width: 20%; } }
 @media only screen and (max-width: 868px) {
-  h1.tutoriel-title:before {
+  h1.page-title:before {
     width: 0; }
-  h1.tutoriel-title:after {
+  h1.page-title:after {
     width: 0; } }
 @media only screen and (max-width: 600px) {
   .popup {
