@@ -696,6 +696,17 @@ span.date::before {
     display: flex;
     align-content: stretch;
     margin-bottom: 20px; }
+    .active-tutoriels .tutoriel .tutoriel-title {
+      transition: all 0.3s;
+      position: absolute;
+      width: 100%;
+      color: #2980b9;
+      line-height: 286px;
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 3rem;
+      text-decoration: none;
+      text-align: center; }
     .active-tutoriels .tutoriel .button {
       margin-top: 6px; }
     .active-tutoriels .tutoriel .thumbnail {
