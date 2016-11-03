@@ -1181,3 +1181,18 @@ span.date::before {
 .tutoriel-content {
     font-size: 1rem;
 }
+
+//TODO : Retirer le style temporaire des tableaux
+table {
+    width: 100%;
+    & tr {
+        & td {
+            &:first-of-type {
+                padding-left: 20px;
+            }
+            &:last-of-type {
+                background-color: #e3e7e8;
+            }
+        }
+    }
+}
