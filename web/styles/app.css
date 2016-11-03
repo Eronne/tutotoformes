@@ -816,6 +816,9 @@ span.date::before {
   .tutoriel-content img {
     max-width: 100%; }
 
+.tutoriel-summary {
+  padding: 0 150px; }
+
 .navigation {
   display: flex;
   flex-direction: row;
