@@ -831,6 +831,21 @@ span.date::before {
        align-content: stretch;
        margin-bottom: 20px;
 
+       & .tutoriel-title {
+
+           transition: all 0.3s;
+           position: absolute;
+           width: 100%;
+           color: $blue;
+           line-height: 286px;
+           margin: 0;
+           text-transform: uppercase;
+           font-size: 3rem;
+           text-decoration: none;
+           text-align: center;
+
+       }
+
        & .button {
            margin-top: 6px;
        }
