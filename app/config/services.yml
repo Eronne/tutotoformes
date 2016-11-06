@@ -39,6 +39,11 @@ services:
         tags:
             - { name: 'monolog.logger', channel: 'security'}
 
+    kernel.listener.finished.tutoriel:
+        class: AppBundle\Events\TutorielListener
+        tags:
+            - { name: kernel.event_listener, event: tutoriel.finished, method: onFinishedTutoriel }
+
     logout_success_handler:
         class: AppBundle\Handler\LogoutSuccessHandler
         arguments: ['@security.http_utils', '@service_container']

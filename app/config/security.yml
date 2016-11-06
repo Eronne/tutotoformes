@@ -12,7 +12,14 @@ security:
         User:
             entity:
                 class: AppBundle:Utilisateur
+                property: username
+        User_mail:
+            entity:
+                class: AppBundle:Utilisateur
                 property: email
+        Chain_providers:
+            chain:
+                providers: [User, User_mail]
 
     encoders:
         AppBundle\Entity\Utilisateur:
@@ -36,7 +43,7 @@ security:
                 secret:   '%secret%'
                 lifetime: 604800 # 1 week in seconds
                 path:     /
-            provider: User
+            provider: Chain_providers
             form_login:
                 login_path: login
                 check_path: login

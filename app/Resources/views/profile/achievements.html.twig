@@ -1,0 +1,29 @@
+{% embed "base.html.twig" with {title: 'Mon profil | Succès'} %}
+
+    {% block body %}
+        <div class="container">
+            <h2>Succès</h2>
+            <ul class="achievements">
+                {% for achievement in achievements %}
+                    {% set userAchievement = user_achievements_repo.achievement(app.user, achievement) %}
+                    {% if (achievement.secret and userAchievement is not null) or (not achievement.secret) %}
+                        <li class="achievement {{ (userAchievement is not null) ? 'completed' }}">
+                            <div class="thumbnail">
+                                <img src="{{ achievement.icon }}" alt="">
+                            </div>
+                            <div class="content">
+                                <h3>{{ achievement.title }}
+                                    {% if userAchievement is not null %}
+                                        <span>Obtenu le {{ userAchievement.unlockedAt|date('d/m/Y') }}</span>
+                                    {% endif %}
+                                </h3>
+                                <p>{{ achievement.description }}</p>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock %}
+
+{% endembed %}

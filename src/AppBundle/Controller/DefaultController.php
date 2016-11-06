@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\UserProgression;
+use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\UtilisateurAchievementAssociation;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,10 +17,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $user = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->find(3);
-        $achievement = $this->getDoctrine()->getRepository('AppBundle:Achievement')->find(2);
-        var_dump($this->getDoctrine()->getRepository('AppBundle:UtilisateurAchievementAssociation')->haveUserUnlocked($user, $achievement));
-        die();
         $tutoriels = $this->getDoctrine()->getRepository('AppBundle:Tutoriel')->getFirstNth(5, 'DESC', false);
         return $this->render('index.html.twig', ['last_tutoriels' => $tutoriels]);
     }
@@ -32,6 +29,17 @@ class DefaultController extends Controller
         $requestStack = $this->get('request_stack');
         $masterRequest = $requestStack->getMasterRequest();
         return $this->render('partials/_menu.html.twig', ['pages' => $pages, 'inverted' => $inverted, 'route_name' => $masterRequest->attributes->get('_route')]);
+    }
+
+    /**
+     * @Route("/secret/mmi")
+     */
+    public function secretAchievementAction(Request $request) {
+        /** @var Utilisateur|string $user */
+        $user = $this->getUser();
+        if(!$user || $user == 'anon.') return $this->redirectToRoute('homepage');
+        $this->get('app.utils')->unlockAchievement('SECRET_MMI', $user);
+        return $this->redirectToRoute('my_profile');
     }
 
 }

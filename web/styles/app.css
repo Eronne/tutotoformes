@@ -323,7 +323,8 @@ header.fixed {
             margin-right: 10px;
             color: inherit; }
         header.fixed nav.main-nav .menu .item.profile {
-          background-color: #2980b9; }
+          background-color: #2980b9;
+          position: relative; }
           header.fixed nav.main-nav .menu .item.profile:hover {
             background-color: #ecf0f1;
             color: black; }
@@ -469,6 +470,47 @@ pre {
       .jumbotron .heading.tutoriel .metas {
         padding: 20px;
         opacity: 0.75; }
+
+ul.achievements li.achievement {
+  transition: all 0.3s;
+  list-style: none;
+  border: 3px solid #e3e7e8;
+  background: #2c3e50;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px; }
+  ul.achievements li.achievement .thumbnail {
+    padding: 20px;
+    width: 128px;
+    height: 128px; }
+    ul.achievements li.achievement .thumbnail img {
+      width: 100%;
+      height: 100%; }
+  ul.achievements li.achievement h3 {
+    margin-top: 0;
+    color: #2980b9; }
+    ul.achievements li.achievement h3 span {
+      font-size: 0.9rem;
+      color: black;
+      opacity: 0.5;
+      float: right; }
+  ul.achievements li.achievement .content {
+    transition: all 0.3s;
+    flex: 1;
+    background-color: white;
+    padding: 20px; }
+  ul.achievements li.achievement.completed:hover {
+    cursor: pointer;
+    background: #3e5871; }
+    ul.achievements li.achievement.completed:hover > .content {
+      background: #f2f2f2; }
+  ul.achievements li.achievement:not(.completed) {
+    opacity: 0.5; }
+    ul.achievements li.achievement:not(.completed) .thumbnail img {
+      filter: blur(2.5px); }
+    ul.achievements li.achievement:not(.completed):hover {
+      cursor: not-allowed;
+      transform: none; }
 
 code {
   font-family: monospace;

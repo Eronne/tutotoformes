@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Utilisateur;
 
 /**
  * AchievementRepository
@@ -10,4 +11,27 @@ namespace AppBundle\Repository;
  */
 class AchievementRepository extends \Doctrine\ORM\EntityRepository
 {
+
+
+    public function getLockedAchievementsFor(Utilisateur $utilisateur){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $achievements = $qb->select('achievement')
+            ->from('AppBundle:Achievement', 'achievement')
+            ->getQuery()
+            ->getArrayResult();
+        var_dump($achievements);
+        die();
+    }
+
+    public function getUnlockedAchievementsFor(Utilisateur $utilisateur){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('achievement')
+            ->from('AppBundle:Achievement', 'achievement')
+            ->innerJoin('achievement.userAchievementsAssociation', 'userAchievementsAssociation')
+            ->where('userAchievementsAssociation.utilisateur = :user')
+            ->setParameter('user', $utilisateur)
+            ->andWhere('userAchievementsAssociation.unlockedAt IS NOT NULL')
+            ->getQuery()
+            ->getResult();
+    }
 }
