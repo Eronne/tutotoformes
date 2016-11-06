@@ -600,8 +600,9 @@ ul.badges {
     justify-content: space-around;
     padding: 0;
     flex-wrap: wrap;
-    max-width: 900px;
+    max-width: 600px;
     margin-top: 40px;
+    margin-bottom: 40px;
     & li.badge {
         list-style: none;
         display: inline-block;
@@ -1337,7 +1338,15 @@ span.date::before {
     .popup {
         width: 100%;
         left: 0;
-        top: 0;
+        text-align: center;
+        & img {
+            float: none;
+            width: 100%;
+
+        }
+        &.visible {
+            top: 100px;
+        }
     }
 
 }

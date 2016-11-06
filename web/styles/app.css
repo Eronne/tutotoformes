@@ -522,8 +522,9 @@ ul.badges {
   justify-content: space-around;
   padding: 0;
   flex-wrap: wrap;
-  max-width: 900px;
-  margin-top: 40px; }
+  max-width: 600px;
+  margin-top: 40px;
+  margin-bottom: 40px; }
   ul.badges li.badge {
     list-style: none;
     display: inline-block;
@@ -1058,7 +1059,12 @@ span.date::before {
   .popup {
     width: 100%;
     left: 0;
-    top: 0; } }
+    text-align: center; }
+    .popup img {
+      float: none;
+      width: 100%; }
+    .popup.visible {
+      top: 100px; } }
 @keyframes infiniteScroll {
   0% {
     background-position: 0 574px; }
