@@ -17,30 +17,35 @@
         <div class="arrow-separator"></div>
         <div class="container">
             <h2>Badges</h2>
-            <ul class="badges">
-                {% for userAchievement in user.userAchievementsAssociation %}
+            {% if user.userAchievementsAssociation|length > 0 %}
+                <ul class="badges">
+                    {% for userAchievement in user.userAchievementsAssociation %}
 
-                    {% if userAchievement.achievement.secret %}
-                        <li class="badge secret tooltip-item">
-                            <img src="{{ userAchievement.achievement.icon }}" alt="">
-                            <span class="tooltip">???</span>
-                        </li>
-                    {% else %}
-                        <li class="badge tooltip-item">
-                            <img src="{{ userAchievement.achievement.icon }}" alt="">
-                            <span class="tooltip">{{ userAchievement.achievement.title }}</span>
-                        </li>
-                        <div class="popup" id="{{ userAchievement.achievement.title|slugify }}">
-                            <i class="fa fa-close"></i>
-                            <img src="{{ userAchievement.achievement.icon }}" alt="" width="200" height="200">
-                            <h3>{{ userAchievement.achievement.title }}</h3>
-                            <p>{{ userAchievement.achievement.description }}</p>
-                        </div>
-                    {% endif %}
+                        {% if userAchievement.achievement.secret %}
+                            <li class="badge secret tooltip-item">
+                                <img src="{{ userAchievement.achievement.icon }}" alt="">
+                                <span class="tooltip">???</span>
+                            </li>
+                        {% else %}
+                            <li class="badge tooltip-item">
+                                <img src="{{ userAchievement.achievement.icon }}" alt="">
+                                <span class="tooltip">{{ userAchievement.achievement.title }}</span>
+                            </li>
+                            <div class="popup" id="{{ userAchievement.achievement.title|slugify }}">
+                                <i class="fa fa-close"></i>
+                                <img src="{{ userAchievement.achievement.icon }}" alt="" width="200" height="200">
+                                <h3>{{ userAchievement.achievement.title }}</h3>
+                                <p>{{ userAchievement.achievement.description }}</p>
+                                <span class="unlock-information">{{ user.username }} a obtenu ce succès le <strong>{{ userAchievement.unlockedAt|date('d/m/Y') }}</strong></span>
+                            </div>
+                        {% endif %}
 
 
-                {% endfor %}
-            </ul>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h3>L'utilisateur n'a débloqué aucun succès ! </h3>
+            {% endif %}
         </div>
 
 

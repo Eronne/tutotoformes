@@ -47,6 +47,8 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+                use_referer: true
+                target_path_parameter: _target_path
             logout:
                 path: /logout
                 target: /
