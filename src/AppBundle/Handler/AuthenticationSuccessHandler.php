@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Handler;
 
+use AppBundle\AchievementsName;
 use AppBundle\Entity\Achievement;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\UtilisateurAchievementAssociation;
@@ -37,7 +38,7 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
             return $this->httpUtils->createRedirectResponse($request, "/login");
         }
 
-        $this->container->get('app.utils')->unlockAchievement('FIRST_LOGIN', $user);
+        $this->container->get('app.utils')->unlockAchievement(AchievementsName::FIRST_LOGIN_ACHIEVEMENT, $user);
         
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
     }

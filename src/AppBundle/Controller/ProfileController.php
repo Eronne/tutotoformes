@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ProfileController extends Controller
 {
@@ -20,7 +21,7 @@ class ProfileController extends Controller
      * @Route("/profile/me", name="my_profile")
      * @Security("has_role('ROLE_USER')")
      */
-    public function indexAction(Request $request)
+    public function showMyProfileAction(Request $request)
     {
         /** @var Utilisateur $user */
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -45,6 +46,18 @@ class ProfileController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Utilisateur $utilisateur
+     * @Route("/profile/{username}", name="show_profile")
+     */
+    public function showProfileAction(Request $request, Utilisateur $utilisateur){
+        if(!$utilisateur) throw new NotFoundHttpException("L'utilisateur n'a pas été trouvé");
+        if($this->getUser() instanceof Utilisateur && $utilisateur->getUsername() == $this->getUser()->getUsername()) return $this->redirectToRoute('my_profile');
+
+        return $this->render('profile/show.html.twig', ['user' => $utilisateur]);
+    }
+
+    /**
      * @param $name
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/profile/me/achievements", name="my_achievements")
@@ -60,6 +73,9 @@ class ProfileController extends Controller
         /** @var Achievement[] $achievements */
         $achievements = $this->getDoctrine()->getRepository('AppBundle:Achievement')->findAll();
 
-        return $this->render('profile/achievements.html.twig', ['user' => $user, 'achievements' => $achievements, 'user_achievements_repo' => $userAchievementsRepo]);
+        $finishedTutorielsNb = count($this->getDoctrine()->getRepository('AppBundle:Tutoriel')->getFinishedTutorialsBy($user));
+
+
+        return $this->render('profile/achievements.html.twig', ['user' => $user, 'achievements' => $achievements, 'user_achievements_repo' => $userAchievementsRepo, 'nb_finished_tutorials' => $finishedTutorielsNb]);
     }
 }

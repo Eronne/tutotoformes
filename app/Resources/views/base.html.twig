@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Standard Meta -->
+
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="theme-color" content="#133e57"/>
 
-    <!-- Site Properties -->
+    {% block head %}{% endblock %}
+
     <title>{% block title %}{{ app_name }} - {{ title|default('Accueil') }}{% endblock %}</title>
+
     <link rel="stylesheet" href="{{ asset('styles/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/css/font-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/grillade.css') }}">
-    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/mce.css') }}">
     <link rel="stylesheet" href="{{ asset('styles/prism.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
     {% block stylesheets %}{% endblock %}
 
 

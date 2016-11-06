@@ -1,8 +1,23 @@
 {% embed "base.html.twig" with {title: 'Mon profil | Succès'} %}
 
+    {% block head %}
+    <!--
+      ___________________ _________                                                .___
+ /   _____/\______   \\_   ___ \     ______  _____     ______      ______    __| _/
+ \_____  \  |       _//    \  \/     \____ \ \__  \   /  ___/      \____ \  / __ |
+ /        \ |    |   \\     \____    |  |_> > / __ \_ \___ \       |  |_> >/ /_/ |
+/_______  / |____|_  / \______  /    |   __/ (____  //____  >      |   __/ \____ |
+        \/         \/         \/     |__|         \/      \/       |__|         \/
+
+        {{ absolute_url(path('unlock_secret_mmi_achievement')) }}
+
+        !-->
+    {% endblock %}
+
     {% block body %}
         <div class="container">
             <h2>Succès</h2>
+            <p>Nombre de tutoriels terminés : <strong>{{ nb_finished_tutorials }}</strong></p>
             <ul class="achievements">
                 {% for achievement in achievements %}
                     {% set userAchievement = user_achievements_repo.achievement(app.user, achievement) %}
@@ -12,7 +27,7 @@
                                 <img src="{{ achievement.icon }}" alt="">
                             </div>
                             <div class="content">
-                                <h3>{{ achievement.title }}
+                                <h3>{{ achievement.secret ? "<i class='secondary'>[SECRET]</i> - "|raw }}{{ achievement.title }}
                                     {% if userAchievement is not null %}
                                         <span>Obtenu le {{ userAchievement.unlockedAt|date('d/m/Y') }}</span>
                                     {% endif %}
@@ -24,6 +39,21 @@
                 {% endfor %}
             </ul>
         </div>
+    {% endblock %}
+
+    {% block javascripts %}
+        <script>
+            let i = 0;
+            $('.achievement').each(function() {
+                let achievement = $(this);
+                if(achievement.hasClass('completed')) {
+                    $(this).addClass('animated').addClass('fadeInLeft').css({'visibility': 'visible', 'animation-delay': i + "ms", 'animation-duration': '500ms'})
+                } else {
+                    $(this).addClass('animated').addClass('fadeInLeftNotCompleted').css({'visibility': 'visible', 'animation-delay': i + "ms", 'animation-duration': '500ms'})
+                }
+                i += 300;
+            })
+        </script>
     {% endblock %}
 
 {% endembed %}

@@ -1339,6 +1339,39 @@
   animation-name: fadeInLeft;
 }
 
+@-webkit-keyframes fadeInLeftNotCompleted {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 0.5;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeftNotCompleted {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    opacity: 0.5;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInLeftNotCompleted {
+  -webkit-animation-name: fadeInLeftNotCompleted;
+  animation-name: fadeInLeftNotCompleted;
+}
+
 @-webkit-keyframes fadeInLeftBig {
   from {
     opacity: 0;

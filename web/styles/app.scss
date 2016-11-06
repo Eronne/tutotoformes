@@ -33,16 +33,18 @@ button#forgotPassword {
 }
 
 .popup {
-    position: relative;
+    position: absolute;
     transition: all 0.3s;
     padding: 20px;
     z-index: 10000;
     min-width: 300px;
-    transform: translateY(2000px);
+    top: 150%;
     background-color: $white;
     overflow: hidden;
+    width: 800px;
+    left: calc(50% - 400px);
     &.visible {
-        transform: translateY(0);
+        top: 30%;
 
     }
     & h3 {
@@ -54,6 +56,10 @@ button#forgotPassword {
         right: 25px;
         top: 25px;
         cursor: pointer;
+    }
+    & img {
+        float: left;
+        margin-right: 38px;
     }
 }
 
@@ -534,6 +540,7 @@ pre {
 
 ul.achievements {
     & li.achievement {
+        visibility: hidden;
         transition: all 0.3s;
         list-style: none;
         border: 3px solid $darkwhite;
@@ -576,7 +583,6 @@ ul.achievements {
         }
 
         &:not(.completed) {
-            opacity: 0.5;
             & .thumbnail img {
                 filter: blur(2.5px);
             }
@@ -584,6 +590,89 @@ ul.achievements {
                 cursor: not-allowed;
                 transform: none;
             }
+        }
+    }
+}
+
+ul.badges {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin-top: 40px;
+    & li.badge {
+        list-style: none;
+        display: inline-block;
+        margin-right: 40px;
+        margin-bottom: 20px;
+        position: relative;
+        border-radius: 100%;
+        visibility: hidden;
+
+        & img {
+            width: 100px;
+            height: 100px;
+        }
+        &:before {
+            transition: all 0.3s;
+            content: '';
+            position: absolute;
+            border-radius: 100%;
+            top: 0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            opacity: 0;
+            z-index: 1;
+        }
+        &:hover:before {
+            cursor: pointer;
+            opacity: 0.6;
+        }
+
+    }
+}
+
+.tooltip-item {
+    position: relative;
+    & span.tooltip {
+        transition: all 0.2s;
+        position: absolute;
+        left: 50%;
+        width: 140px;
+        padding: 10px 10px;
+        margin-left: -70px;
+        text-wrap: normal;
+        top: 120%;
+        color: #FFFFFF;
+        background: $darkblue;
+        text-align: center;
+        visibility: hidden;
+        opacity: 0;
+        border-radius: 3px;
+        z-index: 999;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -8px;
+            width: 0; height: 0;
+            border-bottom: 8px solid $darkblue;
+            border-right: 8px solid transparent;
+            border-left: 8px solid transparent;
+        }
+        &.visible {
+            transition: all 0.2s;
+            visibility: visible;
+            top: 100%;
+            opacity: 0.7;
+            left: 50%;
+            margin-left: -70px;
+            z-index: 999;
         }
     }
 }
@@ -707,6 +796,11 @@ span.time {
         margin-right: 10px;
 
     }
+}
+
+i.secondary {
+    color: $red;
+    font-style: normal;
 }
 
 span.date::before {

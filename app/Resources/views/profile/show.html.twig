@@ -1,0 +1,63 @@
+{% embed "base.html.twig" with {title: 'Profil de ' ~ user.username} %}
+
+
+    {% block body %}
+        <div class="overlay"></div>
+
+        <div class="jumbotron">
+
+            <div class="heading tutoriel">
+                <h1>{{ user.username }}</h1>
+                <div class="metas">
+                    <span class="date">Inscrit depuis le {{ user.createdAt|date('d/m/Y') }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow-separator"></div>
+        <div class="container">
+            <h2>Badges</h2>
+            <ul class="badges">
+                {% for userAchievement in user.userAchievementsAssociation %}
+
+                    {% if userAchievement.achievement.secret %}
+                        <li class="badge secret tooltip-item">
+                            <img src="{{ userAchievement.achievement.icon }}" alt="">
+                            <span class="tooltip">???</span>
+                        </li>
+                    {% else %}
+                        <li class="badge tooltip-item">
+                            <img src="{{ userAchievement.achievement.icon }}" alt="">
+                            <span class="tooltip">{{ userAchievement.achievement.title }}</span>
+                        </li>
+                        <div class="popup" id="{{ userAchievement.achievement.title|slugify }}">
+                            <i class="fa fa-close"></i>
+                            <img src="{{ userAchievement.achievement.icon }}" alt="" width="200" height="200">
+                            <h3>{{ userAchievement.achievement.title }}</h3>
+                            <p>{{ userAchievement.achievement.description }}</p>
+                        </div>
+                    {% endif %}
+
+
+                {% endfor %}
+            </ul>
+        </div>
+
+
+
+    {% endblock %}
+
+
+    {% block javascripts %}
+        <script>
+            let i = 0;
+            $('.badge').each(function() {
+                $(this).addClass('animated').addClass('fadeInUp').css({'visibility': 'visible', 'animation-delay': i + "ms", 'animation-duration': '500ms'})
+                i += 300;
+            })
+        </script>
+    {% endblock %}
+
+
+
+{% endembed %}
