@@ -37,18 +37,8 @@ class AuthenticationSuccessHandler extends DefaultAuthenticationSuccessHandler
             return $this->httpUtils->createRedirectResponse($request, "/login");
         }
 
-        /** @var Achievement $achievement */
-        $achievement = $em->getRepository('AppBundle:Achievement')->findOneBy(['internalName' => 'FIRST_LOGIN']);
-        if(!$em->getRepository('AppBundle:UtilisateurAchievementAssociation')->haveUserUnlocked($user, $achievement)) {
-            $userAchievement = new UtilisateurAchievementAssociation();
-            $userAchievement->setAchievement($achievement)
-                ->setUtilisateur($user)
-                ->setUnlockedAt(new \DateTime('now'));
-            $em->persist($userAchievement);
-            $em->flush();
-            $this->container->get('session')->getFlashBag()->add('alert success', "Tu as obtenu le succès '" . $achievement->getTitle() . "'");
-        }
-
+        $this->container->get('app.utils')->unlockAchievement('FIRST_LOGIN', $user);
+        
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
     }
 }

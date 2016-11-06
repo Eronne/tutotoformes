@@ -336,6 +336,7 @@ header.fixed {
                 }
                 &.profile {
                     background-color: $blue;
+                    position: relative;
                     &:hover {
                         background-color: $white;
                         color: black;
@@ -346,7 +347,9 @@ header.fixed {
                         margin-right: 10px;
                         color: inherit;
                     }
+
                 }
+
             }
         }
     }
@@ -524,6 +527,62 @@ pre {
             & .metas {
                 padding: 20px;
                 opacity: 0.75;
+            }
+        }
+    }
+}
+
+ul.achievements {
+    & li.achievement {
+        transition: all 0.3s;
+        list-style: none;
+        border: 3px solid $darkwhite;
+        background: $darkblue;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+        & .thumbnail {
+            padding: 20px;
+            width: 128px;
+            height: 128px;
+            & img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        & h3 {
+            margin-top: 0;
+            color: $blue;
+            & span {
+                font-size: 0.9rem;
+                color: black;
+                opacity: 0.5;
+                float: right;
+            }
+        }
+        & .content {
+            transition: all 0.3s;
+            flex: 1;
+            background-color: white;
+            padding: 20px;
+        }
+
+        &.completed:hover {
+            cursor: pointer;
+            background: lighten($darkblue, 10%);
+            & > .content {
+                background: darken(white, 5%);
+            }
+        }
+
+        &:not(.completed) {
+            opacity: 0.5;
+            & .thumbnail img {
+                filter: blur(2.5px);
+            }
+            &:hover {
+                cursor: not-allowed;
+                transform: none;
             }
         }
     }

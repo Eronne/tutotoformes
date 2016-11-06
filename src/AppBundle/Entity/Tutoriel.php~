@@ -207,7 +207,7 @@ class Tutoriel
     /**
      * Set difficulty
      *
-     * @param integer $difficulty
+     * @param string $difficulty
      *
      * @return Tutoriel
      */
@@ -221,7 +221,7 @@ class Tutoriel
     /**
      * Get difficulty
      *
-     * @return int
+     * @return string
      */
     public function getDifficulty()
     {

@@ -5,6 +5,7 @@ namespace AppBundle;
 use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\TutorielPage;
 use AppBundle\Entity\Utilisateur;
+use AppBundle\Entity\UtilisateurAchievementAssociation;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Asset\Exception\LogicException;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -33,14 +34,23 @@ class Utils
         $this->_container = $container;
     }
 
-    public function unlockAchievement($achievementInternalName, Utilisateur $utilisateur) {
+    public function unlockAchievement($achievementInternalName, Utilisateur $user)
+    {
         $achievement = $this->_em->getRepository('AppBundle:Achievement')->findOneBy(['internalName' => $achievementInternalName]);
-        if(!$achievement) throw new Exception("Le succès n'a pas été trouvé !");
-
-
+        if (!$achievement) return;
+        if (!$this->_em->getRepository('AppBundle:UtilisateurAchievementAssociation')->haveUserUnlocked($user, $achievement)) {
+            $userAchievement = new UtilisateurAchievementAssociation();
+            $userAchievement->setAchievement($achievement)
+                ->setUtilisateur($user)
+                ->setUnlockedAt(new \DateTime('now'));
+            $this->_em->persist($userAchievement);
+            $this->_em->flush();
+            $this->_container->get('session')->getFlashBag()->add('alert success', "Félicitations ! Tu as obtenu le succès '" . $achievement->getTitle() . "'");
+        }
     }
 
-    public function isValidFile(UploadedFile $file, $acceptedMimeType){
+    public function isValidFile(UploadedFile $file, $acceptedMimeType)
+    {
         return ($file != null && $file->isValid() && mb_ereg_match($acceptedMimeType, $file->getMimeType()));
     }
 
@@ -60,7 +70,8 @@ class Utils
     }
 
 
-    public function str_random($length = 60) {
+    public function str_random($length = 60)
+    {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
@@ -70,8 +81,9 @@ class Utils
         return $randomString;
     }
 
-    public function setNullIfEmptyString($s){
-        if($s === '') {
+    public function setNullIfEmptyString($s)
+    {
+        if ($s === '') {
             return null;
         }
         return $s;

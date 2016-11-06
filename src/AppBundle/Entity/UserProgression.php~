@@ -223,4 +223,28 @@ class UserProgression
         }
         return null;
     }
+
+    /**
+     * Set startedAt
+     *
+     * @param \DateTime $startedAt
+     *
+     * @return UserProgression
+     */
+    public function setStartedAt($startedAt)
+    {
+        $this->startedAt = $startedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get startedAt
+     *
+     * @return \DateTime
+     */
+    public function getStartedAt()
+    {
+        return $this->startedAt;
+    }
 }

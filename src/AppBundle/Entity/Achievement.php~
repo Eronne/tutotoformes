@@ -213,28 +213,4 @@ class Achievement
     {
         return $this->internalName;
     }
-
-    /**
-     * Set secret
-     *
-     * @param boolean $secret
-     *
-     * @return Achievement
-     */
-    public function setSecret($secret)
-    {
-        $this->secret = $secret;
-
-        return $this;
-    }
-
-    /**
-     * Get secret
-     *
-     * @return boolean
-     */
-    public function getSecret()
-    {
-        return $this->secret;
-    }
 }

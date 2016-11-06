@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 use AppBundle\Entity\Achievement;
 use AppBundle\Entity\Utilisateur;
+use AppBundle\Entity\UtilisateurAchievementAssociation;
 
 /**
  * UtilisateurAchievementAssociationRepository
@@ -28,6 +29,23 @@ class UtilisateurAchievementAssociationRepository extends \Doctrine\ORM\EntityRe
         }
         return false;
 
+    }
+
+    /**
+     * @param Utilisateur $utilisateur
+     * @param Achievement $achievement
+     * @return UtilisateurAchievementAssociation
+     */
+    public function getAchievement(Utilisateur $utilisateur, Achievement $achievement){
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('utilisateur_achievement_association')
+            ->from('AppBundle:UtilisateurAchievementAssociation', 'utilisateur_achievement_association')
+            ->where('utilisateur_achievement_association.utilisateur = :user')
+            ->andWhere('utilisateur_achievement_association.achievement = :achievement')
+            ->setParameter('user', $utilisateur)
+            ->setParameter('achievement', $achievement)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 }
