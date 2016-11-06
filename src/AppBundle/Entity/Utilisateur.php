@@ -101,6 +101,14 @@ class Utilisateur implements UserInterface, \Serializable
      */
     private $tutoriels;
 
+    /**
+     * @var UtilisateurAchievementAssociation
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UtilisateurAchievementAssociation", mappedBy="utilisateur")
+     */
+    private $userAchievementsAssociation;
+
+
 
 
     /**
@@ -516,5 +524,39 @@ class Utilisateur implements UserInterface, \Serializable
     public function getPasswordResetedAt()
     {
         return $this->passwordResetedAt;
+    }
+
+    /**
+     * Add userAchievementsAssociation
+     *
+     * @param \AppBundle\Entity\UtilisateurAchievementAssociation $userAchievementsAssociation
+     *
+     * @return Utilisateur
+     */
+    public function addUserAchievementsAssociation(\AppBundle\Entity\UtilisateurAchievementAssociation $userAchievementsAssociation)
+    {
+        $this->userAchievementsAssociation[] = $userAchievementsAssociation;
+
+        return $this;
+    }
+
+    /**
+     * Remove userAchievementsAssociation
+     *
+     * @param \AppBundle\Entity\UtilisateurAchievementAssociation $userAchievementsAssociation
+     */
+    public function removeUserAchievementsAssociation(\AppBundle\Entity\UtilisateurAchievementAssociation $userAchievementsAssociation)
+    {
+        $this->userAchievementsAssociation->removeElement($userAchievementsAssociation);
+    }
+
+    /**
+     * Get userAchievementsAssociation
+     *
+     * @return UtilisateurAchievementAssociation[]
+     */
+    public function getUserAchievementsAssociation()
+    {
+        return $this->userAchievementsAssociation;
     }
 }

@@ -33,6 +33,13 @@ class Utils
         $this->_container = $container;
     }
 
+    public function unlockAchievement($achievementInternalName, Utilisateur $utilisateur) {
+        $achievement = $this->_em->getRepository('AppBundle:Achievement')->findOneBy(['internalName' => $achievementInternalName]);
+        if(!$achievement) throw new Exception("Le succès n'a pas été trouvé !");
+
+
+    }
+
     public function isValidFile(UploadedFile $file, $acceptedMimeType){
         return ($file != null && $file->isValid() && mb_ereg_match($acceptedMimeType, $file->getMimeType()));
     }
