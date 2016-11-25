@@ -34,15 +34,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/secret/mmi", name="unlock_secret_mmi_achievement")
-     * @Security("has_role('ROLE_USER')")
+     * @param Request $request
+     * @Route("/cgu", name="cgu")
      */
-    public function secretAchievementAction(Request $request) {
-        /** @var Utilisateur|string $user */
-        $user = $this->getUser();
-        if(!$user || $user == 'anon.') return $this->redirectToRoute('homepage');
-        $this->get('app.utils')->unlockAchievement(AchievementsName::SECRET_MMI_ACHIEVEMENT, $user);
-        return $this->redirectToRoute('my_profile');
+    public function showCguAction(Request $request) {
+        return $this->render('cgu.html.twig');
     }
+
+
 
 }

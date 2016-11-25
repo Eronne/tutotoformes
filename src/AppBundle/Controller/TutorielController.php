@@ -81,7 +81,7 @@ class TutorielController extends Controller
         $user = $this->getUser();
 
         if(!$user instanceof Utilisateur & $page->getPageNumber() > 1) {
-            $this->addFlash('alert info', "Afin de lire la suite du tutoriel, veuillez-vous inscrire ou vous connecter.");
+            $this->addFlash('notification info', "Afin de lire la suite du tutoriel, veuillez-vous inscrire ou vous connecter.");
             return $this->redirectToRoute('login', ['redirect' => $this->get('router')->generate('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $page->getSlug()])]);
         }
 
