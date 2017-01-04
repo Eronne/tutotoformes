@@ -6,10 +6,8 @@ use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\TutorielPage;
 use AppBundle\Entity\UserProgression;
 use AppBundle\Entity\Utilisateur;
-use AppBundle\Events\AppEvents;
 use AppBundle\Events\TutorielEvents;
 use AppBundle\Events\TutorielFinishedEvent;
-use AppBundle\Events\TutorielSubscriber;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -68,7 +66,6 @@ class TutorielController extends Controller
      * @param Request $request
      * @param Tutoriel $tutoriel
      * @Route("/tutoriel/{slug}/{slug_page}", name="tutoriel_show")
-     * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function showAction(Request $request, Tutoriel $tutoriel, $slug_page)
@@ -83,7 +80,10 @@ class TutorielController extends Controller
 
         $user = $this->getUser();
 
-
+        if(!$user instanceof Utilisateur & $page->getPageNumber() > 1) {
+            $this->addFlash('notification info', "Afin de lire la suite du tutoriel, veuillez-vous inscrire ou vous connecter.");
+            return $this->redirectToRoute('login', ['redirect' => $this->get('router')->generate('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $page->getSlug()])]);
+        }
 
         $pageRepo = $this->getDoctrine()->getManager()->getRepository('AppBundle:TutorielPage');
 
@@ -100,6 +100,7 @@ class TutorielController extends Controller
      * @param $tutoriel
      * @param $slug_page
      * @Route("/tutoriel/{slug}/has-completed/{slug_page}",name="tutoriel_mark_page_as_complete")
+     * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function markPartAsCompleteAction(Request $request, Tutoriel $tutoriel, $slug_page)
@@ -139,6 +140,7 @@ class TutorielController extends Controller
      * @param $tutoriel
      * @param $slug_page
      * @Route("/tutoriel/{slug}/has-not-completed/{slug_page}",name="tutoriel_unmark_page_as_complete")
+     * @Security("has_role('ROLE_USER')")
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function unmarkPartAsCompleteAction(Request $request, Tutoriel $tutoriel, $slug_page)

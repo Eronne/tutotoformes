@@ -22,6 +22,7 @@ class SecurityController extends Controller
     public function loginAction(Request $request)
     {
 
+
         if($this->get('security.token_storage')->getToken()->getUser() instanceof Utilisateur) {
             return $this->redirectToRoute('my_profile');
         }
@@ -36,7 +37,6 @@ class SecurityController extends Controller
             }
         }
         $lastUsername = $authenticationUtils->getLastUsername();
-
         return $this->render('security/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $translated,

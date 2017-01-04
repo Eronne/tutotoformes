@@ -56,7 +56,7 @@
                         <div class="right">
                             {% if next_page %}
 
-                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }}
+                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }} {{ not app.user ? '(connexion requise)' }}
                                     &nbsp;&nbsp;
                                     <i class="fa fa-arrow-right"></i></a>
                             {% endif %}
@@ -69,8 +69,25 @@
                            class="button icon small secondary"><span class="icon"><i class="fa fa-edit"></i></span>Éditer
                             la page</a>
                     {% endif %}
-                    {% if tutoriel.userProgression(app.user) %}
-                        {% if page.slug not in tutoriel.userProgression(app.user).completedPages %}
+                    {% if app.user %}
+                        {% if tutoriel.userProgression(app.user) %}
+                            {% if page.slug not in tutoriel.userProgression(app.user).completedPages %}
+                                <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
+                                      method="post">
+                                    <button id="markButton" class="button primary medium icon"><span class="icon"><i
+                                                    class="fa fa-check-circle"></i></span>Valider
+                                        cette partie
+                                    </button>
+                                </form>
+                            {% else %}
+                                <form action="{{ path('tutoriel_unmark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
+                                      method="post">
+                                    <button id="markButton" class="button primary medium icon"><span class="icon"><i
+                                                    class="fa fa-remove"></i></span>Dévalider la partie
+                                    </button>
+                                </form>
+                            {% endif %}
+                        {% else %}
                             <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                                   method="post">
                                 <button id="markButton" class="button primary medium icon"><span class="icon"><i
@@ -78,22 +95,7 @@
                                     cette partie
                                 </button>
                             </form>
-                        {% else %}
-                            <form action="{{ path('tutoriel_unmark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
-                                  method="post">
-                                <button id="markButton" class="button primary medium icon"><span class="icon"><i
-                                                class="fa fa-remove"></i></span>Dévalider la partie
-                                </button>
-                            </form>
                         {% endif %}
-                    {% else %}
-                        <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
-                              method="post">
-                            <button id="markButton" class="button primary medium icon"><span class="icon"><i
-                                            class="fa fa-check-circle"></i></span>Valider
-                                cette partie
-                            </button>
-                        </form>
                     {% endif %}
                 </div>
             </div>

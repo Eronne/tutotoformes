@@ -85,18 +85,22 @@ button#forgotPassword {
     color: #a82315; }
 
 .popup {
-  position: absolute;
+  position: fixed;
+  box-shadow: 0px 14px 70px 0px rgba(0, 0, 0, 0.24);
   transition: all 0.3s;
   padding: 20px;
   z-index: 10000;
   min-width: 300px;
-  top: 150%;
+  top: 20%;
+  transform: scale(0);
   background-color: #ecf0f1;
   overflow: hidden;
   width: 800px;
-  left: calc(50% - 400px); }
+  left: calc(50% - 400px);
+  visibility: hidden; }
   .popup.visible {
-    top: 30%; }
+    visibility: visible;
+    transform: scale(1); }
   .popup h3 {
     font-size: 2rem;
     text-transform: uppercase; }
@@ -108,6 +112,12 @@ button#forgotPassword {
   .popup img {
     float: left;
     margin-right: 38px; }
+  .popup span.unlock-information {
+    opacity: 0.5;
+    font-size: 0.9rem;
+    position: absolute;
+    bottom: 20px;
+    right: 20px; }
 
 .overlay {
   transition: all 0.3s;
@@ -484,7 +494,8 @@ ul.achievements li.achievement {
   background: #2c3e50;
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  user-select: none; }
   ul.achievements li.achievement .thumbnail {
     padding: 20px;
     width: 128px;
@@ -535,6 +546,8 @@ ul.badges {
     visibility: hidden; }
     ul.badges li.badge img {
       width: 100px;
+      overflow: hidden;
+      border-radius: 100%;
       height: 100px; }
     ul.badges li.badge:before {
       transition: all 0.3s;
@@ -551,6 +564,15 @@ ul.badges {
     ul.badges li.badge:hover:before {
       cursor: pointer;
       opacity: 0.6; }
+
+.sitemap {
+  margin-top: 20px; }
+  .sitemap a {
+    transition: all 0.3s;
+    color: white;
+    text-decoration: none; }
+    .sitemap a:hover {
+      color: rgba(255, 255, 255, 0.3); }
 
 .tooltip-item {
   position: relative; }
