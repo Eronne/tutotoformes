@@ -10,11 +10,23 @@
             <div class="brand">
                 <a href="{{ (app.user) ? path('index') : path('homepage') }}">T</a>
             </div>
-            {% if app.user %}
-                <a href="{{ path('my_profile') }}" class="item login"></a>
-            {% else %}
-                <a class="item login" href="{{ path('login') }}"></a>
-            {% endif %}
+            <div class="items">
+                <a href="{{ path('tutoriel_list') }}"
+                   class="item">Tutoriels</a>
+                {% if app.user %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="item"
+                           href="{{ path('admin_index') }}">Administration</a>
+                    {% endif %}
+                    <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
+                {% endif %}
+                {% if app.user %}
+                    <a href="{{ path('my_profile') }}" class="item login"></a>
+                {% else %}
+                    <a class="item login" href="{{ path('login') }}"></a>
+                {% endif %}
+            </div>
+
         </div>
     </div>
     <ul id="mobile-menu">
@@ -25,10 +37,10 @@
         </li>
         {% if app.user %}
             {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a class="item"
-                   href="{{ path('admin_index') }}">Administration</a>
-            </li>
+                <li>
+                    <a class="item"
+                       href="{{ path('admin_index') }}">Administration</a>
+                </li>
             {% endif %}
             <li>
                 <a href="{{ path('logout') }}" class="item">Se déconnecter</a>

@@ -81,7 +81,7 @@ $(document).ready(function () {
 
 	if (doc.scrollTop() === 0 && relativeUrl === "/") {
 		header.addClass('transparent');
-	} else if (doc.scrollTop() > 0 && doc.scrollTop() < 100 && relativeUrl === "/") {
+	} else if (doc.scrollTop() > 0 && relativeUrl === "/") {
 		header.removeClass('transparent');
 	}
 	
