@@ -21,7 +21,7 @@ class TutorielController extends Controller
      * @param Request $request
      * @param Tutoriel $tutoriel
      * @Route("/tutoriel/{slug}", name="tutoriel_summary_show")
-     * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function showSummaryAction(Request $request, Tutoriel $tutoriel)
     {

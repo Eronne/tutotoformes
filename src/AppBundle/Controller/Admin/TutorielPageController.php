@@ -17,7 +17,7 @@ class TutorielPageController extends Controller
     /**
      * @param Request $request
      * @param Tutoriel $tutoriel
-     * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws Exception
      * @Route("/admin/tutoriel/{id}/page/add", name="admin_tutoriel_page_add")
      * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
@@ -70,7 +70,7 @@ class TutorielPageController extends Controller
      * @param Request $request
      * @param Tutoriel $tutoriel
      * @param $slug_page
-     * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws Exception
      * @Route("/admin/tutoriel/edit/{id}/page/{slug_page}", name="admin_tutoriel_page_edit")
      * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
@@ -140,7 +140,7 @@ class TutorielPageController extends Controller
             }
         }
 
-        if (in_array($tutorielPage->getSlug(), $userProgression->getCompletedPages())) {
+        if ($userProgression && in_array($tutorielPage->getSlug(), $userProgression->getCompletedPages())) {
             $array = $userProgression->getCompletedPages();
             $key = array_search($tutorielPage->getSlug(), $array);
             unset($array[$key]);
