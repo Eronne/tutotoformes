@@ -1,4 +1,3 @@
-<h1>Titre</h1>
-<p>Tiens tu veux reset ton mot de passe lol</p>
-<h2>Le lien</h2>
-<p><a href="{{ absolute_url(path('reset_password', {'password_token': password_token, 'username': user.username})) }}">Cliquer ici pour reset votre mot de passe</a></p>
+<h1>Réinitialiser votre mot de passe</h1>
+<p>Une demande de réinitialisation de mot de passe pour votre compte a été demandé. S'il s'agissait bien de vous, veuillez cliquer sur le lien ci-dessous afin de changer de mot de passe. Sinon, veuillez-ne pas prendre en compte ce mail</p>
+<p><a href="{{ absolute_url(path('reset_password', {'password_token': password_token, 'username': user.username})) }}">Cliquer ici pour réinitialiser votre mot de passe</a></p>

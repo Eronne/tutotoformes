@@ -65,35 +65,47 @@
                     </div>
                     <div class="spacer"></div>
                     {% if app.user and ((is_granted('ROLE_WRITER') and app.user == tutoriel.author) or is_granted('ROLE_ADMIN')) %}
-                        <a href="{{ path('admin_tutoriel_page_edit', {'id': tutoriel.id, 'slug_page': page.slug}) }}"
-                           class="button icon small secondary"><span class="icon"><i class="fa fa-edit"></i></span>Éditer
-                            la page</a>
+                        <div class="center">
+                            <a href="{{ path('admin_tutoriel_page_edit', {'id': tutoriel.id, 'slug_page': page.slug}) }}"
+                               class="button medium primary"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer
+                                la page</a>
+                        </div>
+
                     {% endif %}
                     {% if app.user %}
                         {% if tutoriel.userProgression(app.user) %}
                             {% if page.slug not in tutoriel.userProgression(app.user).completedPages %}
                                 <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                                       method="post">
-                                    <button id="markButton" class="button primary medium icon"><span class="icon"><i
-                                                    class="fa fa-check-circle"></i></span>Valider
-                                        cette partie
-                                    </button>
+                                    <div class="spacer"></div>
+                                    <div class="center">
+                                        <button id="markButton" class="button primary medium"><i
+                                                    class="fa fa-check-circle">&nbsp;&nbsp;</i>J'ai compris
+                                        </button>
+                                    </div>
+
                                 </form>
                             {% else %}
                                 <form action="{{ path('tutoriel_unmark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                                       method="post">
-                                    <button id="markButton" class="button primary medium icon"><span class="icon"><i
-                                                    class="fa fa-remove"></i></span>Dévalider la partie
-                                    </button>
+                                    <div class="spacer"></div>
+                                    <div class="center">
+                                        <button id="markButton" class="button primary medium"><i
+                                                    class="fa fa-remove">&nbsp;&nbsp;</i>Je n'ai pas compris
+                                        </button>
+                                    </div>
+
                                 </form>
                             {% endif %}
                         {% else %}
                             <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
                                   method="post">
-                                <button id="markButton" class="button primary medium icon"><span class="icon"><i
-                                                class="fa fa-check-circle"></i></span>Valider
-                                    cette partie
-                                </button>
+                                <div class="spacer"></div>
+                                <div class="center">
+                                    <button id="markButton" class="button primary medium"><i
+                                                class="fa fa-check-circle">&bnsp;&nbsp;</i>J'ai compris</button>
+                                </div>
+
                             </form>
                         {% endif %}
                     {% endif %}

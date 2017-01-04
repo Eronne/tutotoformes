@@ -10,11 +10,12 @@
             {% if app.user %}
                 <div class="heading">
                     <h1>Bienvenue, {{ app.user.username }}</h1>
-                    <p>C'est cool de te revoir mon bon ami !</p>
+                    <p>Regarde ce qui te plaît parmis les derniers tutoriels ou regarde le suivi de tes cours !</p>
+                    <a href="{{ path('my_profile') }}" class="button small secondary"><span class="icon"><i
+                                    class="fa fa-graduation-cap">&nbsp;&nbsp;</i></span>Suivi de
+                        mes cours</a>
                 </div>
-                <a href="{{ path('my_profile') }}" class="button  icon large primary"><span class="icon"><i
-                                class="fa fa-graduation-cap"></i></span>Suivi de
-                    mes cours</a>
+
             {% else %}
                 <div class="heading">
                     <h1>Venez sur notre site</h1>

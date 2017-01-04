@@ -1,22 +1,39 @@
-{% for page in pages %}
-    <a class="{% if app.request.attributes.get('_route') == page %}active{% endif %} item">{{ page }}</a>
-{% endfor %}
-<div class="brand">
-    <a href="{{ path('homepage') }}"
-       class="item {{ route_name == "homepage" ? 'active' }}">{{ app_name }}</a>
-</div>
+<nav class="main-nav">
+    <div class="menu-container">
+        {% for page in pages %}
+            <a class="{% if app.request.attributes.get('_route') == page %}active{% endif %} item">{{ page }}</a>
+        {% endfor %}
+        <div class="menu">
+            <div class="hamburger">
+                <i class="fa fa-bars"></i>
+            </div>
+            <div class="brand">
+                <a href="{{ (app.user) ? path('index') : path('homepage') }}">T</a>
+            </div>
+            {% if app.user %}
+                <a href="{{ path('my_profile') }}" class="item login"></a>
+            {% else %}
+                <a class="item login" href="{{ path('login') }}"></a>
+            {% endif %}
+        </div>
+    </div>
+    <ul id="mobile-menu">
+        <li>
+            <a href="{{ path('tutoriel_list') }}"
+               class="item">Tutoriels</a>
 
-<div class="menu">
-    <a href="{{ path('tutoriel_list') }}" class="item {{ route_name == "tutoriel_list" ? 'active' }}">Tutoriels</a>
-    {% if app.user and is_granted('ROLE_ADMIN') %}
-        <a class="item {% if route_name starts with "admin" %}active{% endif %}" href="{{ path('admin_index') }}">Administration</a>
-    {% endif %}
-    {% if app.user %}
-        <a href="{{ path('my_profile') }}" class="item profile">Mon profil</a>
-        <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
-    {% else %}
-        <a class="item login" href="{{ path('login') }}">Connexion / Inscription</a>
+        </li>
+        {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a class="item"
+                   href="{{ path('admin_index') }}">Administration</a>
+            </li>
+            {% endif %}
+            <li>
+                <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
 
-
-    {% endif %}
-</div>

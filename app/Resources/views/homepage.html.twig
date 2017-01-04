@@ -1,0 +1,51 @@
+{% embed 'base.html.twig' %}
+
+    {% block body %}
+        <section class="home fullscreen">
+            <h1>S'autoformer sur Git</h1>
+            <div class="center">
+                <a href="{{ path('login') }}" class="button primary large">Commencer les cours</a>
+            </div>
+        </section>
+        <section class="who fullscreen">
+            <h2>Pour qui ?</h2>
+            <div class="has-bg">
+                <p>Tutotoformes est une
+                    plateforme de formation en ligne
+                    destinée aux personnes voulant
+                    s’autoformer sur des technologies
+                    utilisées par les développeurs</p>
+            </div>
+            <img src="{{ asset('assets/img/collaboration.svg') }}" alt="">
+        </section>
+        <section class="how fullscreen">
+            <h2>Comment</h2>
+            <p>Des cours rédigés par des
+                personnes issues de formations du web serront à ta disposition
+                afin de te familiariser avec
+                de nombreuses technologies.
+            </p>
+            <img src="{{ asset('assets/img/student.svg') }}" alt="">
+            <p>
+                Il te sera possible par la suite de faire une demande pour rejoindre notre équipe d’auteurs !
+            </p>
+        </section>
+        <section class="play fullscreen">
+            <h2>A toi de jouer !</h2>
+            <p>En créant un compte, tu pourras
+                suivre ton avancé dans les différents
+                apprentissage que tu as entrepenis.</p>
+            <p>Alors ne perds pas de temps !</p>
+            <div class="center">
+                <a href="{{ path('login') }}" class="button primary large">Je me créée un compte</a>
+            </div>
+            <div class="spacer"></div>
+            <div class="center">
+                <a href="{{ path('tutoriel_list') }}" class="button primary large">Je consulte les tutoriels</a>
+            </div>
+            <img src="{{ asset('assets/img/deal.svg') }}" alt="">
+        </section>
+
+    {% endblock %}
+
+{% endembed %}

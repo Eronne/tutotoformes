@@ -14,8 +14,18 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class DefaultController extends Controller
 {
+
     /**
      * @Route("/", name="homepage")
+     */
+    public function homepageAction(Request $request){
+        if(!$this->getUser())
+            return $this->render('homepage.html.twig');
+        return $this->redirectToRoute('index');
+    }
+
+    /**
+     * @Route("/home", name="index")
      */
     public function indexAction(Request $request)
     {
@@ -31,14 +41,6 @@ class DefaultController extends Controller
         $requestStack = $this->get('request_stack');
         $masterRequest = $requestStack->getMasterRequest();
         return $this->render('partials/_menu.html.twig', ['pages' => $pages, 'inverted' => $inverted, 'route_name' => $masterRequest->attributes->get('_route')]);
-    }
-
-    /**
-     * @param Request $request
-     * @Route("/cgu", name="cgu")
-     */
-    public function showCguAction(Request $request) {
-        return $this->render('cgu.html.twig');
     }
 
 

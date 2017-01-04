@@ -1,10 +1,12 @@
-$darkblue: #2c3e50;
-$red: #e74c3c;
+$primary_color: #009c5c;
+$primary_alt_color: #009b42;
+$secondary_color: #39bb88;
+$third_color: #8accab;
+$dark_primary_color: darken($primary_color, 10%);
+$dark_secondary_color: darken($secondary_color, 10%);
+$dark_third_color: darken($third_color, 10%);
 $white: #ecf0f1;
 $darkwhite: #e3e7e8;
-$blue: #2980b9;
-$jumbotron_bg: #1f608b;
-$header_bg: #1b567b;
 
 /* Couleurs concernant les messages d'alertes */
 $success: #56b965;

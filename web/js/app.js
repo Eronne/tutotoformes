@@ -12,10 +12,11 @@ $(document).ready(function () {
 	let rightNav = $('.navigation .right a');
 	let markButton = $('#markButton');
 	
-	let forgotButton = $('button#forgotPassword');
+	let forgotButton = $('#forgotPassword');
 	
 	
-	$(forgotButton).on('click', () => {
+	$(forgotButton).on('click', (e) => {
+		e.preventDefault();
 		openPopup();
 	});
 	
@@ -68,8 +69,7 @@ $(document).ready(function () {
 	
 	if (relativeUrl === "/") {
 		$(document)
-			.on('scroll', function (e) {
-				console.log(doc.scrollTop());
+			.on('scroll', function () {
 				if (doc.scrollTop() === 0) {
 					header.addClass('transparent');
 				} else if (doc.scrollTop() > 0 && doc.scrollTop() < 100) {
@@ -78,12 +78,24 @@ $(document).ready(function () {
 			})
 		;
 	}
-	
+
 	if (doc.scrollTop() === 0 && relativeUrl === "/") {
 		header.addClass('transparent');
 	} else if (doc.scrollTop() > 0 && doc.scrollTop() < 100 && relativeUrl === "/") {
 		header.removeClass('transparent');
 	}
+	
+	$('.hamburger').on('click', function() {
+		let hamburger = $(this).find('i');
+		header.toggleClass('mobile-opened');
+		if(hamburger.hasClass('fa-bars')) {
+			hamburger.removeClass('fa-bars');
+			hamburger.addClass('fa-close')
+		} else {
+			hamburger.removeClass('fa-close');
+			hamburger.addClass('fa-bars');
+		}
+	});
 	
 	if ($('textarea').length > 0) {
 		tinymce.init({
