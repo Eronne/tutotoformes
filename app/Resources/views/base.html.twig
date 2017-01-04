@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="Tutotoformes est une plateforme de tutoriel en ligne. Venez et partager vos connaissances avec le monde entier !">
     <meta name="theme-color" content="#39bb88"/>
 
     {% block head %}{% endblock %}
 
     <title>{% block title %}{{ app_name }} - {{ title|default('Accueil') }}{% endblock %}</title>
-
-    {#<link rel="stylesheet" href="{{ asset('styles/normalize.css') }}">#}
-    {#<link rel="stylesheet" href="{{ asset('styles/css/font-awesome.css') }}">#}
-    {#<link rel="stylesheet" href="{{ asset('styles/animate.css') }}">#}
-    {#<link rel="stylesheet" href="{{ asset('styles/grillade.css') }}">#}
-    {#<link rel="stylesheet" href="{{ asset('styles/mce.css') }}">#}
-    {#<link rel="stylesheet" href="{{ asset('styles/prism.css') }}">#}
-    {#<link rel="stylesheet" href="{{ asset('styles/app.css') }}">#}
-    <link rel="stylesheet" href="{{ asset('dist/app.css') }}?{{ 'now'|date('Ymdhis') }}">
+    {% if app.environment == 'prod' %}
+        <link rel="stylesheet" href="{{ asset('dist/app.css') }}?v={{ 'now'|date('Ymdhis') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ asset('styles/app.css') }}?v={{ 'now'|date('Ymdhis') }}">
+    {% endif %}
     {% block stylesheets %}{% endblock %}
 
 
@@ -51,12 +48,17 @@
     &copy; {{ 'now'|date('Y') }} - Tutotoformes
 </footer>
 
-{#<script src="{{ asset('js/jquery-2.1.4.js') }}"></script>#}
-{#<script src="{{ asset('js/tinymce.js') }}"></script>#}
-{#<script src="{{ asset('js/prism.js') }}"></script>#}
-{#<script src="{{ asset('js/jquery.sticky-kit.min.js') }}"></script>#}
-{#<script src="{{ asset('js/app.js') }}"></script>#}
-<script src="{{ asset('dist/bundle.js') }}?{{ 'now'|date('Ymdhis') }}"></script>
+{% if app.environment == 'prod' %}
+    <script src="{{ asset('dist/bundle.js') }}?{{ 'now'|date('Ymdhis') }}"></script>
+{% else %}
+    <script src="{{ asset('js/jquery-2.1.4.js') }}"></script>
+    <script src="{{ asset('js/tinymce.js') }}"></script>
+    <script src="{{ asset('js/prism.js') }}"></script>
+    <script src="{{ asset('js/jquery.sticky-kit.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}?v={{ 'now'|date('Ymdhis') }}"></script>
+
+{% endif %}
+
 {% block javascripts %}{% endblock %}
 
 </body>
