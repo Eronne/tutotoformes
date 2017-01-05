@@ -6143,9 +6143,7 @@ span.date::before {
     .tutoriels.others a {
       max-width: 100%; }
       .tutoriels.others a .tutoriel {
-        border-right: 6px solid #344a61; }
-      .tutoriels.others a:last-of-type .tutoriel {
-        border-right: none; }
+        margin: 10px; }
   .tutoriels .tutoriel {
     max-width: 100%;
     width: 490px;

@@ -838,13 +838,8 @@ span.date::before {
         & a {
             max-width: 100%;
             & .tutoriel {
-                border-right: 6px solid #344a61;
+                margin: 10px;
 
-            }
-            &:last-of-type {
-                & .tutoriel {
-                    border-right: none;
-                }
             }
         }
     }
