@@ -9,7 +9,7 @@
                 <div class="sidebar">
                     <div class="page summary">
                         <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i class="fa fa-home">
-                                &nbsp;&nbsp;</i>Retourner au sommaire</a>
+                                &nbsp;&nbsp;</i>Sommaire</a>
                     </div>
                     {% for page in tutoriel.tutorialPages %}
                         {% set page_url = path('tutoriel_show', {'slug_page': page.slug, 'slug': tutoriel.slug}) %}
@@ -48,14 +48,14 @@
                                 </a>
                             {% else %}
                                 <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i
-                                            class="fa fa-home">&nbsp;&nbsp;</i>Retourner au sommaire</a>
+                                            class="fa fa-home">&nbsp;&nbsp;</i>Sommaire</a>
                             {% endif %}
                         </div>
 
                         <div class="right">
                             {% if next_page %}
 
-                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }} {{ not app.user ? '(connexion requise)' }}
+                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }}
                                     &nbsp;&nbsp;
                                     <i class="fa fa-arrow-right"></i></a>
                             {% endif %}
@@ -71,14 +71,14 @@
                                 </a>
                             {% else %}
                                 <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i
-                                            class="fa fa-home">&nbsp;&nbsp;</i>Retourner au sommaire</a>
+                                            class="fa fa-home">&nbsp;&nbsp;</i>Sommaire</a>
                             {% endif %}
                         </div>
 
                         <div class="right">
                             {% if next_page %}
 
-                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }} {{ not app.user ? '(connexion requise)' }}
+                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }}
                                     &nbsp;&nbsp;
                                     <i class="fa fa-arrow-right"></i></a>
                             {% endif %}

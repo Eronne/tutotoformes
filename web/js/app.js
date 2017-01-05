@@ -20,7 +20,7 @@ $(document).ready(function () {
 		openPopup();
 	});
 	
-	if (!isMobile()) {
+	if (window.innerWidth >= 720) {
 		sidebar.stick_in_parent({offset_top: 80});
 	}
 	sidebar.children('.page:not(".active")').on('mouseover', function () {
@@ -96,6 +96,14 @@ $(document).ready(function () {
 			hamburger.addClass('fa-bars');
 		}
 	});
+	
+	$(window).on('resize', function (e) {
+		if($(this).innerWidth() <= 720) {
+			sidebar.trigger('sticky_kit:detach');
+		} else {
+			sidebar.stick_in_parent({offset_top: 80});
+		}
+	})
 	
 	if ($('textarea').length > 0) {
 		tinymce.init({

@@ -1,15 +1,18 @@
 {#<a style="color: inherit; text-decoration: none;" href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug }) }}">#}
     <div class="tutoriel">
         <div class="thumbnail">
+            <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}">
             {% if tutoriel.thumbnailLink is null or tutoriel.thumbnailLink == '' %}
                 <h3 class="tutoriel-title">{{ tutoriel.title }}</h3>
             {% else %}
                 {% if tutoriel.thumbnailLink starts with 'http' %}
+
                     <img src="{{ tutoriel.thumbnailLink }}" alt="" class="thumbnail">
                 {% else %}
                     <img src="{{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}" alt="" class="thumbnail">
                 {% endif %}
             {% endif %}
+            </a>
         </div>
         <div class="informations">
             <span class="started-at">Commencé le {{ tutoriel.userProgression(app.user).startedAt|date('d/m/Y, à H:i') }}</span>

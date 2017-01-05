@@ -5513,6 +5513,14 @@ pre.line-numbers > code {
 html {
   font-size: 80%; }
 
+pre, code, kbd {
+  tab-size: 4; }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow: hidden; }
+
 body {
   font-family: 'Geomanist', 'Lato', 'Roboto', sans-serif;
   background: #ecf0f1;
@@ -5718,7 +5726,8 @@ header.fixed {
   display: none; }
 
 img {
-  max-width: 100%; }
+  max-width: 100%;
+  height: auto; }
 
 .has-bg {
   padding: 20px;
@@ -5732,7 +5741,6 @@ img {
 
 section.fullscreen {
   display: flex;
-  height: 100vh;
   transition: height 9999s;
   width: 100%;
   text-align: center;
@@ -5751,6 +5759,7 @@ section.fullscreen {
     align-content: center;
     flex-direction: column;
     justify-content: center;
+    height: 100vh;
     background: url("../assets/img/bg.jpg");
     background-size: cover;
     background-position: center center; }
@@ -6139,7 +6148,7 @@ span.date::before {
         border-right: none; }
   .tutoriels .tutoriel {
     max-width: 100%;
-    width: 570px;
+    width: 490px;
     height: 310px;
     background-color: #2d946c;
     position: relative;
@@ -6497,6 +6506,9 @@ ul.badges {
     section.fullscreen:not(.home) h2 {
       margin-top: 0; }
 
+  .navigation:first-of-type {
+    margin-top: 0; }
+
   header.fixed nav.main-nav .menu .items > .item:not(.login) {
     display: inline-block; }
 
@@ -6521,7 +6533,7 @@ ul.badges {
     line-height: 2.8rem; }
 
   .container {
-    width: 80%;
+    width: 90%;
     max-width: 1300px;
     margin: 0 auto; }
 

@@ -2,11 +2,10 @@
 
     {% block body %}
 
-        <div class="page-body">
-            <div class="ui container">
-                <h1>Administration</h1>
-                <a class="ui primary button" href="{{ path('admin_tutoriels_index') }}">Éditer les tutoriels</a>
-            </div>
+        <div class="container">
+
+            <h1>Administration</h1>
+                <a class="button primary large" href="{{ path('admin_tutoriels_index') }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer les tutoriels</a>
         </div>
     {% endblock %}
 
