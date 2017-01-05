@@ -8,7 +8,8 @@
                 <i class="fa fa-bars"></i>
             </div>
             <div class="brand">
-                <a href="{{ (app.user) ? path('index') : path('homepage') }}">T</a>
+                <a href="{{ (app.user) ? path('index') : path('homepage') }}"><span class="mobile">T</span><span
+                            class="desktop">Tutotoformes</span></a>
             </div>
             <div class="items">
                 <a href="{{ path('tutoriel_list') }}"
@@ -21,9 +22,13 @@
                     <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
                 {% endif %}
                 {% if app.user %}
-                    <a href="{{ path('my_profile') }}" class="item login"></a>
+                    <a href="{{ path('my_profile') }}" class="item login">
+                        <span>&nbsp;Mon profil</span>
+                    </a>
                 {% else %}
-                    <a class="item login" href="{{ path('login') }}"></a>
+                    <a class="item login" href="{{ path('login') }}">
+                        <span>&nbsp;S'inscrire / Se connecter</span>
+                    </a>
                 {% endif %}
             </div>
 

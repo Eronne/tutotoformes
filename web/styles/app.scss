@@ -79,6 +79,7 @@ header.fixed {
         flex-direction: row;
         justify-content: space-between;
         align-items: stretch;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.22);
         & .hamburger {
             transition: opacity .3s;
             width: 60px;
@@ -111,11 +112,19 @@ header.fixed {
             line-height: $header_height;
             font-size: 1.8rem;
             font-weight: 700;
+            & .desktop {
+                display: none;
+            }
         }
         &.transparent {
             background-color: transparent;
+            box-shadow: none;
             & .hamburger, .brand a {
                 color: $white;
+            }
+            & .items .item {
+                color: whitesmoke;
+
             }
 
         }
@@ -140,11 +149,13 @@ header.fixed {
             & .item {
                 padding: 0 20px;
                 line-height: $header_height;
-
                 transition: all .3s;
                 &:hover {
                     cursor: pointer;
                     background-color: rgba(0, 0, 0, 0.18);
+                }
+                & > span {
+                    display: none;
                 }
                 &.active {
                     background-color: rgba(0, 0, 0, 0.18);
@@ -152,7 +163,6 @@ header.fixed {
                 &.login {
                     background-color: $secondary_color;
                     color: $white;
-                    width: 60px;
                     text-align: center;
                     align-self: flex-end;
                     &:hover {
@@ -278,6 +288,19 @@ img {
     max-width: 100%;
 }
 
+.has-bg {
+    padding: 20px;
+    background: $secondary_color;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.14);
+    &.alt {
+        background: $primary_color;
+
+    }
+}
+
 section.fullscreen {
     display: flex;
     height: 100vh;
@@ -316,13 +339,7 @@ section.fullscreen {
     &.who {
         flex-direction: column;
         background: $primary_color;
-        & .has-bg {
-            padding: 20px;
-            background: $secondary_color;
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin-bottom: 40px;
-        }
+
     }
     &.how {
         flex-direction: column;
@@ -332,8 +349,9 @@ section.fullscreen {
         height: auto;
         align-items: center;
         & img {
-            padding: 30px 0 30px 0;
-            max-width: 400px;
+            width: 100%;
+            padding: 0;
+            margin: 20px 0;
         }
         flex-direction: column;
         background: $third_color;
@@ -357,7 +375,8 @@ footer {
 
 .spacer {
     content: '';
-    margin: 20px 0;
+    margin: 10px 0;
+    border-bottom: 1px transparent solid;
 }
 
 .button {
@@ -589,7 +608,6 @@ footer {
             position: absolute;
             left: 0;
             color: rgba(0, 0, 0, 0.6);
-            width: 60px;
             height: 100%;
             line-height: 1;
             top: 0;
@@ -953,6 +971,10 @@ span.date::before {
             bottom: 0;
         }
     }
+}
+
+.tutoriel-summary {
+    font-size: 120%;
 }
 
 .tutoriel-summary img {
@@ -1326,6 +1348,16 @@ ul.badges {
     header.fixed nav.main-nav .menu .brand {
         order: -1;
         margin-left: 20px;
+        & .desktop {
+            display: inline-block;
+        }
+        & .mobile {
+            display: none;
+        }
+    }
+
+    header.fixed nav.main-nav .menu .items .item span {
+        display: inline-block;
     }
 
     section.how .grid {

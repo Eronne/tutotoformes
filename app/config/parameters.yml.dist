@@ -7,7 +7,6 @@ parameters:
     database_port:     5432
     database_name:     '%db.name%'
     database_user:     '%db.user%'
-    database_user:     '%db.name%'
     database_password: '%db.pass%'
     database_driver:   'pdo_pgsql'
     database_dsn:       pgsql

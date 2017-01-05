@@ -40,6 +40,28 @@
                     </div>
                 </div>
                 <div class="tutoriel-content two-thirds">
+                    <div class="navigation">
+                        <div class="left">
+                            {% if prev_page %}
+                                <a href="{{ path('tutoriel_show', {'slug_page': prev_page.slug, 'slug': tutoriel.slug}) }}">
+                                    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ prev_page.title }}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('tutoriel_summary_show', {'slug': tutoriel.slug}) }}"><i
+                                            class="fa fa-home">&nbsp;&nbsp;</i>Retourner au sommaire</a>
+                            {% endif %}
+                        </div>
+
+                        <div class="right">
+                            {% if next_page %}
+
+                                <a href="{{ path('tutoriel_show', {'slug_page': next_page.slug, 'slug': tutoriel.slug}) }}">{{ next_page.title }} {{ not app.user ? '(connexion requise)' }}
+                                    &nbsp;&nbsp;
+                                    <i class="fa fa-arrow-right"></i></a>
+                            {% endif %}
+                        </div>
+
+                    </div>
                     {{ page.content|raw }}
                     <div class="navigation">
                         <div class="left">

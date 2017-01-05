@@ -22,6 +22,10 @@
                         {% endfor %}
                     </div>
                 {% endif %}
+                <div class="center">
+                    <a href="{{ path('my_achievements') }}" class="button primary medium">Voir mes succès</a>
+                </div>
+                <div class="spacer"></div>
                 {% if finished_tutoriels|length > 0 %}
                     <div class="spacer"></div>
                     <h2>Tutoriels terminés</h2>
@@ -42,9 +46,7 @@
                         {% endfor %}
                     </div>
                 {% endif %}
-                <div class="center">
-                    <a href="{{ path('my_achievements') }}" class="button primary medium">Voir mes succès</a>
-                </div>
+
             </div>
 
         </div>
