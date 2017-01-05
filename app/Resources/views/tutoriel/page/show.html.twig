@@ -130,10 +130,54 @@
 
                             </form>
                         {% endif %}
+                    {% else %}
+                        <form action="{{ path('tutoriel_mark_page_as_complete', {'slug': tutoriel.slug, 'slug_page': page.slug}) }}"
+                              method="get">
+                            <div class="spacer"></div>
+                            <div class="center">
+                                <button id="markButton" class="button primary medium"><i
+                                            class="fa fa-check-circle">&nbsp;&nbsp;</i>J'ai compris
+                                </button>
+                            </div>
+
+                        </form>
                     {% endif %}
+                    <div class="spacer"></div>
+                    <div class="spacer"></div>
+                    <h2>Commentaires</h2>
+                    {% if app.user %}
+                        <form action="{{ path('tutoriel_page_add_comment', {'id_page': page.id, 'slug': tutoriel.slug}) }}" method="post">
+                            <div class="field">
+                                <textarea name="_message" id="" cols="10" rows="5" placeholder="Écrivez votre commentaire"></textarea>
+                            </div>
+                            <div class="spacer"></div>
+                            <button class="button primary medium">Poster</button>
+                        </form>
+                    {% endif %}
+                    <div class="comments">
+                        {% for comment in page.comments|reverse %}
+                            <div class="comment">
+                                <div class="comment-author">
+                                    {{ comment.author.username }}
+                                </div>
+                                <div class="comment-message">
+                                    {{ comment.message }}
+                                </div>
+                                <div class="comment-metas">
+                                    <span>Le {{ comment.createdAt|date('d/m/Y, à H:i') }}</span>
+                                </div>
+                                {% if is_granted('ROLE_ADMIN') or comment.author == app.user %}
+                                <form action="{{ path('tutoriel_page_delete_comment', {'id': comment.id, 'id_page': page.id, 'slug': tutoriel.slug}) }}" method="post">
+                                    <button class="button primary small" type="submit"><i class="fa fa-close">&nbsp;&nbsp;</i>Supprimer</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
+
             </div>
-            <div class="spacer"></div>
+
         </div>
 
     {% endblock %}

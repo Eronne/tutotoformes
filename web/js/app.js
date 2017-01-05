@@ -105,9 +105,17 @@ $(document).ready(function () {
 		}
 	})
 	
+	$('button[type="submit"].button.danger').on('click', function () {
+		return confirm('Confirmer la suppression ?');
+	});
+	
+	$('a.button.danger').on('click', function () {
+		return confirm('Confirmer la suppression ?');
+	});
+	
 	if ($('textarea').length > 0) {
 		tinymce.init({
-			selector: 'textarea',
+			selector: 'textarea#mce',
 			theme: 'modern',
 			// force_br_newlines : false,
 			// force_p_newlines : false,

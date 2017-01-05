@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Utilisateur;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -15,6 +16,23 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
+    /**
+     * @param $r
+     * @return Utilisateur[]
+     */
+    public function findByRole($r) {
+        $role = $this->getEntityManager()->getRepository('AppBundle:Role')->findOneBy(['role' => $r]);
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('utilisateur')
+            ->from('AppBundle:Utilisateur', 'utilisateur')
+            ->innerJoin('utilisateur.roles', 'roles')
+            ->where('roles = :roles')
+            ->setParameter('roles', $role)
+            ->getQuery()
+            ->getResult();
+
+    }
 
 
 }

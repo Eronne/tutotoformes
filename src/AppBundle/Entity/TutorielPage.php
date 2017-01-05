@@ -68,6 +68,14 @@ class TutorielPage
      */
     private $tutoriel;
 
+    /**
+     * @var Comment[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="tutorielPage", cascade={"persist"})
+     */
+    private $comments;
+
+
 
 
     /**
@@ -301,4 +309,45 @@ class TutorielPage
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return TutorielPage
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Comment[]
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
 }

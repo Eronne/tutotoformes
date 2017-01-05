@@ -23,12 +23,12 @@
                             {% for page in tutoriel.tutorialPages %}
                                 <tr>
                                     <td>{{ page.title }}</td>
-                                    <td>{{ page.createdAt|date('Y/m/d') }}</td>
-                                    <td>{{ page.editedAt|date('Y/m/d') }}</td>
-                                    <td style="width: 205px;">
+                                    <td>{{ page.createdAt|date('Y/m/d, à H:i:s') }}</td>
+                                    <td>{{ page.editedAt|date('Y/m/d, à H:i:s') }}</td>
+                                    <td class="center">
                                         <a href="{{ path('admin_tutoriel_page_edit', {'id': tutoriel.id, 'slug_page': page.slug}) }}"
-                                           class="ui small button">Éditer</a>
-                                        <a href="{{ path('admin_tutoriel_page_remove', {'id': tutoriel.id, 'slug_page': page.slug}) }}" class="ui small red button">Supprimer</a>
+                                           class="button small primary"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a>
+                                        <a href="{{ path('admin_tutoriel_page_remove', {'id': tutoriel.id, 'slug_page': page.slug}) }}" class="button small danger"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a>
                                     </td>
                                 </tr>
                             {% endfor %}

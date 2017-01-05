@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Tutoriel;
 use AppBundle\Entity\TutorielPage;
 use AppBundle\Entity\UserProgression;
@@ -93,6 +94,57 @@ class TutorielController extends Controller
 
 
         return $this->render('tutoriel/page/show.html.twig', ['tutoriel' => $tutoriel, 'page' => $page, 'prev_page' => $prevPage, 'next_page' => $nextPage]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Tutoriel $tutoriel
+     * @param $id_page
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @internal param TutorielPage $tutorielPage
+     * @Route("/tutoriel/{slug}/comment/{id_page}/new", name="tutoriel_page_add_comment")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function addCommentAction(Request $request, Tutoriel $tutoriel, $id_page) {
+        $tutorielPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['id' => $id_page ]);
+        if(!$tutorielPage) throw $this->createNotFoundException();
+        $comment = new Comment();
+        $comment->setCreatedAt(new \DateTime())
+            ->setAuthor($this->getUser())
+            ->setMessage($request->get('_message'))
+            ->setTutorielPage($tutorielPage);
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->persist($comment);
+        $em->flush();
+        $this->addFlash('notification success', 'Votre commentaire a bien été ajouté !');
+        return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $tutorielPage->getSlug()]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $slug
+     * @param $id_page
+     * @param Comment $comment
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @internal param Tutoriel $tutoriel
+     * @internal param TutorielPage $tutorielPage
+     * @Route("/tutoriel/{slug}/comment/{id_page}/delete/{id}", name="tutoriel_page_delete_comment")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function deleteCommentAction(Request $request, $slug, $id_page, Comment $comment) {
+        $tutoriel = $this->getDoctrine()->getRepository('AppBundle:Tutoriel')->findOneBy(['slug' => $slug]);
+        $tutorielPage = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['id' => $id_page ]);
+        if(!$tutorielPage || !$tutoriel) throw $this->createNotFoundException();
+        if($comment->getAuthor() != $this->getUser() && !$this->isGranted('ROLE_ADMIN')) {
+            $this->addFlash('notification error', "Vous ne pouvez pas supprimer le commentaire d'un autre !");
+            return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $tutorielPage->getSlug()]);
+        }
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($comment);
+        $em->flush();
+        $this->addFlash('notification success', "Le commentaire a bien été supprimé");
+        return $this->redirectToRoute('tutoriel_show', ['slug' => $tutoriel->getSlug(), 'slug_page' => $tutorielPage->getSlug()]);
     }
 
     /**

@@ -6,6 +6,7 @@
 @import "prism";
 @import "fonts";
 @import "variables";
+@import "table";
 
 * {
     box-sizing: border-box;
@@ -206,6 +207,61 @@ header.fixed {
 
 }
 
+.comments {
+    & .comment {
+        background: $darkwhite;
+        margin: 40px 0;
+        position: relative;
+        padding: 20px 240px 20px 20px;
+        &-author {
+            opacity: 0.7;
+            font-style: italic;
+            margin-bottom: 5px;
+            &:after {
+                content: ' a dit';
+            }
+        }
+        &-metas {
+            opacity: 0.7;
+            font-style: italic;
+            margin-top: 15px;
+            font-size: 0.8rem;
+        }
+        &-message {
+            margin: 5px;
+        }
+        & form {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    }
+}
+
+#mobile-menu {
+    font-size: 1.5rem;
+    text-align: center;
+    & li {
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom:0;
+            left: 25%;
+            height: 2px;
+            width: 50%;
+            background: rgba(0, 0, 0, 0.15);
+        }
+        &:last-of-type:after {
+            content: none;
+        }
+        & a {
+            width: 100%;
+            display: inline-block;
+        }
+    }
+}
+
 
 .flashbags {
     transition: all 0.3s ease-in-out;
@@ -372,9 +428,43 @@ footer {
     background: darken($primary_color, 5%);
     color: whitesmoke;
     display: flex;
-    justify-content: center;
-    align-content: center;
-    padding: 40px;
+    & .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        & .brand {
+            display: flex;
+            flex-direction: column;
+        }
+        & .sitemap {
+            text-align: center;
+            flex: 1;
+            & ul {
+                column-count: 2;
+                column-gap: 0;
+                list-style: none;
+                padding: 0;
+            }
+        }
+    }
+    & a {
+        transition: all .3s;
+        color: whitesmoke;
+        opacity: 0.8;
+        font-size: 1.2rem;
+        text-decoration: none;
+        &:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+    }
+    & .credits {
+        display: flex;
+        margin-top: 20px;
+        justify-content: center;
+        align-content: center;
+    }
 }
 
 .spacer {
@@ -383,11 +473,24 @@ footer {
     border-bottom: 1px transparent solid;
 }
 
+table.ui.table {
+    & td.center {
+        text-align: center;
+        & > * {
+            margin-right: 15px;
+            &:last-of-type {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
 .button {
     display: inline-block;
     transition: all .3s;
     padding: 20px 1em 20px 1em;
     text-transform: uppercase;
+    margin: 20px;
     text-decoration: none;
     width: 200px;
     max-width: calc(100vw - 60px);
@@ -460,6 +563,17 @@ footer {
         background-color: $primary_color;
         color: white;
         border: lighten($primary_color, 10%) 3px solid;
+        &:hover {
+            cursor: pointer;
+            border: darken($white, 20%) 3px solid;
+            color: black;
+            background-color: $white;
+        }
+    }
+    &.danger {
+        background-color: $error;
+        color: white;
+        border: lighten($error, 10%) 3px solid;
         &:hover {
             cursor: pointer;
             border: darken($white, 20%) 3px solid;
@@ -578,7 +692,7 @@ footer {
 .field {
     position: relative;
     margin: 20px 0;
-    & input {
+    & input, select, textarea {
         transition: all .3s;
         position: relative;
         outline: none;
@@ -590,6 +704,9 @@ footer {
             display: inline-block;
             width: 50px;
         }
+        &[type="number"] {
+            padding-left: 20px;
+        }
         &:focus {
             box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.1);
             & + i {
@@ -598,7 +715,9 @@ footer {
         }
 
     }
-
+    & select, textarea {
+        padding-left: 20px;
+    }
     & label {
         display: block;
         &[for="remember"] {
@@ -838,7 +957,7 @@ span.date::before {
         & a {
             max-width: 100%;
             & .tutoriel {
-                margin: 10px;
+                margin-right: 10px;
 
             }
         }
@@ -1262,7 +1381,7 @@ ul.badges {
 
     .button.small, .button.medium, .button.large {
         width: 100%;
-        margin: 0 auto;
+        margin: 20px auto;
     }
     .clearfix {
         text-align: center;

@@ -23,10 +23,10 @@
                             <td>{{ tutoriel.tutorialPages.count }}</td>
                             <td>{{ tutoriel.createdAt|date('Y/m/d, à h:m:i') }}</td>
                             <td>{{ tutoriel.author.username }}</td>
-                            <td style="width: 205px;">
+                            <td class="center">
                                 <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}"
-                                   class="ui small button">Éditer</a>
-                                <a href="{{ path('admin_tutoriel_remove', {'id': tutoriel.id}) }}" class="ui small red button">Supprimer</a>
+                                   class="button primary small"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a>
+                                <a href="{{ path('admin_tutoriel_remove', {'id': tutoriel.id}) }}" class="button danger small"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a>
                             </td>
                         </tr>
                     {% endfor %}

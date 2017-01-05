@@ -43,6 +43,28 @@ class DefaultController extends Controller
         return $this->render('partials/_menu.html.twig', ['pages' => $pages, 'inverted' => $inverted, 'route_name' => $masterRequest->attributes->get('_route')]);
     }
 
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request) {
+        if($request->getMethod() == "GET"){
+            return $this->render('contact.html.twig');
+        } else {
+            $admins = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findByRole('ROLE_ADMIN');
+            $to = [];
+            foreach ($admins as $admin) {
+                array_push($to, $admin->getEmail());
+            }
+            $message = $request->get('_message');
+            $subject = $request->get('_subject');
+            $user = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findOneBy(['email' => $request->get('_email')]);
+            if(!$user) throw $this->createNotFoundException();
+            $this->get('app.utils')->sendMail($subject, 'contact@tutotoformes.fr', 'Tutotoformes', $to, $this->renderView('mails/contact.html.twig', ['user' => $user, 'message' => $message]), 'text/html');
+            $this->addFlash('notification success', 'Le message a bien été envoyé');
+            return $this->redirectToRoute('contact');
+        }
+    }
+
 
 
 }

@@ -66,6 +66,8 @@ class TutorielPageController extends Controller
         }
     }
 
+
+
     /**
      * @param Request $request
      * @param Tutoriel $tutoriel
