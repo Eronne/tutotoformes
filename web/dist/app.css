@@ -833,7 +833,7 @@ footer .content .sitemap ul li a:hover{opacity:1;cursor:pointer}footer .content 
 footer .credits{display:-ms-flexbox;display:flex;margin-top:20px;-ms-flex-pack:center;justify-content:center;-ms-flex-line-pack:center;align-content:center}
 .spacer{content:'';margin:10px 0;border-bottom:1px transparent solid}
 table.ui.table td.center{text-align:center}table.ui.table td.center>*{margin-right:15px}
-table.ui.table td.center>*:last-of-type{margin-right:0}.button{display:inline-block;transition:all .3s;padding:20px 1em 20px 1em;text-transform:uppercase;text-decoration:none;width:200px;text-align:center;font-size:1.1rem;font-weight:400;z-index:1;border-radius:5px}
+table.ui.table td.center>*:last-of-type{margin-right:0}.button{display:inline-block;transition:all .3s;padding:20px 1em 20px 1em;text-transform:uppercase;text-decoration:none;width:200px;max-width:90%;text-align:center;font-size:1.1rem;font-weight:400;z-index:1;border-radius:5px}
 .button.small{width:auto;padding:10px 1em 10px 1em;font-size:1rem;line-height:1rem;font-weight:300}
 .button.medium{width:auto;padding:7px 1em 7px 1em;font-size:1.1rem;line-height:3.2rem;font-weight:300;height:60px}
 .button.medium span.icon{line-height:3.9rem !important}.button.medium span.icon:before{border-width:28px !important;margin-top:-28px !important}
