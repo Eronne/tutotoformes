@@ -777,7 +777,7 @@ h1{font-size:2.9rem}.menu-container{width:100vw;margin:0 auto;display:inherit;-m
 .jumbotron h1{margin:0;font-size:2rem;text-shadow:0 0 13px rgba(0,0,0,0.28)}.jumbotron>*{z-index:2;text-shadow:0 0 10px rgba(0,0,0,0.13)}
 .jumbotron.column{-ms-flex-direction:column;flex-direction:column}.jumbotron a.button{margin-bottom:0}
 .jumbotron:after{content:'';z-index:1;background:#39bb88;width:100%;height:100%;position:absolute;top:0;left:0;opacity:.7}
-.jumbotron p{padding:0 700px}header.fixed{position:fixed;top:0;left:0;width:100%;z-index:100}
+.jumbotron p{padding:0 200px}header.fixed{position:fixed;top:0;left:0;width:100%;z-index:100}
 header.fixed nav.main-nav{transition:all .3s;height:60px;background-color:whitesmoke;display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:stretch;align-items:stretch;box-shadow:0 0 20px rgba(0,0,0,0.22)}
 header.fixed nav.main-nav .hamburger{transition:opacity .3s;width:60px;text-align:center;line-height:60px;font-size:1.5rem;opacity:.8}
 header.fixed nav.main-nav .hamburger:hover{opacity:1;cursor:pointer}header.fixed nav.main-nav ul{transition:all .3s;padding:10px;margin:0;background:whitesmoke;width:100vw;position:absolute;top:60px;visibility:hidden;opacity:0;list-style:none}
@@ -903,7 +903,8 @@ span.date::before{font-family:FontAwesome;content:'\f073';margin-right:10px}
 .tutoriels .tutoriel:hover>.tutoriel-title{line-height:148px;font-size:4rem}.tutoriels .tutoriel:hover>.overlay{opacity:.25}
 .tutoriels .tutoriel:hover>.informations{bottom:0}.tutoriel-summary{font-size:120%}
 .tutoriel-summary img{max-width:100%}.tutoriel-content .content img{max-width:100%}
-.active-tutoriels{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-pack:center;justify-content:center}
+.tutoriel-content a{transition:all .3s;color:#26ab77;font-weight:700;text-decoration:none}
+.tutoriel-content a:hover{cursor:pointer;color:#219668}.active-tutoriels{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;-ms-flex-pack:center;justify-content:center}
 .active-tutoriels .tutoriel{position:relative;max-width:100%;display:-ms-flexbox;display:flex;-ms-flex-line-pack:stretch;align-content:stretch;margin-bottom:20px;border-radius:6px;box-shadow:0 0 20px rgba(0,0,0,0.14)}
 .active-tutoriels .tutoriel:hover{box-shadow:0 0 25px rgba(0,0,0,0.2)}.active-tutoriels .tutoriel .tutoriel-title{transition:all .3s;position:absolute;width:100%;color:#39bb88;line-height:286px;margin:0;text-transform:uppercase;font-size:3rem;text-decoration:none;text-align:center}
 .active-tutoriels .tutoriel .button{margin-top:16px}.active-tutoriels .tutoriel .thumbnail{position:relative;display:none;height:286px;background-color:#2d946c;width:325px}

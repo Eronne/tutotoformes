@@ -10,10 +10,8 @@
                 <span class="date">Tu es inscrit depuis le {{ user.createdAt|date('d/m/Y') }}</span>
             </div>
             <div class="spacer"></div>
-            <div class="center">
-                <a href="{{ path('my_achievements') }}" class="button primary alt small"><i class="fa fa-star">&nbsp;&nbsp;</i>Voir
+                <a style="z-index: 3" href="{{ path('my_achievements') }}" class="button primary small"><i class="fa fa-star">&nbsp;&nbsp;</i>Voir
                     mes succès</a>
-            </div>
         </div>
         <div class="page-body">
             <div class="container">

@@ -102,7 +102,11 @@ class TutorielController extends Controller
 
         $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findByRoles(['ROLE_ADMIN', 'ROLE_WRITER']);
         if ($request->getMethod() === "GET") {
-            return $this->render('tutoriel/edit.html.twig', ['tutoriel' => $tutoriel, 'users' => $users]);
+            $authorIds = [];
+            foreach ($tutoriel->getAuthors() as $author) {
+                array_push($authorIds, $author->getId());
+            }
+            return $this->render('tutoriel/edit.html.twig', ['author_ids' => $authorIds, 'tutoriel' => $tutoriel, 'users' => $users]);
         } else {
             $em = $this->getDoctrine()->getManager();
 
@@ -112,9 +116,17 @@ class TutorielController extends Controller
             if (!$params) {
                 throw new Exception('Le paramètre "tutoriel" n a pas été trouvé dans les paramètres de la requête');
             }
-
-            $tutoriel->setAuthor($em->getRepository('AppBundle:Utilisateur')->find($params['author']))
-                ->setDifficulty($params['difficulty'])
+            $userRepo = $this->getDoctrine()->getRepository('AppBundle:Utilisateur');
+            foreach ($tutoriel->getAuthors() as $author) {
+                $tutoriel->removeAuthor($author);
+            }
+            $em->flush();
+            foreach ($params['authors'] as $id_author) {
+                $author = $userRepo->find($id_author);
+                if(!$author) throw $this->createNotFoundException();
+                $tutoriel->addAuthor($author);
+            }
+            $tutoriel->setDifficulty($params['difficulty'])
                 ->setDuration($params['duration'])
                 ->setSubtitle($params['subtitle'])
                 ->setTitle($params['title'])

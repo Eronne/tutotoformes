@@ -34,6 +34,10 @@ class TutorielController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        $authorIds = [];
+        foreach ($tutoriel->getAuthors() as $author) {
+            array_push($authorIds, $author->getId());
+        }
 
         if($user instanceof Utilisateur ){
 
@@ -46,16 +50,16 @@ class TutorielController extends Controller
                 if($user && count($up->getCompletedPages()) > 0){
                     $lastPageCompleted = $pageRepo->getLastUnreadedSlug($tutoriel, $user);
                 }
-                return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage, 'last_unreaded_slug' => $lastPageCompleted]);
+                return $this->render('tutoriel/summary.html.twig', ['author_ids' => $authorIds, 'tutoriel' => $tutoriel, 'next_page' => $nextPage, 'last_unreaded_slug' => $lastPageCompleted]);
 
             } else {
-                return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage]);
+                return $this->render('tutoriel/summary.html.twig', ['author_ids' => $authorIds, 'tutoriel' => $tutoriel, 'next_page' => $nextPage]);
             }
 
 
 
         } else {
-            return $this->render('tutoriel/summary.html.twig', ['tutoriel' => $tutoriel, 'next_page' => $nextPage]);
+            return $this->render('tutoriel/summary.html.twig', ['author_ids' => $authorIds, 'tutoriel' => $tutoriel, 'next_page' => $nextPage]);
         }
 
 

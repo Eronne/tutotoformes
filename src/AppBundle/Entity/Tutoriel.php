@@ -106,11 +106,11 @@ class Tutoriel
     private $tutorialPages;
 
     /**
-     * @var Utilisateur
+     * @var Utilisateur[]
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur", inversedBy="tutoriels")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Utilisateur", inversedBy="tutoriels")
      */
-    private $author;
+    private $authors;
 
     /**
      *
@@ -310,29 +310,6 @@ class Tutoriel
 
 
 
-    /**
-     * Set author
-     *
-     * @param \AppBundle\Entity\Utilisateur $author
-     *
-     * @return Tutoriel
-     */
-    public function setAuthor(\AppBundle\Entity\Utilisateur $author = null)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return \AppBundle\Entity\Utilisateur
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
 
     /**
      * Set isDraft
@@ -532,4 +509,38 @@ class Tutoriel
     }
 
 
+
+    /**
+     * Add author
+     *
+     * @param \AppBundle\Entity\Utilisateur $author
+     *
+     * @return Tutoriel
+     */
+    public function addAuthor(\AppBundle\Entity\Utilisateur $author)
+    {
+        $this->authors[] = $author;
+
+        return $this;
+    }
+
+    /**
+     * Remove author
+     *
+     * @param \AppBundle\Entity\Utilisateur $author
+     */
+    public function removeAuthor(\AppBundle\Entity\Utilisateur $author)
+    {
+        $this->authors->removeElement($author);
+    }
+
+    /**
+     * Get authors
+     *
+     * @return Utilisateur[]|\Doctrine\Common\Collections\Collection
+     */
+    public function getAuthors()
+    {
+        return $this->authors;
+    }
 }

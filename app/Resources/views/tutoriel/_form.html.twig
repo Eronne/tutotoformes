@@ -23,11 +23,11 @@
         </div>
         <div class="field">
             <label>Auteur</label>
-            <select name="_tutoriel[author]" class="ui dropdown">
+            <select multiple name="_tutoriel[authors][]">
                 {% for user in users %}
-
-                    <option {% if (not edit and app.user == user) or (edit and tutoriel.author.id == user.id)  %}selected{% endif %} value="{{ user.id }}">{{ user.username }}</option>
+                        <option {% if (edit and user.id in author_ids)  %}selected{% endif %} value="{{ user.id }}">{{ user.username }}</option>
                 {% endfor %}
+
             </select>
         </div>
 

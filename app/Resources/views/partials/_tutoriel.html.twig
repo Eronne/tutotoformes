@@ -14,7 +14,7 @@
             <h3 class="title">{{ tutoriel.title }}</h3>
             <div class="subtitle">{{ tutoriel.subtitle }}</div>
             <div class="metas">
-                <span class="author">{{ tutoriel.author.username }}</span>
+                <span class="author">{% for author in tutoriel.authors %}{{ author.username }}{{ (not loop.last) ? ',' : '' }} {% endfor %}</span>
                 <span class="date">{{ tutoriel.createdAt|date_locale }}</span>
             </div>
         </div>
