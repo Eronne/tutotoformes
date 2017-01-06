@@ -6911,6 +6911,7 @@ table.ui.table td.center {
   text-transform: uppercase;
   text-decoration: none;
   width: 200px;
+  max-width: 90%;
   text-align: center;
   font-size: 1.1rem;
   font-weight: 400;
