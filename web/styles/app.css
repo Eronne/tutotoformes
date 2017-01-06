@@ -6635,7 +6635,7 @@ header.fixed {
         transition: all .3s; }
         header.fixed nav.main-nav .menu .item:hover {
           cursor: pointer;
-          background-color: rgba(0, 0, 0, 0.18); }
+          background-color: rgba(0, 0, 0, 0.04); }
         header.fixed nav.main-nav .menu .item > span {
           display: none; }
         header.fixed nav.main-nav .menu .item.active {
@@ -6863,7 +6863,10 @@ footer {
     footer .content .sitemap {
       text-align: center;
       flex: 1;
-      position: relative; }
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
       footer .content .sitemap ul {
         column-count: 2;
         column-gap: 0;
@@ -6881,7 +6884,7 @@ footer {
       footer .content .sitemap:before {
         content: '';
         position: absolute;
-        top: -6px;
+        top: 8px;
         left: 5%;
         height: 2px;
         width: 95%;
