@@ -6492,6 +6492,14 @@ pre.line-numbers > code {
 html {
   font-size: 80%; }
 
+a {
+  transition: .3s;
+  text-decoration: none;
+  color: whitesmoke;
+  opacity: 0.7; }
+  a:hover {
+    opacity: 1; }
+
 pre, code, kbd {
   tab-size: 4; }
 
@@ -6563,8 +6571,6 @@ h1 {
     top: 0;
     left: 0;
     opacity: 0.7; }
-  .jumbotron p {
-    padding: 0 200px; }
 
 header.fixed {
   position: fixed;
@@ -7668,6 +7674,9 @@ h2, h3, h4, h5 {
       display: inline-block; }
     header.fixed nav.main-nav .menu .brand .mobile {
       display: none; }
+
+  .jumbotron p {
+    padding: 0 100px; }
 
   header.fixed nav.main-nav .menu .items .item span {
     display: inline-block; }

@@ -46,6 +46,11 @@
                class="item">Tutoriels</a>
 
         </li>
+        <li>
+            <a href="{{ path('contact') }}"
+               class="item">Contact</a>
+
+        </li>
         {% if app.user %}
             {% if is_granted('ROLE_ADMIN') %}
                 <li>

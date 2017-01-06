@@ -6,7 +6,8 @@
                 <h1>{{ tutoriel.title }}</h1>
                 <p>{{ tutoriel.subtitle }}</p>
                 <div class="metas">
-                    <span class="author">{% for author in tutoriel.authors %}{{ author.username }}{{ (not loop.last) ? ',' : '' }} {% endfor %}</span><span
+                    <span class="author">{% for author in tutoriel.authors %}<a
+                            href="{{ path('show_profile', {'username': author.username}) }}">{{ author.username }}</a>{{ (not loop.last) ? ',' : '' }} {% endfor %}</span><span
                             class="date">{{ tutoriel.createdAt|date('d/m/Y') }}</span><br><br><span
                             class="time">{{ tutoriel.duration }} minutes</span>
                 </div>

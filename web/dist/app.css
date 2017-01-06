@@ -769,6 +769,7 @@ pre.line-numbers>code{position:relative}.line-numbers .line-numbers-rows{positio
 .ui.compact.table td{padding:.5em .7em}.ui[class*="very compact"].table th{padding-left:.6em;padding-right:.6em}
 .ui[class*="very compact"].table td{padding:.4em .6em}.ui.small.table{font-size:.9em}
 .ui.table{font-size:1em}.ui.large.table{font-size:1.1em}*{box-sizing:border-box}html{font-size:80%}
+a{transition:.3s;text-decoration:none;color:whitesmoke;opacity:.7}a:hover{opacity:1}
 pre,code,kbd{-moz-tab-size:4;tab-size:4}pre{white-space:pre-wrap;word-wrap:break-word;overflow:hidden}
 body{font-family:'Geomanist','Lato','Roboto',sans-serif;background:#ecf0f1;display:-ms-flexbox;display:flex;min-height:100vh;-ms-flex-direction:column;flex-direction:column}
 main{-ms-flex:1;flex:1}main.pusher{margin-top:60px}main.container{padding:0 10px}
@@ -777,8 +778,7 @@ h1{font-size:2.9rem}.menu-container{width:100vw;margin:0 auto;display:inherit;-m
 .jumbotron h1{margin:0;font-size:2rem;text-shadow:0 0 13px rgba(0,0,0,0.28)}.jumbotron>*{z-index:2;text-shadow:0 0 10px rgba(0,0,0,0.13)}
 .jumbotron.column{-ms-flex-direction:column;flex-direction:column}.jumbotron a.button{margin-bottom:0}
 .jumbotron:after{content:'';z-index:1;background:#39bb88;width:100%;height:100%;position:absolute;top:0;left:0;opacity:.7}
-.jumbotron p{padding:0 200px}header.fixed{position:fixed;top:0;left:0;width:100%;z-index:100}
-header.fixed nav.main-nav{transition:all .3s;height:60px;background-color:whitesmoke;display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:stretch;align-items:stretch;box-shadow:0 0 20px rgba(0,0,0,0.22)}
+header.fixed{position:fixed;top:0;left:0;width:100%;z-index:100}header.fixed nav.main-nav{transition:all .3s;height:60px;background-color:whitesmoke;display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-pack:justify;justify-content:space-between;-ms-flex-align:stretch;align-items:stretch;box-shadow:0 0 20px rgba(0,0,0,0.22)}
 header.fixed nav.main-nav .hamburger{transition:opacity .3s;width:60px;text-align:center;line-height:60px;font-size:1.5rem;opacity:.8}
 header.fixed nav.main-nav .hamburger:hover{opacity:1;cursor:pointer}header.fixed nav.main-nav ul{transition:all .3s;padding:10px;margin:0;background:whitesmoke;width:100vw;position:absolute;top:60px;visibility:hidden;opacity:0;list-style:none}
 header.fixed nav.main-nav ul li{padding:10px;background:#ededed}header.fixed nav.main-nav .brand{line-height:60px;font-size:1.8rem;font-weight:700}
@@ -946,8 +946,9 @@ section.fullscreen:not(.home) .grid img{height:360px}section.fullscreen:not(.hom
 .navigation:first-of-type{margin-top:0}header.fixed nav.main-nav .menu .items>.item:not(.login){display:inline-block}
 header.fixed nav.main-nav .menu .hamburger{visibility:hidden}header.fixed nav.main-nav .menu .brand{-ms-flex-order:-1;order:-1;margin-left:20px}
 header.fixed nav.main-nav .menu .brand .desktop{display:inline-block}header.fixed nav.main-nav .menu .brand .mobile{display:none}
-header.fixed nav.main-nav .menu .items .item span{display:inline-block}section.how .grid{-ms-flex-direction:row-reverse;flex-direction:row-reverse}
-section.fullscreen h2{text-align:center}.button.medium{line-height:2.8rem}.container{width:90%;max-width:1300px;margin:0 auto}
+.jumbotron p{padding:0 100px}header.fixed nav.main-nav .menu .items .item span{display:inline-block}
+section.how .grid{-ms-flex-direction:row-reverse;flex-direction:row-reverse}section.fullscreen h2{text-align:center}
+.button.medium{line-height:2.8rem}.container{width:90%;max-width:1300px;margin:0 auto}
 .summary{padding:40px}.summary ol.subtitles{padding-left:80px}.active-tutoriels .tutoriel .thumbnail{position:relative;display:inline-block;height:286px;background-color:#2d946c;width:325px}
 .active-tutoriels .tutoriel .thumbnail img{transition:all .3s;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;min-width:50%;min-height:50%;overflow-x:hidden;transform:scale(0.4)}
 .active-tutoriels .tutoriel .informations .metas{position:absolute}}
