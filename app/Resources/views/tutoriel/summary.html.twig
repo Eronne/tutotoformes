@@ -79,7 +79,7 @@
                 {% endif %}
 
                 {% if app.user %}
-                    {% if  (is_granted('ROLE_WRITER') and app.user in author_ids) or is_granted('ROLE_ADMIN') %}
+                    {% if  (is_granted('ROLE_WRITER') and app.user.id in author_ids) or is_granted('ROLE_ADMIN') %}
                         <div class="spacer"></div>
                         <div class="center">
                             <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}"
@@ -94,6 +94,17 @@
                     <h1>Le tutoriel n'est pas encore disponible</h1>
 
                 </div>
+                    {% if app.user %}
+                        {% if  (is_granted('ROLE_WRITER') and app.user.id in author_ids) or is_granted('ROLE_ADMIN') %}
+                            <div class="spacer"></div>
+                            <div class="center">
+                                <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}"
+                                   class="button primary large"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer
+                                    le cours</a>
+                            </div>
+
+                        {% endif %}
+                    {% endif %}
             {% endif %}
 
         </div>

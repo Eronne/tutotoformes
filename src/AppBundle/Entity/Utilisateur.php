@@ -97,7 +97,7 @@ class Utilisateur implements UserInterface, \Serializable
     private $roles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tutoriel", mappedBy="author")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tutoriel", mappedBy="authors")
      */
     private $tutoriels;
 

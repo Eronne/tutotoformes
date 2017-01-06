@@ -25,7 +25,11 @@
             <label>Auteur</label>
             <select multiple name="_tutoriel[authors][]">
                 {% for user in users %}
-                        <option {% if (edit and user.id in author_ids)  %}selected{% endif %} value="{{ user.id }}">{{ user.username }}</option>
+                    {% if edit %}
+                        <option {% if user.id in author_ids  %}selected{% endif %} value="{{ user.id }}">{{ user.username }}</option>
+                    {% else %}
+                        <option {% if user.id == app.user.id  %}selected{% endif %} value="{{ user.id }}">{{ user.username }}</option>
+                    {% endif %}
                 {% endfor %}
 
             </select>
@@ -58,4 +62,14 @@
 
 
 
+
+
 </form>
+
+{% if edit %}
+
+<form action="{{ path('admin_tutoriel_remove', {'id': tutoriel.id}) }}">
+    <button type="submit" class="button medium danger">Supprimer le tutoriel</button>
+</form>
+
+{% endif %}

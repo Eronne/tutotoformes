@@ -58,8 +58,13 @@ class TutorielController extends Controller
             }
 
             $tutoriel = new Tutoriel();
-            $tutoriel->setAuthor($this->getDoctrine()->getRepository('AppBundle:Utilisateur')->find($params['author']))
-                ->setCreatedAt(new \DateTime('now'))
+            $userRepo = $this->getDoctrine()->getRepository('AppBundle:Utilisateur');
+            foreach ($params['authors'] as $id_author) {
+                $author = $userRepo->find($id_author);
+                if (!$author) throw $this->createNotFoundException();
+                $tutoriel->addAuthor($author);
+            }
+            $tutoriel->setCreatedAt(new \DateTime('now'))
                 ->setDifficulty($params['difficulty'])
                 ->setDuration($params['duration'])
                 ->setSubtitle($params['subtitle'])
@@ -82,6 +87,7 @@ class TutorielController extends Controller
             $em->flush();
             $this->addFlash('notification success', "Le tutoriel a bien été ajouté !");
 
+            if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_WRITER')) return $this->redirectToRoute('tutoriel_summary_show', ['slug' => $tutoriel->getSlug()]);
             return $this->redirectToRoute('admin_tutoriels_index');
         }
     }
@@ -92,12 +98,18 @@ class TutorielController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws Exception
      * @Route("/admin/tutoriel/edit/{id}", name="admin_tutoriel_edit")
-     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER'))")
      */
     public function editAction(Request $request, Tutoriel $tutoriel)
     {
         if (!$tutoriel) {
             return $this->createNotFoundException();
+        }
+
+        foreach ($tutoriel->getAuthors() as $author) {
+            if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_WRITER')) {
+                if($author != $this->getUser()) throw $this->createAccessDeniedException('Vous ne pouvez pas modifier le tutoriel d\'un autre');
+            }
         }
 
         $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findByRoles(['ROLE_ADMIN', 'ROLE_WRITER']);
@@ -123,7 +135,7 @@ class TutorielController extends Controller
             $em->flush();
             foreach ($params['authors'] as $id_author) {
                 $author = $userRepo->find($id_author);
-                if(!$author) throw $this->createNotFoundException();
+                if (!$author) throw $this->createNotFoundException();
                 $tutoriel->addAuthor($author);
             }
             $tutoriel->setDifficulty($params['difficulty'])
@@ -153,24 +165,26 @@ class TutorielController extends Controller
      * @param Request $request
      * @param Tutoriel $tutoriel
      * @Route("/admin/tutoriel/remove/{id}", name="admin_tutoriel_remove")
-     * @Security("has_role('ROLE_ADMIN')")
-     * @return \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER'))")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function removeAction(Request $request, Tutoriel $tutoriel)
     {
         if (!$tutoriel) {
             return $this->createNotFoundException();
         }
+        foreach ($tutoriel->getAuthors() as $author) {
+            if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_WRITER')) {
+                if($author != $this->getUser()) throw $this->createAccessDeniedException('Vous ne pouvez pas supprimer le tutoriel d\'un autre');
+            }
+        }
         $em = $this->getDoctrine()->getManager();
         $em->remove($tutoriel);
         $em->flush();
         $this->addFlash('notification success', "Le tutoriel a bien été supprimé");
+        if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_WRITER')) return $this->redirectToRoute('homepage');
         return $this->redirectToRoute('admin_tutoriels_index');
     }
-
-
-
-
 
 
 }

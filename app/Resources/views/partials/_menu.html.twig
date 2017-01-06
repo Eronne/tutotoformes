@@ -20,6 +20,9 @@
                         <a class="item"
                            href="{{ path('admin_index') }}">Administration</a>
                     {% endif %}
+                    {% if is_granted('ROLE_WRITER') and not is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('admin_tutoriel_add') }}" class="item">Ajouter un tuto</a>
+                    {% endif %}
                 {% endif %}
                 {% if app.user %}
                     <a href="{{ path('my_profile') }}" class="item login">

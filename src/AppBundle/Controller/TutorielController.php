@@ -78,6 +78,10 @@ class TutorielController extends Controller
         if (!$tutoriel) {
             return $this->createNotFoundException();
         }
+        $authorIds = [];
+        foreach ($tutoriel->getAuthors() as $author) {
+            array_push($authorIds, $author->getId());
+        }
         $page = $this->getDoctrine()->getRepository('AppBundle:TutorielPage')->findOneBy(['slug' => $slug_page, 'tutoriel' => $tutoriel]);
         if (!$page) {
             return $this->createNotFoundException();
@@ -97,7 +101,7 @@ class TutorielController extends Controller
 
 
 
-        return $this->render('tutoriel/page/show.html.twig', ['tutoriel' => $tutoriel, 'page' => $page, 'prev_page' => $prevPage, 'next_page' => $nextPage]);
+        return $this->render('tutoriel/page/show.html.twig', ['author_ids' => $authorIds, 'tutoriel' => $tutoriel, 'page' => $page, 'prev_page' => $prevPage, 'next_page' => $nextPage]);
     }
 
     /**

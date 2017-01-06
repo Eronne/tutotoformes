@@ -20,11 +20,16 @@ class TutorielPageController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws Exception
      * @Route("/admin/tutoriel/{id}/page/add", name="admin_tutoriel_page_add")
-     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER'))")
      */
     public function addAction(Request $request, Tutoriel $tutoriel){
         if(!$tutoriel){
             return $this->createNotFoundException();
+        }
+        foreach ($tutoriel->getAuthors() as $author) {
+            if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_WRITER')) {
+                if($author != $this->getUser()) throw $this->createAccessDeniedException('Vous ne pouvez pas modifier le tutoriel d\'un autre');
+            }
         }
         if($request->getMethod() == "GET"){
             return $this->render('tutoriel/page/add.html.twig', ['tutoriel' => $tutoriel]);
@@ -75,7 +80,7 @@ class TutorielPageController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response|\Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      * @throws Exception
      * @Route("/admin/tutoriel/edit/{id}/page/{slug_page}", name="admin_tutoriel_page_edit")
-     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER') and tutoriel.getAuthor() == user)")
+     * @Security("has_role('ROLE_ADMIN') or (has_role('ROLE_WRITER'))")
      */
     public function editAction(Request $request, Tutoriel $tutoriel, $slug_page){
         /** @var TutorielPage $tutorielPage */
@@ -83,6 +88,11 @@ class TutorielPageController extends Controller
 
         if(!$tutoriel && !$tutorielPage){
             return $this->createNotFoundException();
+        }
+        foreach ($tutoriel->getAuthors() as $author) {
+            if(!$this->isGranted('ROLE_ADMIN') && $this->isGranted('ROLE_WRITER')) {
+                if($author != $this->getUser()) throw $this->createAccessDeniedException('Vous ne pouvez pas modifier le tutoriel d\'un autre');
+            }
         }
         if($request->getMethod() == "GET"){
             return $this->render('tutoriel/page/edit.html.twig', ['tutoriel' => $tutoriel, 'page' => $tutorielPage]);

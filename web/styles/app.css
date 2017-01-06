@@ -6495,10 +6495,9 @@ html {
 a {
   transition: .3s;
   text-decoration: none;
-  color: whitesmoke;
-  opacity: 0.7; }
+  color: #39bb88; }
   a:hover {
-    opacity: 1; }
+    color: #35af7f; }
 
 pre, code, kbd {
   tab-size: 4; }
@@ -6561,6 +6560,8 @@ h1 {
     flex-direction: column; }
   .jumbotron a.button {
     margin-bottom: 0; }
+  .jumbotron a {
+    color: whitesmoke; }
   .jumbotron:after {
     content: '';
     z-index: 1;
