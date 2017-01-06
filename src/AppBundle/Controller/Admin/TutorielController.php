@@ -179,6 +179,10 @@ class TutorielController extends Controller
             }
         }
         $em = $this->getDoctrine()->getManager();
+        $up = $this->getDoctrine()->getRepository('AppBundle:UserProgression')->findOneBy(['tutoriel' => $tutoriel]);
+        $up->setTutoriel(null);
+        $up->setUser(null);
+        $em->flush();
         $em->remove($tutoriel);
         $em->flush();
         $this->addFlash('notification success', "Le tutoriel a bien été supprimé");
