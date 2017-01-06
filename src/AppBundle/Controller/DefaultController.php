@@ -57,9 +57,8 @@ class DefaultController extends Controller
             }
             $message = $request->get('_message');
             $subject = $request->get('_subject');
-            $user = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findOneBy(['email' => $request->get('_email')]);
-            if(!$user) throw $this->createNotFoundException();
-            $this->get('app.utils')->sendMail($subject, 'contact@tutotoformes.fr', 'Tutotoformes', $to, $this->renderView('mails/contact.html.twig', ['user' => $user, 'message' => $message]), 'text/html');
+            $from = $request->get('_email');
+            $this->get('app.utils')->sendMail($subject, 'contact@tutotoformes.fr', 'Tutotoformes', $to, $this->renderView('mails/contact.html.twig', ['from' => $from, 'message' => $message]), 'text/html');
             $this->addFlash('notification success', 'Le message a bien été envoyé');
             return $this->redirectToRoute('contact');
         }

@@ -9,7 +9,7 @@
         </div>
         <div class="container">
 
-            <form action="" method="post">
+            <form action="{{ path('contact') }}" method="post">
                 <div class="field icon">
                     <input type="text" name="_email" id="email" required placeholder="Votre adresse mail"
                            value="{{ (app.user) ? app.user.email : '' }}">
