@@ -100,11 +100,11 @@
             <style>
                 {% if tutoriel.thumbnailLink starts with 'http' %}
                 .jumbotron {
-                    background: url({{ tutoriel.thumbnailLink }}) center center no-repeat;
+                    background: url({{ tutoriel.thumbnailLink }}) center center no-repeat no-repeat;
                 }
                 {% else %}
                 .jumbotron {
-                    background: url({{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}) center center;
+                    background: url({{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}) center center no-repeat no-repeat;
                 }
                 {% endif %}
             </style>
