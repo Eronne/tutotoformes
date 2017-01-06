@@ -12,7 +12,6 @@
                 </div>
             </div>
         </div>
-        <div class="arrow-separator"></div>
         <div class="container">
             <div class="tutoriel-summary">
                 {{ tutoriel.description|raw }}
@@ -95,5 +94,21 @@
 
         </div>
     {% endblock %}
+
+    {% if tutoriel.thumbnailLink != "" %}
+        {% block stylesheets %}
+            <style>
+                {% if tutoriel.thumbnailLink starts with 'http' %}
+                .jumbotron {
+                    background: url({{ tutoriel.thumbnailLink }}) center center no-repeat;
+                }
+                {% else %}
+                .jumbotron {
+                    background: url({{ vich_uploader_asset(tutoriel, 'thumbnailFile') }}) center center;
+                }
+                {% endif %}
+            </style>
+        {% endblock %}
+    {% endif %}
 
 {% endembed %}

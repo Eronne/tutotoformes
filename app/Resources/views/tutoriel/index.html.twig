@@ -2,39 +2,41 @@
 
 
     {% block body %}
-
-        <div class="page-body">
-            <div class="ui container">
-                <h1>Liste des tutoriels</h1>
-                <table class="ui striped celled table">
-                    <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Nb. pages</th>
-                        <th>Date de création</th>
-                        <th>Auteur</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for tutoriel in tutoriels %}
-                        <tr>
-                            <td>{{ tutoriel.title }}</td>
-                            <td>{{ tutoriel.tutorialPages.count }}</td>
-                            <td>{{ tutoriel.createdAt|date('Y/m/d, à h:m:i') }}</td>
-                            <td>{{ tutoriel.author.username }}</td>
-                            <td class="center">
-                                <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}"
-                                   class="button primary small"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a>
-                                <a href="{{ path('admin_tutoriel_remove', {'id': tutoriel.id}) }}" class="button danger small"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <hr>
-                <a class="ui button primary" href="{{ path('admin_tutoriel_add') }}">Ajouter un tutoriel</a>
+        <div class="jumbotron">
+            <h1>Liste des tutoriels</h1>
+        </div>
+        <div class="container">
+            <div class="center">
+                <a class="button primary medium" href="{{ path('admin_tutoriel_add') }}"><i class="fa fa-plus">&nbsp;&nbsp;</i>Ajouter un tutoriel</a>
             </div>
+
+            <table class="ui striped celled table">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Nb. pages</th>
+                    <th>Date de création</th>
+                    <th>Auteur</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tutoriel in tutoriels %}
+                    <tr>
+                        <td>{{ tutoriel.title }}</td>
+                        <td>{{ tutoriel.tutorialPages.count }}</td>
+                        <td>{{ tutoriel.createdAt|date('Y/m/d, à h:m:i') }}</td>
+                        <td>{{ tutoriel.author.username }}</td>
+                        <td class="center">
+                            <a href="{{ path('admin_tutoriel_edit', {'id': tutoriel.id}) }}"
+                               class="button primary small"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer</a>
+                            <a href="{{ path('admin_tutoriel_remove', {'id': tutoriel.id}) }}"
+                               class="button danger small"><i class="fa fa-times">&nbsp;&nbsp;</i>Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
 
     {% endblock %}

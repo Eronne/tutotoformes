@@ -18,5 +18,9 @@ final class AchievementsName
 
     const SECRET_RABAH_ACHIEVEMENT = "SECRET_RABAH";
 
+    const SECRET_SOUTENANCE_ACHIEVEMENT = "SECRET_SOUTENANCE";
+
+
+
 
 }

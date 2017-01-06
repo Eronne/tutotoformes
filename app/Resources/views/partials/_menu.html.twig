@@ -19,12 +19,12 @@
                         <a class="item"
                            href="{{ path('admin_index') }}">Administration</a>
                     {% endif %}
-                    <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
                 {% endif %}
                 {% if app.user %}
                     <a href="{{ path('my_profile') }}" class="item login">
                         <span>&nbsp;Mon profil</span>
                     </a>
+                    <a href="{{ path('logout') }}" class="item logout"><i class="fa fa-power-off"></i></a>
                 {% else %}
                     <a class="item login" href="{{ path('login') }}">
                         <span>&nbsp;S'inscrire / Se connecter</span>
@@ -35,6 +35,11 @@
         </div>
     </div>
     <ul id="mobile-menu">
+        <li>
+            <a href="{{ path('homepage') }}"
+               class="item">Accueil</a>
+
+        </li>
         <li>
             <a href="{{ path('tutoriel_list') }}"
                class="item">Tutoriels</a>
@@ -47,9 +52,7 @@
                        href="{{ path('admin_index') }}">Administration</a>
                 </li>
             {% endif %}
-            <li>
-                <a href="{{ path('logout') }}" class="item">Se déconnecter</a>
-            </li>
+
         {% endif %}
     </ul>
 </nav>

@@ -10,6 +10,7 @@
 
     {% block head %}{% endblock %}
 
+
     <title>{% block title %}{{ app_name }} - {{ title|default('Accueil') }}{% endblock %}</title>
     {% if app.environment == 'prod' %}
         <link rel="stylesheet" href="{{ asset('dist/app.css') }}?v={{ 'now'|date('Ymdhis') }}">
@@ -21,7 +22,21 @@
 
 </head>
 <body>
+<!--
+       //\               _   _ _                     _
+  |/_\|             | | (_) |                   (_)
+  / _ \   _ __   ___| |_ _| |_    ___ _   _ _ __ _  ___ _   ___  __
+ | | | | | '_ \ / _ \ __| | __|  / __| | | | '__| |/ _ \ | | \ \/ /
+ | |_| | | |_) |  __/ |_| | |_  | (__| |_| | |  | |  __/ |_| |>  <
+  \___/  | .__/ \___|\__|_|\__|  \___|\__,_|_|  |_|\___|\__,_/_/\_\
+         | |
+         |_|
 
+         Toi qui observe le magnifique code source de notre plateforme, je t'invite à faire un petit tour ici, ta curiosité mérite récompense !
+
+        -> -> -> -> -> {{ absolute_url(path('unlock_secret_soutenance_achievement')) }} <- <- <- <- <-
+
+    !-->
 <header class="fixed">
     {{ render(controller('AppBundle:Default:menu')) }}
 </header>
@@ -67,7 +82,7 @@
                 </ul>
             </div>
         </div>
-        <div class="credits">Site réalisé par : Omar <strong>&nbsp;JBARA&nbsp;</strong> | Erwann <strong>&nbsp;LETUE&nbsp;</strong> | Alexandre <strong>&nbsp;MASSÉ&nbsp;</strong></div>
+        <div class="credits">Site réalisé par : <a href="#">Omar <strong>&nbsp;JBARA&nbsp;</strong></a> | <a href="http://erwann-letue.fr">Erwann <strong>&nbsp;LETUE&nbsp;</strong></a> | <a href="http://alexandremasse.fr">Alexandre <strong>&nbsp;MASSÉ&nbsp;</strong></a></div>
     </div>
 
 </footer>

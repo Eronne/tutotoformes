@@ -1,20 +1,24 @@
 {% embed 'base.html.twig' with {title: 'Contact'} %}
 
     {% block body %}
-
-        <div class="container">
+        <div class="jumbotron column">
             <h1>Contact</h1>
             <p>Vous avez besoins de nous transmettre un petit mot ? Ou encore vous voulez devenir auteur ? Envoyez nous
                 un mail, en spécifiant bien l'objet, afin que nous puissons vous répondre dans les plus brefs délais
                 !</p>
+        </div>
+        <div class="container">
+
             <form action="" method="post">
                 <div class="field icon">
-                    <input type="text" name="_email" required placeholder="Votre mail"
+                    <input type="text" name="_email" id="email" required placeholder="Votre adresse mail"
                            value="{{ (app.user) ? app.user.email : '' }}">
                     <i class="fa fa-envelope"></i>
                 </div>
                 <div class="field">
-                    <select name="_subject" id="">
+                    <label for="subject">Objet de votre message</label>
+                    <div class="spacer"></div>
+                    <select name="_subject" id="subject">
                         <option value="Demande d'auteur">Demande d'auteur</option>
                         <option value="Problèmes divers sur la plateforme">Problèmes divers sur la plateforme</option>
                         <option value="Erreur dans un tutoriel">Erreur dans un tutoriel</option>
@@ -23,9 +27,9 @@
 
                 </div>
                 <div class="field">
-                    <textarea name="_message" id="" cols="30" rows="10">
-
-                </textarea>
+                    <label for="message">Contenu de votre message</label>
+                    <div class="spacer"></div>
+                    <textarea name="_message" id="message" cols="30" rows="10" placeholder="Écrivez votre message ici"></textarea>
                     <div class="spacer"></div>
                     <button class="button primary large" type="submit">Envoyer</button>
                 </div>

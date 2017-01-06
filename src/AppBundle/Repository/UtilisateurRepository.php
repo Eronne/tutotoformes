@@ -21,14 +21,14 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
      * @param $r
      * @return Utilisateur[]
      */
-    public function findByRole($r) {
-        $role = $this->getEntityManager()->getRepository('AppBundle:Role')->findOneBy(['role' => $r]);
+    public function findByRoles($r) {
+        $roles = $this->getEntityManager()->getRepository('AppBundle:Role')->findBy(['role' => $r]);
         $qb = $this->getEntityManager()->createQueryBuilder();
         return $qb->select('utilisateur')
             ->from('AppBundle:Utilisateur', 'utilisateur')
             ->innerJoin('utilisateur.roles', 'roles')
-            ->where('roles = :roles')
-            ->setParameter('roles', $role)
+            ->where('roles IN (:r)')
+            ->setParameter('r', $roles)
             ->getQuery()
             ->getResult();
 

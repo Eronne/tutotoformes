@@ -2,11 +2,11 @@
 
 
     {% block body %}
-
+        <div class="jumbotron">
+            <h1>Liste des tutoriels</h1>
+        </div>
         <div class="container">
-            <div class="spacer"></div>
-            <h1 class="page-title">Liste des tutoriels</h1>
-            <div class="spacer"></div>
+
             {% if tutoriels is defined and tutoriels|length > 0 %}
                 <div class="tutoriels">
                     {% for tutoriel in tutoriels %}

@@ -2,13 +2,17 @@
 
     {% block body %}
 
+        <div class="jumbotron">
+            <h1>Administration</h1>
+        </div>
+
         <div class="container">
 
 
-            <h1>Administration</h1>
+
             <div class="grid has-gutter-xl">
-                <a class="button primary medium" href="{{ path('admin_tutoriels_index') }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer les tutoriels</a>
-                <a class="button primary medium" href="{{ path('admin_user_index') }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Éditer les utilisateurs</a>
+                <a class="button primary medium" href="{{ path('admin_tutoriels_index') }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Lister les tutoriels</a>
+                <a class="button primary medium" href="{{ path('admin_user_index') }}"><i class="fa fa-edit">&nbsp;&nbsp;</i>Lister les utilisateurs</a>
 
             </div>
         </div>

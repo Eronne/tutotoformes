@@ -50,7 +50,7 @@ class DefaultController extends Controller
         if($request->getMethod() == "GET"){
             return $this->render('contact.html.twig');
         } else {
-            $admins = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findByRole('ROLE_ADMIN');
+            $admins = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findByRoles(['ROLE_ADMIN']);
             $to = [];
             foreach ($admins as $admin) {
                 array_push($to, $admin->getEmail());

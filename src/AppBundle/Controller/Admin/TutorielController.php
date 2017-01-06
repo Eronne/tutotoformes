@@ -100,8 +100,7 @@ class TutorielController extends Controller
             return $this->createNotFoundException();
         }
 
-        $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findAll();
-
+        $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findByRoles(['ROLE_ADMIN', 'ROLE_WRITER']);
         if ($request->getMethod() === "GET") {
             return $this->render('tutoriel/edit.html.twig', ['tutoriel' => $tutoriel, 'users' => $users]);
         } else {

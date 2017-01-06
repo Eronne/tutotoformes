@@ -6514,6 +6514,9 @@ main {
   main.container {
     padding: 0 10px; }
 
+h1 {
+  font-size: 2.9rem; }
+
 .menu-container {
   width: 100vw;
   margin: 0 auto;
@@ -6530,14 +6533,35 @@ main {
 
 .jumbotron {
   background: #39bb88;
+  box-shadow: inset 0 0 172px -13px black;
   color: whitesmoke;
   display: flex;
   justify-content: center;
   align-content: center;
   padding: 50px;
-  text-align: center; }
+  text-align: center;
+  position: relative; }
   .jumbotron h1 {
-    margin-top: 0; }
+    margin: 0;
+    font-size: 2rem;
+    text-shadow: 0 0 13px rgba(0, 0, 0, 0.28); }
+  .jumbotron > * {
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.13); }
+  .jumbotron.column {
+    flex-direction: column; }
+  .jumbotron a.button {
+    margin-bottom: 0; }
+  .jumbotron:after {
+    content: '';
+    z-index: 1;
+    background: #39bb88;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.85; }
 
 header.fixed {
   position: fixed;
@@ -6603,6 +6627,8 @@ header.fixed {
         display: flex; }
         header.fixed nav.main-nav .menu .items > .item:not(.login) {
           display: none; }
+        header.fixed nav.main-nav .menu .items > .item.logout {
+          display: inline-block; }
       header.fixed nav.main-nav .menu .item {
         padding: 0 20px;
         line-height: 60px;
@@ -6626,6 +6652,14 @@ header.fixed {
             font-family: FontAwesome;
             content: '\f007';
             color: inherit; }
+        header.fixed nav.main-nav .menu .item.logout {
+          background-color: #35af7f;
+          color: #ecf0f1;
+          text-align: center;
+          align-self: flex-end; }
+          header.fixed nav.main-nav .menu .item.logout:hover {
+            background-color: #ecf0f1;
+            color: black; }
         header.fixed nav.main-nav .menu .item.profile {
           background-color: #009c5c;
           position: relative; }
@@ -6755,7 +6789,6 @@ img {
   background: #39bb88;
   font-size: 1.3rem;
   line-height: 1.6;
-  margin-bottom: 40px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.14); }
   .has-bg.alt {
     background: #009c5c; }
@@ -6771,7 +6804,7 @@ section.fullscreen {
   section.fullscreen h1, section.fullscreen h2, section.fullscreen h3, section.fullscreen h4, section.fullscreen h5 {
     color: #ecf0f1; }
   section.fullscreen h2 {
-    font-size: 2.8rem; }
+    font-size: 2rem; }
   section.fullscreen .content {
     display: flex; }
   section.fullscreen .grid img {
@@ -6810,6 +6843,15 @@ footer {
   background: #00834d;
   color: whitesmoke;
   display: flex; }
+  footer a {
+    transition: all .3s;
+    color: whitesmoke;
+    opacity: 0.8;
+    text-decoration: none;
+    margin: 0 5px; }
+    footer a:hover {
+      opacity: 1;
+      cursor: pointer; }
   footer .content {
     display: flex;
     flex-direction: row;
@@ -6820,21 +6862,30 @@ footer {
       flex-direction: column; }
     footer .content .sitemap {
       text-align: center;
-      flex: 1; }
+      flex: 1;
+      position: relative; }
       footer .content .sitemap ul {
         column-count: 2;
         column-gap: 0;
         list-style: none;
         padding: 0; }
-  footer a {
-    transition: all .3s;
-    color: whitesmoke;
-    opacity: 0.8;
-    font-size: 1.2rem;
-    text-decoration: none; }
-    footer a:hover {
-      opacity: 1;
-      cursor: pointer; }
+        footer .content .sitemap ul li a {
+          transition: all .3s;
+          color: whitesmoke;
+          opacity: 0.8;
+          font-size: 1rem;
+          text-decoration: none; }
+          footer .content .sitemap ul li a:hover {
+            opacity: 1;
+            cursor: pointer; }
+      footer .content .sitemap:before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: 5%;
+        height: 2px;
+        width: 95%;
+        background: rgba(255, 255, 255, 0.62); }
   footer .credits {
     display: flex;
     margin-top: 20px;
@@ -6858,10 +6909,8 @@ table.ui.table td.center {
   transition: all .3s;
   padding: 20px 1em 20px 1em;
   text-transform: uppercase;
-  margin: 20px;
   text-decoration: none;
   width: 200px;
-  max-width: calc(100vw - 60px);
   text-align: center;
   font-size: 1.1rem;
   font-weight: 400;
@@ -7016,6 +7065,7 @@ table.ui.table td.center {
   position: relative;
   margin: 20px 0; }
   .field input, .field select, .field textarea {
+    max-width: 100%;
     transition: all .3s;
     position: relative;
     outline: none;
@@ -7214,14 +7264,19 @@ span.date::before {
       .tutoriels.others a .tutoriel {
         margin-right: 10px; }
   .tutoriels .tutoriel {
+    transition: all 0.3s;
     max-width: 100%;
     width: 490px;
     height: 310px;
     background-color: #2d946c;
     position: relative;
     overflow: hidden;
+    border-radius: 6px;
     margin-bottom: 20px;
-    transform: translateZ(0); }
+    transform: translateZ(0);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.14); }
+    .tutoriels .tutoriel:hover {
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); }
     .tutoriels .tutoriel.others {
       margin-right: 0; }
     .tutoriels .tutoriel .tutoriel-title {
@@ -7325,7 +7380,11 @@ span.date::before {
     max-width: 100%;
     display: flex;
     align-content: stretch;
-    margin-bottom: 20px; }
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.14); }
+    .active-tutoriels .tutoriel:hover {
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2); }
     .active-tutoriels .tutoriel .tutoriel-title {
       transition: all 0.3s;
       position: absolute;
@@ -7338,7 +7397,7 @@ span.date::before {
       text-decoration: none;
       text-align: center; }
     .active-tutoriels .tutoriel .button {
-      margin-top: 6px; }
+      margin-top: 16px; }
     .active-tutoriels .tutoriel .thumbnail {
       position: relative;
       display: none;
@@ -7527,6 +7586,9 @@ ul.badges {
   .navigation .right {
     align-self: flex-start; }
 
+h2, h3, h4, h5 {
+  text-align: center; }
+
 @media only screen and (max-width: 600px) {
   .button.small, .button.medium, .button.large {
     width: 100%;
@@ -7564,6 +7626,9 @@ ul.badges {
   html {
     font-size: 90%; }
 
+  h2, h3, h4, h5, h6 {
+    text-align: left; }
+
   section.fullscreen:not(.home) {
     padding: 40px 200px; }
     section.fullscreen:not(.home) .grid {
@@ -7595,6 +7660,9 @@ ul.badges {
 
   section.how .grid {
     flex-direction: row-reverse; }
+
+  section.fullscreen h2 {
+    text-align: center; }
 
   .button.medium {
     line-height: 2.8rem; }
