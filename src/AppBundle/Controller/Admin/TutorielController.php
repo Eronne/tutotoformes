@@ -43,7 +43,7 @@ class TutorielController extends Controller
     public function addAction(Request $request)
     {
         if ($request->getMethod() == "GET") {
-            $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findAll();
+            $users = $this->getDoctrine()->getRepository('AppBundle:Utilisateur')->findByRoles(['ROLE_ADMIN', 'ROLE_WRITER']);
             return $this->render('tutoriel/add.html.twig', ['users' => $users]);
         } else {
 
