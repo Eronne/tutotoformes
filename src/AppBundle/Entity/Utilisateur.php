@@ -104,14 +104,14 @@ class Utilisateur implements UserInterface, \Serializable
     /**
      * @var UtilisateurAchievementAssociation
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UtilisateurAchievementAssociation", mappedBy="utilisateur")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UtilisateurAchievementAssociation", mappedBy="utilisateur", cascade={"remove"})
      */
     private $userAchievementsAssociation;
 
     /**
      * @var Comment[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="author", cascade={"remove"})
      */
     private $comments;
 

@@ -43,6 +43,14 @@ class UtilisateurController extends Controller
             return $this->redirectToRoute('admin_user_index');
         }
         $em = $this->getDoctrine()->getManager();
+        $up = $this->getDoctrine()->getRepository('AppBundle:UserProgression')->findOneBy(['user' => $user]);
+        if($up) {
+            $up->setUser(null)
+                ->setTutoriel(null);
+            $em->remove($up);
+            $em->flush();
+
+        }
         $em->remove($user);
         $em->flush();
         $this->addFlash('notification success', "L'utilisateur a bien été supprimé !");

@@ -6532,15 +6532,16 @@ h1 {
   padding: 20px; }
 
 .jumbotron {
-  background: #39bb88;
+  background: url(../assets/img/bg.jpg) center 2452px #39bb88;
   box-shadow: inset 0 0 172px -13px black;
   color: whitesmoke;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   padding: 50px;
   text-align: center;
-  position: relative; }
+  position: relative;
+  height: 260px; }
   .jumbotron h1 {
     margin: 0;
     font-size: 2rem;
@@ -6561,7 +6562,9 @@ h1 {
     position: absolute;
     top: 0;
     left: 0;
-    opacity: 0.85; }
+    opacity: 0.7; }
+  .jumbotron p {
+    padding: 0 700px; }
 
 header.fixed {
   position: fixed;
@@ -6843,6 +6846,8 @@ footer {
   background: #00834d;
   color: whitesmoke;
   display: flex; }
+  footer h2 {
+    text-align: center; }
   footer a {
     transition: all .3s;
     color: whitesmoke;
@@ -6853,10 +6858,12 @@ footer {
       opacity: 1;
       cursor: pointer; }
   footer .content {
+    border-top: 2px solid rgba(255, 255, 255, 0.43);
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center; }
+    align-items: stretch;
+    padding-bottom: 17px; }
     footer .content .brand {
       display: flex;
       flex-direction: column; }
@@ -6872,23 +6879,17 @@ footer {
         column-gap: 0;
         list-style: none;
         padding: 0; }
-        footer .content .sitemap ul li a {
-          transition: all .3s;
-          color: whitesmoke;
-          opacity: 0.8;
-          font-size: 1rem;
-          text-decoration: none; }
-          footer .content .sitemap ul li a:hover {
-            opacity: 1;
-            cursor: pointer; }
-      footer .content .sitemap:before {
-        content: '';
-        position: absolute;
-        top: 8px;
-        left: 5%;
-        height: 2px;
-        width: 95%;
-        background: rgba(255, 255, 255, 0.62); }
+        footer .content .sitemap ul li {
+          margin-bottom: 6px; }
+          footer .content .sitemap ul li a {
+            transition: all .3s;
+            color: whitesmoke;
+            opacity: 0.8;
+            font-size: 1rem;
+            text-decoration: none; }
+            footer .content .sitemap ul li a:hover {
+              opacity: 1;
+              cursor: pointer; }
   footer .credits {
     display: flex;
     margin-top: 20px;

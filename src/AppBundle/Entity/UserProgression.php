@@ -62,7 +62,7 @@ class UserProgression
     /**
      * @var
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur", cascade={"all"})
      */
     private $user;
 
